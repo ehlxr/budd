@@ -1,17 +1,13 @@
 package osc.git.eh3.test;
 
 import java.text.ParseException;
-import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
+import com.caucho.hessian.client.HessianProxyFactory;
 
 import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
+import osc.git.eh3.readlogs.IReadLogs;
 
 public class TestCode {
 
@@ -79,12 +75,26 @@ public class TestCode {
 //		String str = "http://www.test.com";
 //		System.out.println(str.replace("http://www.", "").replace("www.", ""));
 		
-		SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
-		SimpleDateFormat sdf = new SimpleDateFormat("HH");
-		String str = "23:59:59";
-		System.out.println(sdf.format(formatter.parse(str)));
+//		SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+//		SimpleDateFormat sdf = new SimpleDateFormat("HH");
+//		String str = "23:59:59";
+//		System.out.println(sdf.format(formatter.parse(str)));
 		
 
+		// Spring Hessian代理Servelet
+//		String url = "http://localhost:8080/sync-logs/remote/readlogs";
+//		HessianProxyFactory factory = new HessianProxyFactory();
+//		
+//		IReadLogs readLogs = (IReadLogs) factory.create(IReadLogs.class, url);
+//		JSONArray result = JSONArray.fromObject(readLogs.readFile("2016-02-22 15:00:00", "00000000000000"));
+//		System.out.println(result);
+		
+		
+		JSONArray jonsArr = new JSONArray();
+		JSONArray arr = new JSONArray();
+		jonsArr = JSONArray.fromObject("[ { 'category': 2, 'clks': 4, 'cost': 13, 'createtime': null, 'creativeid': 'cf0714f4-8b92-41f2-a843-19c94fe3af74', 'downloads': 0, 'flag': 0, 'imprs': 5, 'regists': 0, 'time': null } ]");
+		arr.addAll(JSONArray.toCollection(jonsArr));
+		System.out.println(arr);
 	}
 
 	public static Long parseDate(String s) {
