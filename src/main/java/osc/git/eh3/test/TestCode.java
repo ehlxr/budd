@@ -1,5 +1,6 @@
 package osc.git.eh3.test;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -7,6 +8,7 @@ import java.util.Date;
 import com.caucho.hessian.client.HessianProxyFactory;
 
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import osc.git.eh3.readlogs.IReadLogs;
 
 public class TestCode {
@@ -90,11 +92,26 @@ public class TestCode {
 //		System.out.println(result);
 		
 		
-		JSONArray jonsArr = new JSONArray();
-		JSONArray arr = new JSONArray();
-		jonsArr = JSONArray.fromObject("[ { 'category': 2, 'clks': 4, 'cost': 13, 'createtime': null, 'creativeid': 'cf0714f4-8b92-41f2-a843-19c94fe3af74', 'downloads': 0, 'flag': 0, 'imprs': 5, 'regists': 0, 'time': null } ]");
-		arr.addAll(JSONArray.toCollection(jonsArr));
-		System.out.println(arr);
+//		JSONArray jonsArr = new JSONArray();
+//		JSONArray arr = new JSONArray();
+//		jonsArr = JSONArray.fromObject("[ { 'category': 2, 'clks': 4, 'cost': 13, 'createtime': null, 'creativeid': 'cf0714f4-8b92-41f2-a843-19c94fe3af74', 'downloads': 0, 'flag': 0, 'imprs': 5, 'regists': 0, 'time': null } ]");
+//		arr.addAll(JSONArray.toCollection(jonsArr));
+//		System.out.println(arr);
+		
+//		String str = "20160222,18:59:50.523,DBG,ip:36.100.240.103,adx:3,bid:08a2d93b-0153-1000-fd75-3f89c5394190,mapid:62367312-d881-426d-81b4-fe635d1db989,deviceid:726e14bf3ba615e5387c256059e9f24a94721f76,deviceidtype:97,mtype:m";
+//		for(String dd : str.split(",")){
+//			
+//			System.out.println(dd);
+//		}
+		
+//		BigDecimal dd = new BigDecimal("1111.10");
+//		JSONObject jj = new JSONObject();
+//		jj.put("test", dd);
+//		System.out.println(jj.optDouble("test"));
+		
+		JSONObject jj = new JSONObject();
+		System.out.println(jj.optString("pring"));
+		
 	}
 
 	public static Long parseDate(String s) {
