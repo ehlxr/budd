@@ -1,11 +1,17 @@
 package osc.git.eh3.test;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.caucho.hessian.client.HessianProxyFactory;
 
@@ -119,17 +125,47 @@ public class TestCode {
 		// System.out.println(jj.optString("pring"));
 		
 		
-		// 根据网卡取本机配置的IP
-		InetAddress inet = null;
-		try {
-			inet = InetAddress.getLocalHost();
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		}
-		String ipAddress = inet.getHostAddress();
+//		// 根据网卡取本机配置的IP
+//		InetAddress inet = null;
+//		try {
+//			inet = InetAddress.getLocalHost();
+//		} catch (UnknownHostException e) {
+//			e.printStackTrace();
+//		}
+//		String ipAddress = inet.getHostAddress();
+//		
+//		System.out.println(ipAddress);
 		
-		System.out.println(ipAddress);
+		
+//		TestCode test = new TestCode();
+//		System.out.println(test.dd("ddd"));
 
+		
+
+//		Package pkg = Package.getPackage("osc.git.eh3.test");
+//		Annotation[] annotations = pkg.getAnnotations();
+//		for (Annotation annotation : annotations) {
+//			System.out.println(annotation);
+//		}
+		
+//		String[] arrs = new String[]{"111","111","2222"};
+//		for (String string : Array2Set(arrs)) {
+//			
+//			System.out.println(string);
+//		}
+		
+//		Class<?> clazz = StatisByHourModel.class;
+//		Method[] methods = clazz.getMethods();
+//		for (Method method : methods) {
+//			System.out.println(method.getName());
+//		}
+		Object dd = new Date();
+
+		System.out.println(dd instanceof Date);
+		
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        System.out.println(sdf.format(dd));
+    
 	}
 
 	public static Long parseDate(String s) {
@@ -146,5 +182,14 @@ public class TestCode {
 			}
 		}
 		return time;
+	}
+	
+	public <B> B dd(B t){
+		return t;
+	}
+	
+	public static <T extends Object> Set<T> Array2Set(T[] tArray) {
+		Set<T> tSet = new HashSet<T>(Arrays.asList(tArray));
+		return tSet;
 	}
 }
