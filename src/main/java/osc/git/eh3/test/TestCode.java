@@ -15,6 +15,7 @@ import java.util.Set;
 
 import com.caucho.hessian.client.HessianProxyFactory;
 
+import net.sf.ezmorph.bean.MorphDynaBean;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import osc.git.eh3.readlogs.IReadLogs;
@@ -159,13 +160,18 @@ public class TestCode {
 //		for (Method method : methods) {
 //			System.out.println(method.getName());
 //		}
-		Object dd = new Date();
-
-		System.out.println(dd instanceof Date);
+//		Object dd = new Date();
+//
+//		System.out.println(dd instanceof Date);
+//		
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+//        System.out.println(sdf.format(dd));
 		
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-        System.out.println(sdf.format(dd));
-    
+		JSONObject groupAdxs = JSONObject.fromObject("{\"4ebdb328-5d4b-42e6-80c3-a6aaaecdcea1\":[\"1e03319c-425d-4a17-a6bf-eeec2f48db29\",\"1fed4171-9925-4834-aa7b-9b4d3a58841b\",\"ce579246-e707-4cb9-b982-88cad7944b92\"],\"9262cbe8-a9dc-4f4e-888b-cf3ffe65defd\":\"ce579246-e707-4cb9-b982-88cad7944b92\"}");
+		Set<String> keySet = groupAdxs.keySet();
+		for (Object object : keySet) {
+			System.out.println(groupAdxs.get(object).getClass().isArray());
+		}
 	}
 
 	public static Long parseDate(String s) {

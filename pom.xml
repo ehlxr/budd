@@ -116,7 +116,7 @@
 			<version>${servlet.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<!-- mybatis start -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
@@ -137,6 +137,11 @@
 			<groupId>org.mybatis.generator</groupId>
 			<artifactId>mybatis-generator-core</artifactId>
 			<version>${mybatis.generator.core.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>c3p0</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>0.9.1.2</version>
 		</dependency>
 		<!-- mybatis end -->
 	</dependencies>
