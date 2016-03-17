@@ -1,24 +1,13 @@
 package osc.git.eh3.test;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
-import java.math.BigDecimal;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.caucho.hessian.client.HessianProxyFactory;
-
-import net.sf.ezmorph.bean.MorphDynaBean;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-import osc.git.eh3.readlogs.IReadLogs;
+import osc.git.eh3.utils.AESEncrypter;
 
 public class TestCode {
 
@@ -167,11 +156,30 @@ public class TestCode {
 //        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 //        System.out.println(sdf.format(dd));
 		
-		JSONObject groupAdxs = JSONObject.fromObject("{\"4ebdb328-5d4b-42e6-80c3-a6aaaecdcea1\":[\"1e03319c-425d-4a17-a6bf-eeec2f48db29\",\"1fed4171-9925-4834-aa7b-9b4d3a58841b\",\"ce579246-e707-4cb9-b982-88cad7944b92\"],\"9262cbe8-a9dc-4f4e-888b-cf3ffe65defd\":\"ce579246-e707-4cb9-b982-88cad7944b92\"}");
-		Set<String> keySet = groupAdxs.keySet();
-		for (Object object : keySet) {
-			System.out.println(groupAdxs.get(object).getClass().isArray());
-		}
+//		JSONObject groupAdxs = JSONObject.fromObject("{\"4ebdb328-5d4b-42e6-80c3-a6aaaecdcea1\":[\"1e03319c-425d-4a17-a6bf-eeec2f48db29\",\"1fed4171-9925-4834-aa7b-9b4d3a58841b\",\"ce579246-e707-4cb9-b982-88cad7944b92\"],\"9262cbe8-a9dc-4f4e-888b-cf3ffe65defd\":\"ce579246-e707-4cb9-b982-88cad7944b92\"}");
+//		Set<String> keySet = groupAdxs.keySet();
+//		for (Object object : keySet) {
+//			System.out.println(groupAdxs.get(object).getClass().isArray());
+//		}
+		
+//		System.out.println(UUID.randomUUID().toString());
+		
+//		System.out.println(new Integer(0x11));
+//		System.out.println(Integer.toBinaryString(30000));
+//		System.out.println(Integer.valueOf("11", 16));
+//		System.out.println(Integer.valueOf("11", 2));
+		
+		
+		System.out.println(AESEncrypter.encrypt("lixiangrong"));
+		System.out.println(AESEncrypter.decrypt(AESEncrypter.encrypt("lixiangrong")));
+		
+		System.out.println(AESEncrypter.encrypt("lixiangrong","ca048b18cac58865a8"));
+		System.out.println(AESEncrypter.decrypt(AESEncrypter.encrypt("lixiangrong","ca048b18cac58865a8"),"ca048b18cac58865a8"));
+		
+//		byte[] bytes = "lixiangrong".getBytes();
+//		for (int i = 0; i < bytes.length; i++) {
+//			System.out.println(bytes[i]);
+//		}
 	}
 
 	public static Long parseDate(String s) {

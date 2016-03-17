@@ -12,6 +12,18 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 public class CommonUtils {
+	private static double EARTH_RADIUS = 6371; // 默认地球半径(单位km)
+
+	/**
+	 * 转化为弧度(rad)
+	 * 
+	 * @param d
+	 * @return
+	 */
+	private static double rad(double d) {
+		return d * Math.PI / 180.0;
+	}
+
 	/**
 	 * 对象转换成另一个类对象
 	 * 
@@ -148,5 +160,58 @@ public class CommonUtils {
 			}
 		}
 		return ipAddress;
+	}
+
+	/**
+	 * 计算经纬度点对应正方形4个点的坐标
+	 *
+	 * @param longitude
+	 * @param latitude
+	 * @param distance
+	 * @return
+	 */
+	public static Map<String, double[]> returnLLSquarePoint(double longitude, double latitude, double distance) {
+		Map<String, double[]> squareMap = new HashMap<String, double[]>();
+		// 计算经度弧度,从弧度转换为角度
+		double dLongitude = 2 * (Math.asin(Math.sin(distance / (2 * EARTH_RADIUS)) / Math.cos(Math.toRadians(latitude))));
+		dLongitude = Math.toDegrees(dLongitude);
+		// 计算纬度角度
+		double dLatitude = distance / EARTH_RADIUS;
+		dLatitude = Math.toDegrees(dLatitude);
+		// 正方形
+		double[] leftTopPoint = { latitude + dLatitude, longitude - dLongitude };
+		double[] rightTopPoint = { latitude + dLatitude, longitude + dLongitude };
+		double[] leftBottomPoint = { latitude - dLatitude, longitude - dLongitude };
+		double[] rightBottomPoint = { latitude - dLatitude, longitude + dLongitude };
+		squareMap.put("leftTopPoint", leftTopPoint);
+		squareMap.put("rightTopPoint", rightTopPoint);
+		squareMap.put("leftBottomPoint", leftBottomPoint);
+		squareMap.put("rightBottomPoint", rightBottomPoint);
+		return squareMap;
+	}
+
+	/**
+	 * 基于googleMap中的算法得到两经纬度之间的距离,计算精度与谷歌地图的距离精度差不多，相差范围在0.2米以下
+	 * 
+	 * @param lon1
+	 *            第一点的精度
+	 * @param lat1
+	 *            第一点的纬度
+	 * @param lon2
+	 *            第二点的精度
+	 * @param lat3
+	 *            第二点的纬度
+	 * @return 返回的距离，单位m
+	 */
+	public static double getDistance(double lon1, double lat1, double lon2, double lat2) {
+		double radLat1 = rad(lat1);
+		double radLat2 = rad(lat2);
+		double a = radLat1 - radLat2;
+		double b = rad(lon1) - rad(lon2);
+		double s = 2
+				* Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
+		s = s * EARTH_RADIUS * 1000;
+		s = Math.round(s * 10000) / 10000;
+		return s;
 	}
 }
