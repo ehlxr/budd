@@ -1,5 +1,7 @@
 package osc.git.eh3.test;
 
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -7,7 +9,11 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import net.sf.json.JSONObject;
 import osc.git.eh3.utils.AESEncrypter;
+import osc.git.eh3.utils.Base64;
+import osc.git.eh3.utils.GeoHash;
+import osc.git.eh3.utils.HttpClientUtil;
 
 public class TestCode {
 
@@ -170,16 +176,27 @@ public class TestCode {
 //		System.out.println(Integer.valueOf("11", 2));
 		
 		
-		System.out.println(AESEncrypter.encrypt("lixiangrong"));
-		System.out.println(AESEncrypter.decrypt(AESEncrypter.encrypt("lixiangrong")));
-		
-		System.out.println(AESEncrypter.encrypt("lixiangrong","ca048b18cac58865a8"));
-		System.out.println(AESEncrypter.decrypt(AESEncrypter.encrypt("lixiangrong","ca048b18cac58865a8"),"ca048b18cac58865a8"));
+//		System.out.println(AESEncrypter.encrypt("lixiangrong"));
+//		System.out.println(AESEncrypter.decrypt(AESEncrypter.encrypt("lixiangrong")));
+//		
+//		System.out.println(AESEncrypter.encrypt("lixiangrong","ca048b18cac58865a8"));
+//		System.out.println(AESEncrypter.decrypt(AESEncrypter.encrypt("lixiangrong","ca048b18cac58865a8"),"ca048b18cac58865a8"));
 		
 //		byte[] bytes = "lixiangrong".getBytes();
 //		for (int i = 0; i < bytes.length; i++) {
 //			System.out.println(bytes[i]);
 //		}
+		
+//		System.out.println(Base64.encodeToString("lixiangrong".getBytes(), false));
+		
+		double lon1 = 109.0145193759;
+		double lat1 = 34.236080797698;
+		System.out.println(GeoHash.encode(lat1, lon1));
+		System.out.println(GeoHash.decode("wmtdgn5esrb1")[0]+" "+GeoHash.decode("wmtdgn5esrb1")[1]);
+		
+//		String url = "http://api.map.baidu.com/place/v2/search?query=银行&location=39.915,116.404&radius=2000&output=json&ak=LCG4dyrXyadeD8hFhi8SGCv6";
+//		System.out.println(HttpClientUtil.sendGet(url));
+		
 	}
 
 	public static Long parseDate(String s) {
@@ -205,5 +222,11 @@ public class TestCode {
 	public static <T extends Object> Set<T> Array2Set(T[] tArray) {
 		Set<T> tSet = new HashSet<T>(Arrays.asList(tArray));
 		return tSet;
+	}
+	
+	public static <T extends Object> void printArrs(T[] arrs){
+		for (T t : arrs) {
+			System.out.println(t);
+		}
 	}
 }
