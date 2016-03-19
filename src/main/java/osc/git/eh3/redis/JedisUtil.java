@@ -333,10 +333,6 @@ public class JedisUtil {
 		return value;
 	}
 
-	
-	public static void main(String[] args) {
-		
-	}
 	public static void lpush(String key, String value) {
 		if (isBlank(key))
 			return;
@@ -376,5 +372,10 @@ public class JedisUtil {
 		returnJedis(jedis);
 		
 		return value;
+	}
+	
+	public static void main(String[] args) {
+		JedisUtil.set("lxr", "hah lixiangrong");
+		System.out.println(JedisUtil.getStr("lxr"));
 	}
 }
