@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.util.StringUtils;
 
@@ -268,19 +269,24 @@ public class JedisUtil {
 	 * @param unit
 	 * @return
 	 */
-	@SuppressWarnings("resource")
 	private static boolean trylock(String key) {
 		Jedis jedis = null;
+		TimeUnit timeUnit = TimeUnit.SECONDS;
+		long timeout = 4;
 		try {
 			jedis = getJedis();
+			long nano = System.nanoTime();
 			do {
 				Long i = jedis.setnx(key + CONST_STR, key);
 				if (i == 1) {
 					jedis.expire(key + CONST_STR, DEFAULT_SINGLE_EXPIRE_TIME);
 					return Boolean.TRUE;
+				} else { // 存在锁
+					String desc = jedis.get(key + CONST_STR);
+					System.out.println(desc);
 				}
-				Thread.sleep(100);
-			} while (true);
+				Thread.sleep(300);
+			} while ((System.nanoTime() - nano) < timeUnit.toNanos(timeout));
 		} catch (RuntimeException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
