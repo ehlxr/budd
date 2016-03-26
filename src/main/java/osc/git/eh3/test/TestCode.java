@@ -4,11 +4,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
-import osc.git.eh3.utils.AESEncrypter;
-import osc.git.eh3.utils.Base64;
+import osc.git.eh3.redis.JedisUtil;
 
 public class TestCode {
 
@@ -202,8 +203,37 @@ public class TestCode {
 //		List<String> list = JSONArray.toList(array, new String(), new JsonConfig());
 //		System.out.println(list);
 		
-		System.out.println(System.nanoTime());
-		System.out.println(System.nanoTime());
+//		System.out.println(System.nanoTime());
+//		System.out.println(System.nanoTime());
+		
+		
+//		Map<String, String> postParam = new HashMap<String, String>();
+//		postParam.put("groupid", "100003");
+//		postParam.put("count", "1");
+//		postParam.put("type", "m");
+//		for(int i=0;i<5;i++){
+//			try {
+//				HttpClientUtil.sendPostParam("http://192.168.1.135:8080/dsp-counter/remote/chargeCounter/counterControlForThisSumResult", postParam);
+////				HttpClientUtil.sendPost("http://192.168.1.135:8080/dsp-counter/remote/chargeCounter/counterControlForThisSumResult", "groupid=100003&count=1&type=m");
+//				break;
+//			} catch (Exception e) {
+//				System.out.println(e.getMessage());
+//				try {
+//					Thread.sleep(1000);
+//				} catch (InterruptedException e1) {
+//					e1.printStackTrace();
+//				}
+//			}
+//		}
+		
+//		String str = "0,";
+//		System.out.println(str.split(",").length);
+		
+//		System.out.println(JedisUtil.getStr("0000"));
+//		Map<String,Integer> result = new HashMap<String, Integer>();
+//		System.out.println(result.get("jj"));
+		double budgets = 10000;
+		System.out.println((budgets/100));
 		
 	}
 
