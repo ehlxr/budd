@@ -1,15 +1,12 @@
 package osc.git.eh3.test;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
-
-import osc.git.eh3.redis.JedisUtil;
 
 public class TestCode {
 
@@ -232,8 +229,19 @@ public class TestCode {
 //		System.out.println(JedisUtil.getStr("0000"));
 //		Map<String,Integer> result = new HashMap<String, Integer>();
 //		System.out.println(result.get("jj"));
-		double budgets = 10000;
-		System.out.println((budgets/100));
+//		double budgets = 10000;
+//		System.out.println((budgets/100));
+		
+		String str = null;
+		BigDecimal budget = new BigDecimal(str);
+//		budget = budget.subtract(new BigDecimal(10));
+//		if (budget.compareTo(new BigDecimal(0)) <= 0) {
+//			System.out.println("1");
+//		} else {
+//			System.out.println("2");
+//		}
+		
+		System.out.println(budget.doubleValue());
 		
 	}
 

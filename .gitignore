@@ -8,5 +8,6 @@
 target
 com
 *.project
-*
 *.classpath
+/.settings
+/bin
