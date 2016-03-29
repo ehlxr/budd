@@ -234,13 +234,12 @@ public class TestCode {
 		
 		String str = null;
 		BigDecimal budget = new BigDecimal(str);
-//		budget = budget.subtract(new BigDecimal(10));
-//		if (budget.compareTo(new BigDecimal(0)) <= 0) {
-//			System.out.println("1");
-//		} else {
-//			System.out.println("2");
-//		}
-		
+		budget = budget.subtract(new BigDecimal(10));
+		if (budget.compareTo(new BigDecimal(0)) <= 0) {
+			System.out.println("1");
+		} else {
+			System.out.println("2");
+		}
 		System.out.println(budget.doubleValue());
 		
 	}
