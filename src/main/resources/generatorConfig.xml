@@ -25,8 +25,7 @@
             <property name="enableSubPackages" value="true"/>  
         </javaClientGenerator>  
                
-        <table tableName="dsp_t_coordinate" domainObjectName="CoordinateModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
-        <table tableName="dsp_t_group_coordinate" domainObjectName="GroupCoordinateModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
+        <table tableName="dsp_t_geohash_precision" domainObjectName="GeohashPrecisionModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
     </context>  
 
 </generatorConfiguration>  
