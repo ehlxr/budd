@@ -173,6 +173,13 @@
 						<verbose>true</verbose>
 						<overwrite>true</overwrite>
 					</configuration>
+					<dependencies>
+	                    <dependency>
+	                        <groupId>mysql</groupId>
+	                        <artifactId>mysql-connector-java</artifactId>
+	                        <version>5.1.38</version>
+	                    </dependency>
+	                </dependencies>
 				</plugin>
 
 				<!-- 指定JDK编译版本 -->

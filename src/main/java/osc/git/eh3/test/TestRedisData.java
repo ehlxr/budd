@@ -9,7 +9,7 @@ public class TestRedisData {
 	
 	
 	public static void main(String[] args) throws IOException {
-		showSom("27ef277d-25e7-4347-b07f-9668a8a802cd");
+		showSom("b8093670-ceb0-4c1d-9413-8bb23a1217f2");
 	}
 
 	public static void showSom(String groupid){

@@ -3,7 +3,6 @@
   PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
   "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">  
 <generatorConfiguration>  
-    <classPathEntry  location="C:\Users\lixiangrong\.m2\repository\mysql\mysql-connector-java\5.1.38\mysql-connector-java-5.1.38.jar"/>  
     <context id="MySQL"  targetRuntime="MyBatis3">  
         <commentGenerator>  
             <property name="suppressDate" value="true"/>  
@@ -27,5 +26,4 @@
                
         <table tableName="dsp_t_geohash_precision" domainObjectName="GeohashPrecisionModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
     </context>  
-
 </generatorConfiguration>  
