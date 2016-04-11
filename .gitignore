@@ -11,3 +11,4 @@ com
 *.classpath
 /.settings
 /bin
+/useful-code.iml
