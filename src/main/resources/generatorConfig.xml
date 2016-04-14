@@ -24,6 +24,6 @@
             <property name="enableSubPackages" value="true"/>  
         </javaClientGenerator>  
                
-        <table tableName="dsp_t_geohash_precision" domainObjectName="GeohashPrecisionModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
+        <table tableName="dsp_t_statis_by_hour" domainObjectName="StatisByHourModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
     </context>  
 </generatorConfiguration>  

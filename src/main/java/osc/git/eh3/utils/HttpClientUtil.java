@@ -42,7 +42,7 @@ import org.apache.http.protocol.HttpContext;
 @SuppressWarnings("deprecation")
 public class HttpClientUtil {
 	private static Log log = LogFactory.getLog(HttpClientUtil.class);
-	private static final int timeOut = 30000;// timeOut(Millisecond)
+	private static final int timeOut = 300000;// timeOut(Millisecond)
 	private static final int BUFFERSIZE = 2048;
 
 	private static Registry<CookieSpecProvider> getRegistry() {

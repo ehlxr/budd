@@ -10,7 +10,7 @@ import java.util.UUID;
 public class TestJdbc143 {
 	private static Connection getConn() {
 		String driver = "com.mysql.jdbc.Driver";
-		String url = "jdbc:mysql://115.182.33.143:3306/wins-dsp-new?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&connectTimeout=60000&socketTimeout=60000";
+		String url = "jdbc:mysql://111.235.158.31:3306/wins-dsp-new?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&connectTimeout=60000&socketTimeout=60000";
 		String username = "root";
 		String password = "pxene";
 		Connection conn = null;
@@ -33,8 +33,9 @@ public class TestJdbc143 {
 	private static void insertData(){
 		Connection conn = getConn();
 		System.out.println(new Date());
-		for (int i = 0; i > -1; i++) {
-			String cid = UUID.randomUUID().toString();
+		for (int i = 0; i < 1; i++) {
+//			String cid = UUID.randomUUID().toString();
+			String cid = "0123456789";
 			String sql = "INSERT INTO `dsp_t_statis_by_day` (`time`, `creativeid`, `category`, `imprs`, `clks`, `cost`, `downloads`, `regists`, `flag`, `createtime`) VALUES ('2014-12-06 00:00:00', '"+cid+"', '2', '961', '9', '201860.7000', '0', '0', '0', '2015-09-14 15:07:42');";
 			PreparedStatement pstmt;
 			try {

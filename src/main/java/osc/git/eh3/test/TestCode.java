@@ -8,6 +8,9 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import osc.git.eh3.utils.AESTool;
+import osc.git.eh3.utils.Base64;
+
 public class TestCode {
 
 	public static void main(String[] args) throws Exception {
@@ -169,12 +172,12 @@ public class TestCode {
 //		System.out.println(Integer.valueOf("11", 2));
 		
 		
-//		System.out.println(AESEncrypter.encrypt("lixiangrong"));
-//		System.out.println(AESEncrypter.decrypt(AESEncrypter.encrypt("lixiangrong")));
+//		System.out.println(AESTool.encrypt("lixiangrong"));
+//		System.out.println(AESTool.decrypt(AESEncrypter.encrypt("lixiangrong")));
 		
-//		System.out.println(AESEncrypter.encrypt("fa4d7d90618dcba5fa1d969cffc04def","002020202"));
-//		System.out.println(AESEncrypter.decrypt(AESEncrypter.encrypt("lixiangrong","0"),"0"));
-//		System.out.println(Base64.encodeToString(AESEncrypter.encrypt("fa4d7d90618dcba5fa1d969cffc04def","002020202").getBytes(), false));
+		System.out.println(AESTool.encrypt("liixangrong","adjdjfjfjfjdkdkd"));
+		System.out.println(AESTool.decrypt("bfb0c038342ffead45511879853279bf","adjdjfjfjfjdkdkd"));
+//		System.out.println(Base64.encodeToString(AESTool.encrypt("fa4d7d90618dcba5fa1d969cffc04def","002020202").getBytes(), false));
 		
 //		byte[] bytes = "lixiangrong".getBytes();
 //		for (int i = 0; i < bytes.length; i++) {
@@ -232,15 +235,15 @@ public class TestCode {
 //		double budgets = 10000;
 //		System.out.println((budgets/100));
 		
-		String str = null;
-		BigDecimal budget = new BigDecimal(str);
-		budget = budget.subtract(new BigDecimal(10));
-		if (budget.compareTo(new BigDecimal(0)) <= 0) {
-			System.out.println("1");
-		} else {
-			System.out.println("2");
-		}
-		System.out.println(budget.doubleValue());
+//		String str = null;
+//		BigDecimal budget = new BigDecimal(str);
+//		budget = budget.subtract(new BigDecimal(10));
+//		if (budget.compareTo(new BigDecimal(0)) <= 0) {
+//			System.out.println("1");
+//		} else {
+//			System.out.println("2");
+//		}
+//		System.out.println(budget.doubleValue());
 		
 	}
 
