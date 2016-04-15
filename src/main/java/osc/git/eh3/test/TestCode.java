@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import osc.git.eh3.utils.AESTool;
 import osc.git.eh3.utils.Base64;
@@ -175,8 +176,8 @@ public class TestCode {
 //		System.out.println(AESTool.encrypt("lixiangrong"));
 //		System.out.println(AESTool.decrypt(AESEncrypter.encrypt("lixiangrong")));
 		
-		System.out.println(AESTool.encrypt("liixangrong","adjdjfjfjfjdkdkd"));
-		System.out.println(AESTool.decrypt("bfb0c038342ffead45511879853279bf","adjdjfjfjfjdkdkd"));
+//		System.out.println(AESTool.encrypt("liixangrong","adjdjfjfjfjdkdkd"));
+//		System.out.println(AESTool.decrypt("bfb0c038342ffead45511879853279bf","adjdjfjfjfjdkdkd"));
 //		System.out.println(Base64.encodeToString(AESTool.encrypt("fa4d7d90618dcba5fa1d969cffc04def","002020202").getBytes(), false));
 		
 //		byte[] bytes = "lixiangrong".getBytes();
@@ -244,6 +245,9 @@ public class TestCode {
 //			System.out.println("2");
 //		}
 //		System.out.println(budget.doubleValue());
+		
+		String REG_FLOAT = "^[1-9]\\d*.?\\d+$"; // 浮点正数
+		System.out.println(Pattern.compile(REG_FLOAT).matcher("1.21").matches());
 		
 	}
 

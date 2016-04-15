@@ -23,7 +23,7 @@ public class PackView extends JFrame {
 	private JButton jb1 = new JButton();
 	private JButton jb2 = new JButton();
 	private String inputPath = "D:\\wins-dsp";
-	private String outputPath = "D:";
+	private String outputPath = "C:\\Users\\lixiangrong\\Desktop";
 	private JLabel jl0 = new JLabel();
 	private JButton cancel = new JButton("退出");
 	private JTextPane jText1 = new JTextPane();

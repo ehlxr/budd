@@ -208,7 +208,7 @@ public class HttpClientUtil {
 	}
 
 	public static String sendPostJSONData(String url, String json) throws Exception {
-		log.debug("请求地址：" + url);
+		System.out.println("请求地址：" + url);
 		String result = null;
 		StringBuffer out = null;
 		CloseableHttpClient httpclient = null;
@@ -228,9 +228,10 @@ public class HttpClientUtil {
 					.build();
 			postmethod.setConfig(requestConfig);
 			strentity = new StringEntity(URLEncoder.encode(json.toString(), "UTF-8"));
-			postmethod.addHeader("content-type", "application/json");
+			postmethod.addHeader("Content-Type", "application/json");
 			postmethod.setEntity(strentity);
 			response = httpclient.execute(postmethod);
+			System.out.println(response);
 			int statusCode = response.getStatusLine().getStatusCode();
 			if (statusCode == HttpStatus.SC_OK) {
 				entity = response.getEntity();

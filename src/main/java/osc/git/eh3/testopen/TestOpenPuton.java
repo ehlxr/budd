@@ -17,12 +17,16 @@ public class TestOpenPuton {
 
 	public static void main(String[] args) throws Exception {
 
-		String sendPostParam = HttpClientUtil.sendPostParam(URL, getPostParam("getKpiByCampaignIds"));// 获得数据并且发送请求
-		String data = getData(sendPostParam);
-		System.out.println(JSONObject.fromObject(data));
+//		String sendPostParam = HttpClientUtil.sendPostParam(URL, getPostParam("setAdxProp"));// 获得数据并且发送请求
+//		String data = getData(sendPostParam);
+//		System.out.println(JSONObject.fromObject(data));
+		
+		
+		JSONObject json = new JSONObject();
+		json.put("param", "sdfdfdsfsdf");
+		HttpClientUtil.sendPostJSONData(URL, json.toString());
 	}
 
-	// 解密
 	public static String getData(String encryptString) throws Exception {
 		byte[] decode = Base64.decode(encryptString.getBytes());
 		String aString = new String(decode, "utf-8");
@@ -167,17 +171,17 @@ public class TestOpenPuton {
 			JSONArray adxprops = new JSONArray();
 			
 			adxprop.put("adxid", "1fed4171-9925-4834-aa7b-9b4d3a58841b");
-			adxprop.put("prop", 40);
+			adxprop.put("prop", 20);
 			adxprops.add(adxprop);
 			
 			adxprop = new JSONObject();
 			adxprop.put("adxid", "6246ae47-d24b-4afa-88ba-57417ccab6aa");
-			adxprop.put("prop", 30);
+			adxprop.put("prop", 15.5);
 			adxprops.add(adxprop);
 			
 			adxprop = new JSONObject();
 			adxprop.put("adxid", "ce579246-e707-4cb9-b982-88cad7944b92");
-			adxprop.put("prop", 30);
+			adxprop.put("prop", 26.5);
 			adxprops.add(adxprop);
 			
 			propdata.put("groupid", "022ea1a5-3f21-40dd-9c24-c0edfa82bfda");
@@ -221,6 +225,40 @@ public class TestOpenPuton {
 			param.put("campaignids", campaignids);
 			
 			content.put("funcname", "getKpiByCampaignIds");
+			content.put("methodparam", param);
+			break;
+		case "getKpiByGroupIds":
+			groupids = new JSONArray();
+			groupids.add("022ea1a5-3f21-40dd-9c24-c0edfa82bfda");
+			
+			param.put("groupids", groupids);
+			
+			content.put("funcname", "getKpiByGroupIds");
+			content.put("methodparam", param);
+			break;
+		case "getKpiByAdxIds":
+			JSONArray adxids = new JSONArray();
+			adxids.add("1fed4171-9925-4834-aa7b-9b4d3a58841b");
+			adxids.add("6246ae47-d24b-4afa-88ba-57417ccab6aa");
+			adxids.add("ce579246-e707-4cb9-b982-88cad7944b92");
+			
+			param.put("groupid", "022ea1a5-3f21-40dd-9c24-c0edfa82bfda");
+			param.put("adxids", adxids);
+			
+			content.put("funcname", "getKpiByAdxIds");
+			content.put("methodparam", param);
+			break;
+		case "getKpiByMapIds":
+			JSONArray mapids = new JSONArray();
+			mapids.add("28f13909-dbbe-42e4-b9fd-edd97a31d6ce");
+			mapids.add("8b7b1b4a-eb3a-4be0-809b-b497c58a14f6");
+			mapids.add("b7f39e0c-3025-4fa3-8e83-ef1f492fe358");
+			
+			param.put("groupid", "022ea1a5-3f21-40dd-9c24-c0edfa82bfda");
+			param.put("adxid", "1fed4171-9925-4834-aa7b-9b4d3a58841b");
+			param.put("mapids", mapids);
+			
+			content.put("funcname", "getKpiByMapIds");
 			content.put("methodparam", param);
 			break;
 		default:
