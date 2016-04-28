@@ -1,14 +1,19 @@
 package osc.git.eh3.test;
 
 import java.math.BigDecimal;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 import java.util.regex.Pattern;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import osc.git.eh3.utils.AESTool;
 import osc.git.eh3.utils.Base64;
 
@@ -246,8 +251,73 @@ public class TestCode {
 //		}
 //		System.out.println(budget.doubleValue());
 		
-		String REG_FLOAT = "^[1-9]\\d*.?\\d+$"; // 浮点正数
-		System.out.println(Pattern.compile(REG_FLOAT).matcher("1.21").matches());
+//		String REG_FLOAT = "^[1-9]\\d*.?\\d+$"; // 浮点正数
+//		System.out.println(Pattern.compile(REG_FLOAT).matcher("1.21").matches());
+		
+//		String str ="浮点数sss";
+//		String s1 = new String(str.getBytes("utf-8"),"gbk");
+//		System.out.println(s1);
+//		System.out.println(new String(s1.getBytes("gbk")));
+//		System.out.println();
+//		
+//		String s2 = URLEncoder.encode(str, "utf-8");
+//		System.out.println(s2);
+//		System.out.println(URLDecoder.decode(s2,"utf-8"));
+		
+		
+//		Object object = null;
+//		JSONObject creativeGroupObj = JSONObject.fromObject(object);
+//		System.out.println(creativeGroupObj.isEmpty());
+//		
+//		System.out.println(UUID.randomUUID().toString());
+		
+//		JSONArray putTime = JSONArray.fromObject("[{\"monday\":[\"1\",\"1\",\"1\",\"1\",\"1\",\"1\",\"1\",\"1\",\"1\",\"1\",\"1\",\"1\",\"1\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\"]},{\"tuesday\":[\"0\",\"0\",\"0\",\"0\",\"1\",\"1\",\"1\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\"]},{\"wednesday\":[\"0\",\"0\",\"0\",\"0\",\"1\",\"1\",\"1\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\"]},{\"thursday\":[\"0\",\"0\",\"0\",\"0\",\"1\",\"1\",\"1\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\"]},{\"friday\":[\"0\",\"0\",\"0\",\"0\",\"1\",\"1\",\"1\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\"]},{\"saturday\":[\"0\",\"0\",\"0\",\"0\",\"1\",\"1\",\"1\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\"]},{\"sunday\":[\"0\",\"0\",\"0\",\"0\",\"1\",\"1\",\"1\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\"]}]");
+//		JSONArray periods = new JSONArray();
+//		for (Object object : putTime) {
+//			JSONObject putTimeObj = JSONObject.fromObject(object);
+//			if (!putTimeObj.isEmpty()) {
+//				Set<String> keySet = putTimeObj.keySet();
+//				JSONObject period = new JSONObject();
+//				for (String key : keySet) {
+//					JSONArray value = putTimeObj.optJSONArray(key);
+//					int start = -1,end = -1;
+//					StringBuffer sb = new StringBuffer();
+//					for (int i = 0; i < value.size(); i++) {
+//						Object object2 = value.get(i);
+//						// 第一次出现 1
+//						if (object2.equals("1") && start==-1) {
+//							start=i;
+//							end = 0;
+//						}
+//						// 出现1后的第一次出现0结束
+//						if (object2.equals("0") && start>-1) {
+//							end=i-1;
+//							sb.append(start+"-"+end+",");
+//							start = -1;end = -1;
+//						}
+//					}
+//					period.put("week", key);
+//					period.put("ranges",sb.toString().substring(0, (sb.length()-1)));
+//				}
+//				periods.add(period);
+//			}
+//		}
+//		System.out.println(periods.toString());
+		
+//		JSONObject period = new JSONObject();
+//		period.put("test", 100.32);
+//		System.out.println(period.optString("test"));
+		
+//		BigDecimal clicks = new BigDecimal(100.23);
+//		System.out.println(clicks.intValue());
+		
+//		System.out.println(Long.parseLong("8000.01"));
+		
+		JSONObject jsonParam = new JSONObject();
+		JSONArray jsonArray = new JSONArray();
+		jsonArray.add("000000");
+		jsonParam.put("app", jsonArray);
+		System.out.println(jsonParam);
 		
 	}
 

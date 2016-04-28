@@ -1,29 +1,42 @@
-<?xml version="1.0" encoding="UTF-8"?>  
-<!DOCTYPE generatorConfiguration  
-  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
-  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">  
-<generatorConfiguration>  
-    <context id="MySQL"  targetRuntime="MyBatis3">  
-        <commentGenerator>  
-            <property name="suppressDate" value="true"/>  
-            <property name="suppressAllComments" value="true"/>  
-        </commentGenerator>  
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.3.166/wins-dsp-new" userId="root" password="pxene">  
-        </jdbcConnection>  
-        <javaTypeResolver>  
-            <property name="forceBigDecimals" value="false"/>  
-        </javaTypeResolver>  
-        <javaModelGenerator targetPackage="com.pxene.dsp.archer.model" targetProject="src/main/java">  
-            <property name="enableSubPackages" value="true"/>  
-            <property name="trimStrings" value="true"/>  
-        </javaModelGenerator>  
-        <sqlMapGenerator targetPackage="com.pxene.dsp.archer.dao" targetProject="src/main/java">  
-            <property name="enableSubPackages" value="true"/>  
-        </sqlMapGenerator>  
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.pxene.dsp.archer.dao" targetProject="src/main/java">  
-            <property name="enableSubPackages" value="true"/>  
-        </javaClientGenerator>  
-               
-        <table tableName="dsp_t_statis_by_hour" domainObjectName="StatisByHourModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
-    </context>  
-</generatorConfiguration>  
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="MySQL"  targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.3.166/wins-dsp-new" userId="root" password="pxene">
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <javaModelGenerator targetPackage="com.pxene.dsp.archer.model" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <sqlMapGenerator targetPackage="com.pxene.dsp.archer.dao" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.pxene.dsp.archer.dao" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+		<table tableName="dsp_t_open_data_query" domainObjectName="OpenDataQueryModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
+		</table>
+		<!-- 
+		<table tableName="dsp_t_open_request_data" domainObjectName="OpenRequestDataModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
+		<table tableName="dsp_t_amnet_ad_owner" domainObjectName="AmnetAdOwnerModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
+		<table tableName="dsp_t_amnet_order_info" domainObjectName="AmnetOrderInfoModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
+		<table tableName="dsp_t_amnet_creative" domainObjectName="AmnetCreativeModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
+		<table tableName="dsp_t_amnet_creative_group" domainObjectName="AmnetCreativeGroupModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
+		<table tableName="dsp_t_amnet_order_area" domainObjectName="AmnetOrderAreaModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
+		<table tableName="dsp_t_amnet_order_freq" domainObjectName="AmnetOrderFreqModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
+		<table tableName="dsp_t_amnet_order_goal" domainObjectName="AmnetOrderGoalModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
+		<table tableName="dsp_t_amnet_order_pmp" domainObjectName="AmnetOrderPmpModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
+		<table tableName="dsp_t_amnet_owner_qualification" domainObjectName="AmnetOwnerQualificationModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
+		<table tableName="dsp_t_amnet_put_time" domainObjectName="AmnetPutTimeModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
+		 -->
+ 	</context>
+</generatorConfiguration>

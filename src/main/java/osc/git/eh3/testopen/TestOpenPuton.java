@@ -10,7 +10,7 @@ import osc.git.eh3.utils.Base64;
 import osc.git.eh3.utils.HttpClientUtil;
 
 public class TestOpenPuton {
-	public static String URL = "http://127.0.0.1:3/dsp-open/opendsp.do";
+	public static String URL = "http://127.0.0.1:8080/dsp-open/pxene/dsp.do";
 	private static String key = "adjdjfjfjfjdkdkd";//
 	private static String appid = "t123456";// 用户
 	private static String token = "cst123456";// 令牌
@@ -23,8 +23,10 @@ public class TestOpenPuton {
 		
 		
 		JSONObject json = new JSONObject();
-		json.put("param", "sdfdfdsfsdf");
-		HttpClientUtil.sendPostJSONData(URL, json.toString());
+		json.put("param", "中午");
+		String str = "{ \"order_info\": { \"order_id\": 1001, \"order_name\": \"test\", \"brand_zh\": \"复歌\", \"brand_en\": \"fugetech\", \"note\": \"note\", \"industry\": \"个人护理/药品>护发品\", \"cost_type\": 1, \"cost_single\": 124, \"ad_owner\": {}, \"start_time\": \"2015-12-01\", \"end_time\": \"2015-12-30\", \"buy_type\": 1, \"plat\": 1, \"type\": 1, \"landing_page\": \"www.fugetech.com\", \"order_area\": [], \"order_budget\": {}, \"put_time\": [], \"order_goal\": {}, \"order_freq\": {}, \"order_pmp\": {}, \"media_white\": [], \"media_black\": [], \"creative_group\": [] } }";
+		
+		System.out.println(HttpClientUtil.sendPostJSONData(URL, str));
 	}
 
 	public static String getData(String encryptString) throws Exception {

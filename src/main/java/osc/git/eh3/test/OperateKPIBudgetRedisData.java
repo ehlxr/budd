@@ -9,7 +9,7 @@ public class OperateKPIBudgetRedisData {
 	
 	
 	public static void main(String[] args) throws IOException {
-		showSom("09e5f11c-5c6d-44e4-a599-1d2981d283c3");
+		showSom("58d355d7-4c66-461c-b63c-146c149bdcac");
 //		delete("c46b8885-4c1d-48f9-befb-3ba3a0f33d4a");
 	}
 
