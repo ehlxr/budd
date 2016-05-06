@@ -8,6 +8,8 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import java.util.regex.Pattern;
@@ -313,11 +315,16 @@ public class TestCode {
 		
 //		System.out.println(Long.parseLong("8000.01"));
 		
-		JSONObject jsonParam = new JSONObject();
-		JSONArray jsonArray = new JSONArray();
-		jsonArray.add("000000");
-		jsonParam.put("app", jsonArray);
-		System.out.println(jsonParam);
+//		JSONObject jsonParam = new JSONObject();
+//		JSONArray jsonArray = new JSONArray();
+//		jsonArray.add("000000");
+//		jsonParam.put("app", jsonArray);
+//		System.out.println(jsonParam);
+		
+		
+		String head = "00,";
+		head = head.substring(0, head.lastIndexOf(","));
+		System.out.println(head);
 		
 	}
 
