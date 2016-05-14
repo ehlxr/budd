@@ -320,8 +320,8 @@ public class TestCode {
 //		jsonArray.add("000000");
 //		jsonParam.put("app", jsonArray);
 //		System.out.println(jsonParam);
-		
-		
+
+		BigDecimal bigDecimal = new BigDecimal(100);
 		String head = "00,";
 		head = head.substring(0, head.lastIndexOf(","));
 		System.out.println(head);
