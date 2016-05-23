@@ -1,23 +1,16 @@
 package osc.git.eh3.test;
 
-import java.math.BigDecimal;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-import osc.git.eh3.utils.AESTool;
-import osc.git.eh3.utils.Base64;
 
 public class TestCode {
 
@@ -39,14 +32,14 @@ public class TestCode {
 		// Map<String, Object> resultMap = new HashMap<String, Object>();
 		// System.out.println((String)resultMap.get("dd"));
 
-//		try {
-//			String str = null;
-//			str.equals("");
-//		} catch (Exception e) {
-//			System.out.println(e.getMessage());
-//			e.printStackTrace();
-//		}
-//		System.out.println("fffff");
+		// try {
+		// String str = null;
+		// str.equals("");
+		// } catch (Exception e) {
+		// System.out.println(e.getMessage());
+		// e.printStackTrace();
+		// }
+		// System.out.println("fffff");
 
 		// String[] s = {"111","eee"};
 		// System.out.println(Arrays.toString(s));
@@ -123,209 +116,272 @@ public class TestCode {
 
 		// JSONObject jj = new JSONObject();
 		// System.out.println(jj.optString("pring"));
-		
-		
-//		// 根据网卡取本机配置的IP
-//		InetAddress inet = null;
-//		try {
-//			inet = InetAddress.getLocalHost();
-//		} catch (UnknownHostException e) {
-//			e.printStackTrace();
-//		}
-//		String ipAddress = inet.getHostAddress();
-//		
-//		System.out.println(ipAddress);
-		
-		
-//		TestCode test = new TestCode();
-//		System.out.println(test.dd("ddd"));
 
-		
+		// // 根据网卡取本机配置的IP
+		// InetAddress inet = null;
+		// try {
+		// inet = InetAddress.getLocalHost();
+		// } catch (UnknownHostException e) {
+		// e.printStackTrace();
+		// }
+		// String ipAddress = inet.getHostAddress();
+		//
+		// System.out.println(ipAddress);
 
-//		Package pkg = Package.getPackage("osc.git.eh3.test");
-//		Annotation[] annotations = pkg.getAnnotations();
-//		for (Annotation annotation : annotations) {
-//			System.out.println(annotation);
+		// TestCode test = new TestCode();
+		// System.out.println(test.dd("ddd"));
+
+		// Package pkg = Package.getPackage("osc.git.eh3.test");
+		// Annotation[] annotations = pkg.getAnnotations();
+		// for (Annotation annotation : annotations) {
+		// System.out.println(annotation);
+		// }
+
+		// String[] arrs = new String[]{"111","111","2222"};
+		// for (String string : Array2Set(arrs)) {
+		//
+		// System.out.println(string);
+		// }
+
+		// Class<?> clazz = StatisByHourModel.class;
+		// Method[] methods = clazz.getMethods();
+		// for (Method method : methods) {
+		// System.out.println(method.getName());
+		// }
+		// Object dd = new Date();
+		//
+		// System.out.println(dd instanceof Date);
+		//
+		// SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd
+		// HH:mm:ss.SSS");
+		// System.out.println(sdf.format(dd));
+
+		// JSONObject groupAdxs =
+		// JSONObject.fromObject("{\"4ebdb328-5d4b-42e6-80c3-a6aaaecdcea1\":[\"1e03319c-425d-4a17-a6bf-eeec2f48db29\",\"1fed4171-9925-4834-aa7b-9b4d3a58841b\",\"ce579246-e707-4cb9-b982-88cad7944b92\"],\"9262cbe8-a9dc-4f4e-888b-cf3ffe65defd\":\"ce579246-e707-4cb9-b982-88cad7944b92\"}");
+		// Set<String> keySet = groupAdxs.keySet();
+		// for (Object object : keySet) {
+		// System.out.println(groupAdxs.get(object).getClass().isArray());
+		// }
+
+		// System.out.println(UUID.randomUUID().toString());
+
+		// System.out.println(new Integer(0x11));
+		// System.out.println(Integer.toBinaryString(30000));
+		// System.out.println(Integer.valueOf("11", 16));
+		// System.out.println(Integer.valueOf("11", 2));
+
+		// System.out.println(AESTool.encrypt("lixiangrong"));
+		// System.out.println(AESTool.decrypt(AESEncrypter.encrypt("lixiangrong")));
+
+		// System.out.println(AESTool.encrypt("liixangrong","adjdjfjfjfjdkdkd"));
+		// System.out.println(AESTool.decrypt("bfb0c038342ffead45511879853279bf","adjdjfjfjfjdkdkd"));
+		// System.out.println(Base64.encodeToString(AESTool.encrypt("fa4d7d90618dcba5fa1d969cffc04def","002020202").getBytes(),
+		// false));
+
+		// byte[] bytes = "lixiangrong".getBytes();
+		// for (int i = 0; i < bytes.length; i++) {
+		// System.out.println(bytes[i]);
+		// }
+
+		// System.out.println(Base64.encodeToString("lixiangrong".getBytes(),
+		// false));
+
+		// double lon1 = 109.0145193759;
+		// double lat1 = 34.236080797698;
+		// System.out.println(GeoHash.encode(lat1, lon1));
+		// System.out.println(GeoHash.decode("wmtdgn5esrb1")[0]+"
+		// "+GeoHash.decode("wmtdgn5esrb1")[1]);
+
+		// String url =
+		// "http://api.map.baidu.com/place/v2/search?query=银行&location=39.915,116.404&radius=2000&output=json&ak=LCG4dyrXyadeD8hFhi8SGCv6";
+		// System.out.println(HttpClientUtil.sendGet(url));
+
+		// JSONArray array = new JSONArray();
+		// array.add("1");
+		// array.add("2");
+		// array.add("3");
+		// array.add("4");
+		// array.add("5");
+		// List<String> list = JSONArray.toList(array, new String(), new
+		// JsonConfig());
+		// System.out.println(list);
+
+		// System.out.println(System.nanoTime());
+		// System.out.println(System.nanoTime());
+
+		// Map<String, String> postParam = new HashMap<String, String>();
+		// postParam.put("groupid", "100003");
+		// postParam.put("count", "1");
+		// postParam.put("type", "m");
+		// for(int i=0;i<5;i++){
+		// try {
+		// HttpClientUtil.sendPostParam("http://192.168.1.135:8080/dsp-counter/remote/chargeCounter/counterControlForThisSumResult",
+		// postParam);
+		//// HttpClientUtil.sendPost("http://192.168.1.135:8080/dsp-counter/remote/chargeCounter/counterControlForThisSumResult",
+		// "groupid=100003&count=1&type=m");
+		// break;
+		// } catch (Exception e) {
+		// System.out.println(e.getMessage());
+		// try {
+		// Thread.sleep(1000);
+		// } catch (InterruptedException e1) {
+		// e1.printStackTrace();
+		// }
+		// }
+		// }
+
+		// String str = "0,";
+		// System.out.println(str.split(",").length);
+
+		// System.out.println(JedisUtil.getStr("0000"));
+		// Map<String,Integer> result = new HashMap<String, Integer>();
+		// System.out.println(result.get("jj"));
+		// double budgets = 10000;
+		// System.out.println((budgets/100));
+
+		// String str = null;
+		// BigDecimal budget = new BigDecimal(str);
+		// budget = budget.subtract(new BigDecimal(10));
+		// if (budget.compareTo(new BigDecimal(0)) <= 0) {
+		// System.out.println("1");
+		// } else {
+		// System.out.println("2");
+		// }
+		// System.out.println(budget.doubleValue());
+
+		// String REG_FLOAT = "^[1-9]\\d*.?\\d+$"; // 浮点正数
+		// System.out.println(Pattern.compile(REG_FLOAT).matcher("1.21").matches());
+
+		// String str ="浮点数sss";
+		// String s1 = new String(str.getBytes("utf-8"),"gbk");
+		// System.out.println(s1);
+		// System.out.println(new String(s1.getBytes("gbk")));
+		// System.out.println();
+		//
+		// String s2 = URLEncoder.encode(str, "utf-8");
+		// System.out.println(s2);
+		// System.out.println(URLDecoder.decode(s2,"utf-8"));
+
+		// Object object = null;
+		// JSONObject creativeGroupObj = JSONObject.fromObject(object);
+		// System.out.println(creativeGroupObj.isEmpty());
+		//
+		// System.out.println(UUID.randomUUID().toString());
+
+		// JSONArray putTime =
+		// JSONArray.fromObject("[{\"monday\":[\"1\",\"1\",\"1\",\"1\",\"1\",\"1\",\"1\",\"1\",\"1\",\"1\",\"1\",\"1\",\"1\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\"]},{\"tuesday\":[\"0\",\"0\",\"0\",\"0\",\"1\",\"1\",\"1\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\"]},{\"wednesday\":[\"0\",\"0\",\"0\",\"0\",\"1\",\"1\",\"1\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\"]},{\"thursday\":[\"0\",\"0\",\"0\",\"0\",\"1\",\"1\",\"1\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\"]},{\"friday\":[\"0\",\"0\",\"0\",\"0\",\"1\",\"1\",\"1\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\"]},{\"saturday\":[\"0\",\"0\",\"0\",\"0\",\"1\",\"1\",\"1\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\"]},{\"sunday\":[\"0\",\"0\",\"0\",\"0\",\"1\",\"1\",\"1\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\"]}]");
+		// JSONArray periods = new JSONArray();
+		// for (Object object : putTime) {
+		// JSONObject putTimeObj = JSONObject.fromObject(object);
+		// if (!putTimeObj.isEmpty()) {
+		// Set<String> keySet = putTimeObj.keySet();
+		// JSONObject period = new JSONObject();
+		// for (String key : keySet) {
+		// JSONArray value = putTimeObj.optJSONArray(key);
+		// int start = -1,end = -1;
+		// StringBuffer sb = new StringBuffer();
+		// for (int i = 0; i < value.size(); i++) {
+		// Object object2 = value.get(i);
+		// // 第一次出现 1
+		// if (object2.equals("1") && start==-1) {
+		// start=i;
+		// end = 0;
+		// }
+		// // 出现1后的第一次出现0结束
+		// if (object2.equals("0") && start>-1) {
+		// end=i-1;
+		// sb.append(start+"-"+end+",");
+		// start = -1;end = -1;
+		// }
+		// }
+		// period.put("week", key);
+		// period.put("ranges",sb.toString().substring(0, (sb.length()-1)));
+		// }
+		// periods.add(period);
+		// }
+		// }
+		// System.out.println(periods.toString());
+
+		// JSONObject period = new JSONObject();
+		// period.put("test", 100.32);
+		// System.out.println(period.optString("test"));
+
+		// BigDecimal clicks = new BigDecimal(100.23);
+		// System.out.println(clicks.intValue());
+
+		// System.out.println(Long.parseLong("8000.01"));
+
+		// JSONObject jsonParam = new JSONObject();
+		// JSONArray jsonArray = new JSONArray();
+		// jsonArray.add("000000");
+		// jsonParam.put("app", jsonArray);
+		// System.out.println(jsonParam);
+
+		// String head = "00,";
+		// head = head.substring(0, head.lastIndexOf(","));
+		// System.out.println(head);
+
+		// BigDecimal bid = new BigDecimal("").divide(BigDecimal.valueOf(100),0,
+		// BigDecimal.ROUND_DOWN);
+		// System.out.println(bid);
+
+		// System.out.println(UUID.randomUUID().toString());
+
+		// final Map<String, String> srt = new HashMap<String,String>();
+		// srt.put("1", "1111");
+		// System.out.println(srt);
+
+		// String ff = null;
+		// System.out.println(String.valueOf(ff));
+		// Map<String, String[]> map = new HashMap<>();
+		// String[] sarr = { "0397e36c-e5c3-4d96-825e-acf668b92e9b",
+		// "0397e36c-e5c3-4d96-825e-acf668b92e9b" };
+		// String[] sarr1 = { "0397e36c-e5c3-4d96-825e-acf668b92e9b"};
+		// map.put("test[]", sarr);
+		// map.put("test1", sarr1);
+		// Map<String, Object> formatMap = formatMap(map);
+		// System.out.println(formatMap.get("fffffffff"));
+
+		// List<String> ssStrings = new ArrayList<>();
+		// ssStrings.add("1");
+		// ssStrings.add("2");
+		// ssStrings.add("3");
+		// ssStrings.add("4");
+		// System.out.println(ssStrings.toString());
+
+//		String ip = "127,0,0,1";
+//		// String [] s = ip.split(".");
+//		String[] s = ip.split(",");
+//		for (String string : s) {
+//			System.out.println(string + "-");
 //		}
 		
-//		String[] arrs = new String[]{"111","111","2222"};
-//		for (String string : Array2Set(arrs)) {
-//			
-//			System.out.println(string);
-//		}
-		
-//		Class<?> clazz = StatisByHourModel.class;
-//		Method[] methods = clazz.getMethods();
-//		for (Method method : methods) {
-//			System.out.println(method.getName());
-//		}
-//		Object dd = new Date();
-//
-//		System.out.println(dd instanceof Date);
-//		
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-//        System.out.println(sdf.format(dd));
-		
-//		JSONObject groupAdxs = JSONObject.fromObject("{\"4ebdb328-5d4b-42e6-80c3-a6aaaecdcea1\":[\"1e03319c-425d-4a17-a6bf-eeec2f48db29\",\"1fed4171-9925-4834-aa7b-9b4d3a58841b\",\"ce579246-e707-4cb9-b982-88cad7944b92\"],\"9262cbe8-a9dc-4f4e-888b-cf3ffe65defd\":\"ce579246-e707-4cb9-b982-88cad7944b92\"}");
-//		Set<String> keySet = groupAdxs.keySet();
-//		for (Object object : keySet) {
-//			System.out.println(groupAdxs.get(object).getClass().isArray());
-//		}
-		
-//		System.out.println(UUID.randomUUID().toString());
-		
-//		System.out.println(new Integer(0x11));
-//		System.out.println(Integer.toBinaryString(30000));
-//		System.out.println(Integer.valueOf("11", 16));
-//		System.out.println(Integer.valueOf("11", 2));
-		
-		
-//		System.out.println(AESTool.encrypt("lixiangrong"));
-//		System.out.println(AESTool.decrypt(AESEncrypter.encrypt("lixiangrong")));
-		
-//		System.out.println(AESTool.encrypt("liixangrong","adjdjfjfjfjdkdkd"));
-//		System.out.println(AESTool.decrypt("bfb0c038342ffead45511879853279bf","adjdjfjfjfjdkdkd"));
-//		System.out.println(Base64.encodeToString(AESTool.encrypt("fa4d7d90618dcba5fa1d969cffc04def","002020202").getBytes(), false));
-		
-//		byte[] bytes = "lixiangrong".getBytes();
-//		for (int i = 0; i < bytes.length; i++) {
-//			System.out.println(bytes[i]);
-//		}
-		
-//		System.out.println(Base64.encodeToString("lixiangrong".getBytes(), false));
-		
-//		double lon1 = 109.0145193759;
-//		double lat1 = 34.236080797698;
-//		System.out.println(GeoHash.encode(lat1, lon1));
-//		System.out.println(GeoHash.decode("wmtdgn5esrb1")[0]+" "+GeoHash.decode("wmtdgn5esrb1")[1]);
-		
-//		String url = "http://api.map.baidu.com/place/v2/search?query=银行&location=39.915,116.404&radius=2000&output=json&ak=LCG4dyrXyadeD8hFhi8SGCv6";
-//		System.out.println(HttpClientUtil.sendGet(url));
-		
-//		JSONArray array = new JSONArray();
-//		array.add("1");
-//		array.add("2");
-//		array.add("3");
-//		array.add("4");
-//		array.add("5");
-//		List<String> list = JSONArray.toList(array, new String(), new JsonConfig());
-//		System.out.println(list);
-		
-//		System.out.println(System.nanoTime());
-//		System.out.println(System.nanoTime());
-		
-		
-//		Map<String, String> postParam = new HashMap<String, String>();
-//		postParam.put("groupid", "100003");
-//		postParam.put("count", "1");
-//		postParam.put("type", "m");
-//		for(int i=0;i<5;i++){
-//			try {
-//				HttpClientUtil.sendPostParam("http://192.168.1.135:8080/dsp-counter/remote/chargeCounter/counterControlForThisSumResult", postParam);
-////				HttpClientUtil.sendPost("http://192.168.1.135:8080/dsp-counter/remote/chargeCounter/counterControlForThisSumResult", "groupid=100003&count=1&type=m");
-//				break;
-//			} catch (Exception e) {
-//				System.out.println(e.getMessage());
-//				try {
-//					Thread.sleep(1000);
-//				} catch (InterruptedException e1) {
-//					e1.printStackTrace();
-//				}
-//			}
-//		}
-		
-//		String str = "0,";
-//		System.out.println(str.split(",").length);
-		
-//		System.out.println(JedisUtil.getStr("0000"));
-//		Map<String,Integer> result = new HashMap<String, Integer>();
-//		System.out.println(result.get("jj"));
-//		double budgets = 10000;
-//		System.out.println((budgets/100));
-		
-//		String str = null;
-//		BigDecimal budget = new BigDecimal(str);
-//		budget = budget.subtract(new BigDecimal(10));
-//		if (budget.compareTo(new BigDecimal(0)) <= 0) {
-//			System.out.println("1");
-//		} else {
-//			System.out.println("2");
-//		}
-//		System.out.println(budget.doubleValue());
-		
-//		String REG_FLOAT = "^[1-9]\\d*.?\\d+$"; // 浮点正数
-//		System.out.println(Pattern.compile(REG_FLOAT).matcher("1.21").matches());
-		
-//		String str ="浮点数sss";
-//		String s1 = new String(str.getBytes("utf-8"),"gbk");
-//		System.out.println(s1);
-//		System.out.println(new String(s1.getBytes("gbk")));
-//		System.out.println();
-//		
-//		String s2 = URLEncoder.encode(str, "utf-8");
-//		System.out.println(s2);
-//		System.out.println(URLDecoder.decode(s2,"utf-8"));
-		
-		
-//		Object object = null;
-//		JSONObject creativeGroupObj = JSONObject.fromObject(object);
-//		System.out.println(creativeGroupObj.isEmpty());
-//		
-//		System.out.println(UUID.randomUUID().toString());
-		
-//		JSONArray putTime = JSONArray.fromObject("[{\"monday\":[\"1\",\"1\",\"1\",\"1\",\"1\",\"1\",\"1\",\"1\",\"1\",\"1\",\"1\",\"1\",\"1\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\"]},{\"tuesday\":[\"0\",\"0\",\"0\",\"0\",\"1\",\"1\",\"1\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\"]},{\"wednesday\":[\"0\",\"0\",\"0\",\"0\",\"1\",\"1\",\"1\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\"]},{\"thursday\":[\"0\",\"0\",\"0\",\"0\",\"1\",\"1\",\"1\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\"]},{\"friday\":[\"0\",\"0\",\"0\",\"0\",\"1\",\"1\",\"1\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\"]},{\"saturday\":[\"0\",\"0\",\"0\",\"0\",\"1\",\"1\",\"1\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\"]},{\"sunday\":[\"0\",\"0\",\"0\",\"0\",\"1\",\"1\",\"1\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\",\"0\"]}]");
-//		JSONArray periods = new JSONArray();
-//		for (Object object : putTime) {
-//			JSONObject putTimeObj = JSONObject.fromObject(object);
-//			if (!putTimeObj.isEmpty()) {
-//				Set<String> keySet = putTimeObj.keySet();
-//				JSONObject period = new JSONObject();
-//				for (String key : keySet) {
-//					JSONArray value = putTimeObj.optJSONArray(key);
-//					int start = -1,end = -1;
-//					StringBuffer sb = new StringBuffer();
-//					for (int i = 0; i < value.size(); i++) {
-//						Object object2 = value.get(i);
-//						// 第一次出现 1
-//						if (object2.equals("1") && start==-1) {
-//							start=i;
-//							end = 0;
-//						}
-//						// 出现1后的第一次出现0结束
-//						if (object2.equals("0") && start>-1) {
-//							end=i-1;
-//							sb.append(start+"-"+end+",");
-//							start = -1;end = -1;
-//						}
-//					}
-//					period.put("week", key);
-//					period.put("ranges",sb.toString().substring(0, (sb.length()-1)));
-//				}
-//				periods.add(period);
-//			}
-//		}
-//		System.out.println(periods.toString());
-		
-//		JSONObject period = new JSONObject();
-//		period.put("test", 100.32);
-//		System.out.println(period.optString("test"));
-		
-//		BigDecimal clicks = new BigDecimal(100.23);
-//		System.out.println(clicks.intValue());
-		
-//		System.out.println(Long.parseLong("8000.01"));
-		
-//		JSONObject jsonParam = new JSONObject();
-//		JSONArray jsonArray = new JSONArray();
-//		jsonArray.add("000000");
-//		jsonParam.put("app", jsonArray);
-//		System.out.println(jsonParam);
-		
-		
-		String head = "00,";
-		head = head.substring(0, head.lastIndexOf(","));
-		System.out.println(head);
-		
+		String string = "666";
+		System.out.println(isNumeric(string));
+	}
+
+	public static boolean isNumeric(String str) {
+		Pattern pattern = Pattern.compile("^(\\d+\\.?\\d+)|\\d+$");
+		Matcher isNum = pattern.matcher(str);
+		if (!isNum.matches()) {
+			return false;
+		}
+		return true;
+	}
+
+	public static Map<String, Object> formatMap(Map<String, String[]> map) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		Iterator<String> it = map.keySet().iterator();
+		while (it.hasNext()) {
+			String key = it.next();
+			String[] values = map.get(key);
+			if (key.contains("[") || key.contains("]")) {
+				result.put(key.replace("[", "").replace("]", ""), Arrays.toString(values).replace("[", "").replace("]", ""));
+			} else {
+				result.put(key, Arrays.toString(values).replace("[", "").replace("]", ""));
+			}
+		}
+		return result;
 	}
 
 	public static Long parseDate(String s) {
@@ -343,17 +399,17 @@ public class TestCode {
 		}
 		return time;
 	}
-	
-	public <B> B dd(B t){
+
+	public <B> B dd(B t) {
 		return t;
 	}
-	
+
 	public static <T extends Object> Set<T> Array2Set(T[] tArray) {
 		Set<T> tSet = new HashSet<T>(Arrays.asList(tArray));
 		return tSet;
 	}
-	
-	public static <T extends Object> void printArrs(T[] arrs){
+
+	public static <T extends Object> void printArrs(T[] arrs) {
 		for (T t : arrs) {
 			System.out.println(t);
 		}
