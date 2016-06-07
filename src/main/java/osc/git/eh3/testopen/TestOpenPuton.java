@@ -10,7 +10,7 @@ import osc.git.eh3.utils.Base64;
 import osc.git.eh3.utils.HttpClientUtil;
 
 public class TestOpenPuton {
-	public static String URL = "http://127.0.0.1:8080/dsp-open/pxene/dsp.do";
+	private static String URL = "http://127.0.0.1:8080/dsp-open/pxene/dsp.do";
 	private static String key = "adjdjfjfjfjdkdkd";//
 	private static String appid = "t123456";// 用户
 	private static String token = "cst123456";// 令牌
@@ -25,7 +25,7 @@ public class TestOpenPuton {
 		JSONObject json = new JSONObject();
 		json.put("param", "中午");
 		String str = "{\"order_info\":{\"put_time\":[],\"cost_type\":1,\"order_budget\":{\"budget_all\":100.0},\"cost_single\":100.0,\"type\":1,\"order_id\":14575,\"landing_page\":\"www.baidu.com\",\"order_name\":\"tony-test-31\",\"brand_en\":null,\"plat\":1,\"end_time\":\"2016-05-03\",\"creative_group\":[{\"group_name\":\"test_五一\",\"plat\":1,\"ratio\":\"-\",\"group_id\":405,\"click_code\":null,\"impression_code\":null,\"landing_page\":\"www.baidu.com\"}],\"buy_type\":1,\"order_freq\":{\"imp_day_req\":5,\"click_total_freq\":5,\"imp_total_req\":10,\"click_day_freq\":1},\"ad_owner\":{\"owner_qualification\":[],\"owner_name\":\"ABI\",\"organization_code\":null,\"owner_id\":107,\"owner_category\":\"食品饮料>健康饮料，运动饮料，功能性饮料\",\"website_url\":\"http://sedrin.reloadbuzz.com/food2/xueJin/index.php/home/user/index\"},\"start_time\":\"2016-05-03\",\"order_goal\":{\"order_total_show\":1},\"brand_zh\":\"Sedrin\",\"industry\":\"食品饮料>健康饮料，运动饮料，功能性饮料\",\"note\":\"媒体类型定向：\\nnull\\n\\n关键词定向：\\n123\\n\\n广告素材轮播：\\n平均\\n\\n备注：\\n备注1(资源设置)：\\n321\\n\\n\\n\"}}";
-		
+
 		System.out.println(HttpClientUtil.sendPostJSONData(URL, str));
 	}
 
