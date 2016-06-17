@@ -23,19 +23,20 @@
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.pxene.dsp.archer.dao" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
-		<table tableName="dsp_t_advertiser" domainObjectName="AdvertiserModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" />
-		<!-- 
-		<table tableName="dsp_t_open_request_data" domainObjectName="OpenRequestDataModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
-		<table tableName="dsp_t_amnet_ad_owner" domainObjectName="AmnetAdOwnerModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
-		<table tableName="dsp_t_amnet_order_info" domainObjectName="AmnetOrderInfoModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
-		<table tableName="dsp_t_amnet_creative" domainObjectName="AmnetCreativeModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
-		<table tableName="dsp_t_amnet_creative_group" domainObjectName="AmnetCreativeGroupModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
-		<table tableName="dsp_t_amnet_order_area" domainObjectName="AmnetOrderAreaModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
-		<table tableName="dsp_t_amnet_order_freq" domainObjectName="AmnetOrderFreqModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
-		<table tableName="dsp_t_amnet_order_goal" domainObjectName="AmnetOrderGoalModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
-		<table tableName="dsp_t_amnet_order_pmp" domainObjectName="AmnetOrderPmpModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
-		<table tableName="dsp_t_amnet_owner_qualification" domainObjectName="AmnetOwnerQualificationModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
-		<table tableName="dsp_t_amnet_put_time" domainObjectName="AmnetPutTimeModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
-		 -->
+        <table tableName="dsp_t_operate_logs" domainObjectName="OperateLogsModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" />
+        <!--
+        <table tableName="dsp_t_advertiser" domainObjectName="AdvertiserModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true" />
+        <table tableName="dsp_t_open_request_data" domainObjectName="OpenRequestDataModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
+        <table tableName="dsp_t_amnet_ad_owner" domainObjectName="AmnetAdOwnerModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
+        <table tableName="dsp_t_amnet_order_info" domainObjectName="AmnetOrderInfoModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
+        <table tableName="dsp_t_amnet_creative" domainObjectName="AmnetCreativeModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
+        <table tableName="dsp_t_amnet_creative_group" domainObjectName="AmnetCreativeGroupModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
+        <table tableName="dsp_t_amnet_order_area" domainObjectName="AmnetOrderAreaModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
+        <table tableName="dsp_t_amnet_order_freq" domainObjectName="AmnetOrderFreqModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
+        <table tableName="dsp_t_amnet_order_goal" domainObjectName="AmnetOrderGoalModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
+        <table tableName="dsp_t_amnet_order_pmp" domainObjectName="AmnetOrderPmpModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
+        <table tableName="dsp_t_amnet_owner_qualification" domainObjectName="AmnetOwnerQualificationModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
+        <table tableName="dsp_t_amnet_put_time" domainObjectName="AmnetPutTimeModel" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"></table>
+         -->
  	</context>
 </generatorConfiguration>
