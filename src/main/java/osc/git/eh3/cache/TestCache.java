@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class TestCache {
 	public static void main(String[] args) {
-		System.out.println(CacheManager.getSimpleFlag("alksd"));
 		CacheManager.putCache("abc", new Cache("key", "value", 10, false));
 		CacheManager.putCache("def", new Cache());
 		CacheManager.putCache("ccc", new Cache());
