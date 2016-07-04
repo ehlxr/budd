@@ -1,23 +1,12 @@
 package osc.git.eh3.test;
 
-import java.math.BigDecimal;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
-import java.util.regex.Pattern;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-import osc.git.eh3.utils.AESTool;
-import osc.git.eh3.utils.Base64;
 
 public class TestCode {
 
@@ -338,22 +327,43 @@ public class TestCode {
 //		System.out.println(String.valueOf(str) == String.valueOf("null"));
 
 
-        String sr = "2016-05-25 00:39:33,285 zanadu INFO  \"39.159.247.16\" \"Mozilla/5.0 (iPhone; CPU iPhone OS 8_4_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12H321 Safari/600.1.4\" \"http://site.pxene.com/Audi2016Q2Wap/?bid=7ef9ab83e32c4f9c80312b92fba261b1&mapid=0055cb29-dee1-4e77-81bb-0991d2d644c8\" \"load success:Audi load success:bid=7ef9ab83e32c4f9c80312b92fba261b1&mapid=0055cb29-dee1-4e77-81bb-0991d2d644c8\"";
-        String[] split = sr.split("\"");
-        for (String s1 : split) {
-            System.out.println(s1);
-        }
+        //String sr = "2016-05-25 00:39:33,285 zanadu INFO  \"39.159.247.16\" \"Mozilla/5.0 (iPhone; CPU iPhone OS 8_4_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12H321 Safari/600.1.4\" \"http://site.pxene.com/Audi2016Q2Wap/?bid=7ef9ab83e32c4f9c80312b92fba261b1&mapid=0055cb29-dee1-4e77-81bb-0991d2d644c8\" \"load success:Audi load success:bid=7ef9ab83e32c4f9c80312b92fba261b1&mapid=0055cb29-dee1-4e77-81bb-0991d2d644c8\"";
+        //String[] split = sr.split("\"");
+        //for (String s1 : split) {
+        //    System.out.println(s1);
+        //}
+        //
+        //
+        //String date = "Mon May 30 14:42:42 GMT+08:00 2016";
+        //System.out.println(date);
+        //
+        //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        //SimpleDateFormat sdf1 = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", java.util.Locale.US);
+        //
+        //System.out.println(sdf.format(sdf1.parse(date)));
+        //
+        //System.out.println("可吉可吉");
 
+        //JSONObject json = new JSONObject();
+        //String ss = "233";
+        //json.put("d","["+ss+"]");
+        //System.out.println(json);
+        //System.out.println(Integer.parseInt("110000"));
 
-        String date = "Mon May 30 14:42:42 GMT+08:00 2016";
-        System.out.println(date);
+        //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        //Calendar cl = Calendar.getInstance();
+        //cl.setTime(new Date());
+        //cl.add(Calendar.DAY_OF_MONTH,-1);
+        //String nowStr = sdf.format(cl.getTime());
+        //System.out.println(nowStr);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        SimpleDateFormat sdf1 = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", java.util.Locale.US);
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 0); // 控制时
+        calendar.set(Calendar.MINUTE, 0);       // 控制分
+        calendar.set(Calendar.SECOND, 1);       // 控制秒
 
-        System.out.println(sdf.format(sdf1.parse(date)));
-
-        System.out.println("可吉可吉");
+        Date time = calendar.getTime();         // 得出执行任务的时间,此处为今天的00：00：01
+        System.out.println(time);
     }
 
     public static Long parseDate(String s) {
