@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.pxene.dsp.archer.dao.AdGroupAppTargetFilterDao" >
-  <resultMap id="BaseResultMap" type="com.pxene.dsp.archer.model.AdGroupAppTargetFilterModel" >
+<mapper namespace="com.pxene.dsp.archer.dao.GroupTargetAuditDao" >
+  <resultMap id="BaseResultMap" type="com.pxene.dsp.archer.model.GroupTargetAuditModel" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="groupid" property="groupid" jdbcType="VARCHAR" />
-    <result column="appcategory" property="appcategory" jdbcType="VARCHAR" />
-    <result column="keyword" property="keyword" jdbcType="VARCHAR" />
-    <result column="filterValLi" property="filtervalli" jdbcType="VARCHAR" />
-    <result column="searchValLi" property="searchvalli" jdbcType="VARCHAR" />
-    <result column="adxid" property="adxid" jdbcType="VARCHAR" />
+    <result column="result" property="result" jdbcType="VARCHAR" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -69,16 +68,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, groupid, appcategory, keyword, filterValLi, searchValLi, adxid
+    id, groupid, result, reason, remark, createtime
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.pxene.dsp.archer.model.AdGroupAppTargetFilterModelExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.pxene.dsp.archer.model.GroupTargetAuditModelExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from dsp_t_ad_group_apptarget_filter
+    from dsp_t_group_target_audit
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -89,29 +88,29 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
-    from dsp_t_ad_group_apptarget_filter
+    from dsp_t_group_target_audit
     where id = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from dsp_t_ad_group_apptarget_filter
+    delete from dsp_t_group_target_audit
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.pxene.dsp.archer.model.AdGroupAppTargetFilterModelExample" >
-    delete from dsp_t_ad_group_apptarget_filter
+  <delete id="deleteByExample" parameterType="com.pxene.dsp.archer.model.GroupTargetAuditModelExample" >
+    delete from dsp_t_group_target_audit
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.pxene.dsp.archer.model.AdGroupAppTargetFilterModel" >
-    insert into dsp_t_ad_group_apptarget_filter (id, groupid, appcategory, 
-      keyword, filterValLi, searchValLi, 
-      adxid)
-    values (#{id,jdbcType=VARCHAR}, #{groupid,jdbcType=VARCHAR}, #{appcategory,jdbcType=VARCHAR}, 
-      #{keyword,jdbcType=VARCHAR}, #{filtervalli,jdbcType=VARCHAR}, #{searchvalli,jdbcType=VARCHAR}, 
-      #{adxid,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.pxene.dsp.archer.model.GroupTargetAuditModel" >
+    insert into dsp_t_group_target_audit (id, groupid, result, 
+      reason, remark, createtime
+      )
+    values (#{id,jdbcType=VARCHAR}, #{groupid,jdbcType=VARCHAR}, #{result,jdbcType=VARCHAR}, 
+      #{reason,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.pxene.dsp.archer.model.AdGroupAppTargetFilterModel" >
-    insert into dsp_t_ad_group_apptarget_filter
+  <insert id="insertSelective" parameterType="com.pxene.dsp.archer.model.GroupTargetAuditModel" >
+    insert into dsp_t_group_target_audit
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -119,20 +118,17 @@
       <if test="groupid != null" >
         groupid,
       </if>
-      <if test="appcategory != null" >
-        appcategory,
+      <if test="result != null" >
+        result,
       </if>
-      <if test="keyword != null" >
-        keyword,
+      <if test="reason != null" >
+        reason,
       </if>
-      <if test="filtervalli != null" >
-        filterValLi,
+      <if test="remark != null" >
+        remark,
       </if>
-      <if test="searchvalli != null" >
-        searchValLi,
-      </if>
-      <if test="adxid != null" >
-        adxid,
+      <if test="createtime != null" >
+        createtime,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -142,31 +138,28 @@
       <if test="groupid != null" >
         #{groupid,jdbcType=VARCHAR},
       </if>
-      <if test="appcategory != null" >
-        #{appcategory,jdbcType=VARCHAR},
+      <if test="result != null" >
+        #{result,jdbcType=VARCHAR},
       </if>
-      <if test="keyword != null" >
-        #{keyword,jdbcType=VARCHAR},
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
       </if>
-      <if test="filtervalli != null" >
-        #{filtervalli,jdbcType=VARCHAR},
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
       </if>
-      <if test="searchvalli != null" >
-        #{searchvalli,jdbcType=VARCHAR},
-      </if>
-      <if test="adxid != null" >
-        #{adxid,jdbcType=VARCHAR},
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.pxene.dsp.archer.model.AdGroupAppTargetFilterModelExample" resultType="java.lang.Integer" >
-    select count(*) from dsp_t_ad_group_apptarget_filter
+  <select id="countByExample" parameterType="com.pxene.dsp.archer.model.GroupTargetAuditModelExample" resultType="java.lang.Integer" >
+    select count(*) from dsp_t_group_target_audit
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update dsp_t_ad_group_apptarget_filter
+    update dsp_t_group_target_audit
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=VARCHAR},
@@ -174,20 +167,17 @@
       <if test="record.groupid != null" >
         groupid = #{record.groupid,jdbcType=VARCHAR},
       </if>
-      <if test="record.appcategory != null" >
-        appcategory = #{record.appcategory,jdbcType=VARCHAR},
+      <if test="record.result != null" >
+        result = #{record.result,jdbcType=VARCHAR},
       </if>
-      <if test="record.keyword != null" >
-        keyword = #{record.keyword,jdbcType=VARCHAR},
+      <if test="record.reason != null" >
+        reason = #{record.reason,jdbcType=VARCHAR},
       </if>
-      <if test="record.filtervalli != null" >
-        filterValLi = #{record.filtervalli,jdbcType=VARCHAR},
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
       </if>
-      <if test="record.searchvalli != null" >
-        searchValLi = #{record.searchvalli,jdbcType=VARCHAR},
-      </if>
-      <if test="record.adxid != null" >
-        adxid = #{record.adxid,jdbcType=VARCHAR},
+      <if test="record.createtime != null" >
+        createtime = #{record.createtime,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -195,60 +185,45 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update dsp_t_ad_group_apptarget_filter
+    update dsp_t_group_target_audit
     set id = #{record.id,jdbcType=VARCHAR},
       groupid = #{record.groupid,jdbcType=VARCHAR},
-      appcategory = #{record.appcategory,jdbcType=VARCHAR},
-      keyword = #{record.keyword,jdbcType=VARCHAR},
-      filterValLi = #{record.filtervalli,jdbcType=VARCHAR},
-      searchValLi = #{record.searchvalli,jdbcType=VARCHAR},
-      adxid = #{record.adxid,jdbcType=VARCHAR}
+      result = #{record.result,jdbcType=VARCHAR},
+      reason = #{record.reason,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.pxene.dsp.archer.model.AdGroupAppTargetFilterModel" >
-    update dsp_t_ad_group_apptarget_filter
+  <update id="updateByPrimaryKeySelective" parameterType="com.pxene.dsp.archer.model.GroupTargetAuditModel" >
+    update dsp_t_group_target_audit
     <set >
       <if test="groupid != null" >
         groupid = #{groupid,jdbcType=VARCHAR},
       </if>
-      <if test="appcategory != null" >
-        appcategory = #{appcategory,jdbcType=VARCHAR},
+      <if test="result != null" >
+        result = #{result,jdbcType=VARCHAR},
       </if>
-      <if test="keyword != null" >
-        keyword = #{keyword,jdbcType=VARCHAR},
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
       </if>
-      <if test="filtervalli != null" >
-        filterValLi = #{filtervalli,jdbcType=VARCHAR},
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
       </if>
-      <if test="searchvalli != null" >
-        searchValLi = #{searchvalli,jdbcType=VARCHAR},
-      </if>
-      <if test="adxid != null" >
-        adxid = #{adxid,jdbcType=VARCHAR},
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.pxene.dsp.archer.model.AdGroupAppTargetFilterModel" >
-    update dsp_t_ad_group_apptarget_filter
+  <update id="updateByPrimaryKey" parameterType="com.pxene.dsp.archer.model.GroupTargetAuditModel" >
+    update dsp_t_group_target_audit
     set groupid = #{groupid,jdbcType=VARCHAR},
-      appcategory = #{appcategory,jdbcType=VARCHAR},
-      keyword = #{keyword,jdbcType=VARCHAR},
-      filterValLi = #{filtervalli,jdbcType=VARCHAR},
-      searchValLi = #{searchvalli,jdbcType=VARCHAR},
-      adxid = #{adxid,jdbcType=VARCHAR}
+      result = #{result,jdbcType=VARCHAR},
+      reason = #{reason,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <select id="selectAdxByAppParentCode" parameterType="java.lang.String" resultType="java.util.Map">
-    SELECT DISTINCT
-    t0.adxtype,
-    t1.id adxid
-    FROM
-    dsp_t_syn_app_adx t0
-    LEFT JOIN dsp_t_adx t1 ON t0.adxtype = t1.`value`
-    WHERE
-    t0.parentcode = #{parentcode,jdbcType=VARCHAR}
-  </select>
 </mapper>
