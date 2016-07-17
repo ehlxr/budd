@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,8 +51,30 @@ public class TestReadFile {
 		}
 	}
 
+	public static void readFile1() {
+		File file = new File("C:\\Users\\lixiangrong\\Desktop\\白名单\\IMEI\\000000_0");
+		BufferedReader reader = null;
+		try {
+			reader = new BufferedReader(new FileReader(file));
+			String tempString = null;
+			while ((tempString = reader.readLine()) != null) {
+				System.out.println(tempString);
+			}
+			reader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (reader != null) {
+				try {
+					reader.close();
+				} catch (IOException ignored) {
+				}
+			}
+		}
+	}
+
 	public static void main(String[] args) {
-		readFile();
+		readFile1();
 	}
 
 	/**

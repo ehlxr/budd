@@ -3,7 +3,6 @@ package osc.git.eh3.test;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -357,13 +356,23 @@ public class TestCode {
         //String nowStr = sdf.format(cl.getTime());
         //System.out.println(nowStr);
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 0); // 控制时
-        calendar.set(Calendar.MINUTE, 0);       // 控制分
-        calendar.set(Calendar.SECOND, 1);       // 控制秒
+        //Calendar calendar = Calendar.getInstance();
+        //calendar.set(Calendar.HOUR_OF_DAY, 0); // 控制时
+        //calendar.set(Calendar.MINUTE, 0);       // 控制分
+        //calendar.set(Calendar.SECOND, 1);       // 控制秒
+        //
+        //Date time = calendar.getTime();         // 得出执行任务的时间,此处为今天的00：00：01
+        //System.out.println(time);
 
-        Date time = calendar.getTime();         // 得出执行任务的时间,此处为今天的00：00：01
-        System.out.println(time);
+        //List<String> list = new ArrayList<String>();
+        //list.add("str1");
+        //list.add("str2");
+        //int size = list.size();
+        //String[] arr = list.toArray(new String[size]);//使用了第二种接口，返回值和参数均为结果
+
+        String str = null;
+        System.out.println((String)str == null);
+
     }
 
     public static Long parseDate(String s) {
