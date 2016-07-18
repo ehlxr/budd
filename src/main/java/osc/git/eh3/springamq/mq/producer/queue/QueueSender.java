@@ -11,10 +11,7 @@ import javax.jms.Message;
 import javax.jms.Session;
 
 /**
- * 
- * @author liang
  * @description  队列消息生产者，发送消息到队列
- * 
  */
 @Component("queueSender")
 public class QueueSender {
@@ -36,5 +33,4 @@ public class QueueSender {
 			}
 		});
 	}
-	
 }
