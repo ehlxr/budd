@@ -9,10 +9,7 @@ import javax.jms.MessageListener;
 import javax.jms.TextMessage;
 
 /**
- * 
- * @author liang
  * @description  队列消息监听器
- * 
  */
 @Component
 public class QueueReceiver1 implements MessageListener {

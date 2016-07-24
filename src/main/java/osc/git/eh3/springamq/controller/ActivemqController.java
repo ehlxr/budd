@@ -11,8 +11,6 @@ import javax.annotation.Resource;
 
 
 /**
- * 
- * @author liang
  * @description controller测试
  */
 @Controller

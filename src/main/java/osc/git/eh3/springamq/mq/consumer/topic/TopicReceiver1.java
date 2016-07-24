@@ -7,16 +7,11 @@ import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.TextMessage;
 
-
 /**
- * 
- * @author liang
  * @description  Topic消息监听器
- * 
  */
 @Component
 public class TopicReceiver1 implements MessageListener{
-
 
 	@Override
 	public void onMessage(Message message) {
@@ -26,5 +21,4 @@ public class TopicReceiver1 implements MessageListener{
 			e.printStackTrace();
 		}
 	}
-	
 }

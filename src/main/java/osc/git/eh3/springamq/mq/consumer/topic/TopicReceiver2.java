@@ -8,14 +8,10 @@ import javax.jms.MessageListener;
 import javax.jms.TextMessage;
 
 /**
- * 
- * @author liang
  * @description  Topic消息监听器
- * 
  */
 @Component
 public class TopicReceiver2 implements MessageListener{
-
 
 	@Override
 	public void onMessage(Message message) {
