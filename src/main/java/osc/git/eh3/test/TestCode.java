@@ -1,5 +1,7 @@
 package osc.git.eh3.test;
 
+import org.apache.commons.codec.binary.Hex;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -248,12 +250,12 @@ public class TestCode {
 //		System.out.println(s1);
 //		System.out.println(new String(s1.getBytes("gbk")));
 //		System.out.println();
-//		
+////
 //		String s2 = URLEncoder.encode(str, "utf-8");
 //		System.out.println(s2);
 //		System.out.println(URLDecoder.decode(s2,"utf-8"));
 
-
+        System.out.println(new String(Hex.decodeHex("E8AFB7E6B182E5A4B1E8B4A5EFBC8CE8AFB7E7A88DE5908EE9878DE8AF95".toCharArray()), "utf-8"));
 //		Object object = null;
 //		JSONObject creativeGroupObj = JSONObject.fromObject(object);
 //		System.out.println(creativeGroupObj.isEmpty());
@@ -370,8 +372,8 @@ public class TestCode {
         //int size = list.size();
         //String[] arr = list.toArray(new String[size]);//使用了第二种接口，返回值和参数均为结果
 
-        String str = null;
-        System.out.println((String)str == null);
+        //String str = null;
+        //System.out.println((String)str == null);
 
     }
 
