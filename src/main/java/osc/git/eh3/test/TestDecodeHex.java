@@ -12,5 +12,10 @@ public class TestDecodeHex {
         System.out.println(new String(Hex.decodeHex(data.toCharArray()), "utf-8"));
 
         System.out.println(Hex.encodeHexString("测试粗我".getBytes()));
+
+
+        String date = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new java.util.Date(1474963778670L));
+        System.out.println(date);
+
     }
 }
