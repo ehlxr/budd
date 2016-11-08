@@ -1,13 +1,12 @@
 package osc.git.eh3.test;
 
-import org.apache.commons.codec.binary.Hex;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TimeZone;
 
 public class TestCode {
 
@@ -255,7 +254,7 @@ public class TestCode {
 //		System.out.println(s2);
 //		System.out.println(URLDecoder.decode(s2,"utf-8"));
 
-        System.out.println(new String(Hex.decodeHex("E8AFB7E6B182E5A4B1E8B4A5EFBC8CE8AFB7E7A88DE5908EE9878DE8AF95".toCharArray()), "utf-8"));
+        //System.out.println(new String(Hex.decodeHex("E8AFB7E6B182E5A4B1E8B4A5EFBC8CE8AFB7E7A88DE5908EE9878DE8AF95".toCharArray()), "utf-8"));
 //		Object object = null;
 //		JSONObject creativeGroupObj = JSONObject.fromObject(object);
 //		System.out.println(creativeGroupObj.isEmpty());
@@ -374,6 +373,23 @@ public class TestCode {
 
         //String str = null;
         //System.out.println((String)str == null);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+        String date = sdf.format(new java.util.Date(1477451581136L));
+
+        System.out.println(date);
+
+        Long min = 19000001L;
+        Long mx = 19000500L;
+
+        Long n = 19000000L;
+
+        if ((n >= min && n <= mx)||(n >= min && n <= mx)){
+            System.out.println("ture");
+        }else {
+            System.out.println("false");
+        }
 
     }
 
