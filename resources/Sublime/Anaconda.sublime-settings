@@ -1,0 +1,12 @@
+{
+    "anaconda_linter_underlines": false,
+    "auto_formatting": true,
+    "complete_all_parameters": true,
+    "complete_parameters": true,
+    "pep8_ignore": [
+        "E501"
+    ],
+    "python_interpreter": "python",
+    "suppress_explicit_completions": true,
+    "suppress_word_completions": true
+}

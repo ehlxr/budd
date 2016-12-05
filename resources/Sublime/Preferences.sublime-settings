@@ -1,5 +1,6 @@
 {
 	"color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
+	"dictionary": "Packages/Language - English/en_GB.dic",
 	"dpi_scale": 1.0,
 	"font_face": "YaHei Consolas Hybrid",
 	"font_size": 13,
@@ -10,6 +11,6 @@
 	"line_padding_top": 1,
 	"tab_size": 4,
 	"translate_tabs_to_spaces": true,
-	"word_wrap": false,
-	"trim_trailing_white_space_on_save": true
+	"trim_trailing_white_space_on_save": true,
+	"word_wrap": false
 }

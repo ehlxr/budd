@@ -1,0 +1,38 @@
+{
+    "noteStoreUrl": "https://app.yinxiang.com/shard/s17/notestore",
+    "token": "S=s17:U=25bb34:E=15f325fde2b:C=157daaeb040:P=1cd:A=en-devtoken:V=2:H=be518643837204aafe395727d5a2bf1c",
+    // inline_css is documented at https://github.com/bordaigorl/sublime-evernote/wiki/Styling
+    "inline_css": {
+        "body": "",
+        "pre": "color: #000000; font-family: Consolas,monospace,Microsoft YaHei; font-size: 0.9em; white-space: pre-wrap; word-wrap: break-word; border: 1px solid #cccccc; border-radius: 3px; overflow: auto; padding: 6px 10px; margin-bottom: 10px;",
+        "code": "color: black; font-family: Consolas,monospace,Microsoft YaHei; font-size: 1.1em;",
+        "inline-code": "color: #c7254e; font-family: Consolas,monospace,Microsoft YaHei; padding: 0.1em 0.2em; margin: 0.1em; font-size: 85%; background-color: #f9f2f4; border-radius: 3px; border: 1px solid #d6d6d6;",
+        "h1": "margin-bottom: 1em; margin-top: 1.2em;",
+        "footnotes": "border-top: 1px solid #9AB39B; font-size: 80%;",
+        "hr": "color:#9AB39B;background-color:#9AB39B;height:1px;border:none;",
+        "sup": "color:#6D6D6D;font-size:1ex",
+        "blockquote": "border-left: .5ex solid #BFBFBF; margin-left: 0px; padding-left: 1em; margin-top: 1.4285em; margin-bottom: 1.4285em;",
+        // ONLY USED IF wiki_tables or gfm_tables are enabled
+        "table": "border-collapse: collapse; border-spacing: 0; margin: 1em;",
+        "td": "border: 1px solid #DDD; padding: 6px 13px;",
+        "th": "border: 1px solid #DDD; padding: 6px 13px;",
+        "tr:odd": "border: 1px solid #DDD; padding: 6px 13px;",
+        "tr:even": "border: 1px solid #DDD; padding: 6px 13px; background-color: #F8F8F8;"
+    },
+    "code_highlighting_style": "github",
+    "code_friendly": true,
+    "gfm_tables": true,
+    "wiki_tables": false,
+    "emphasis_mark": "_",
+    "strong_mark": "**",
+    "item_mark": "*",
+    "notes_order": "updated",
+    "max_notes": 100,
+    "update_on_save": false,
+    "evernote_autocomplete": true,
+    "sort_notebooks": false,
+    "show_stacks": true,
+    "open_single_result": true,
+    "tab_prefix": "Evernote: ",
+    "warn_on_close": true
+}
