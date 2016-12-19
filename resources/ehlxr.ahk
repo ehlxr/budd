@@ -12,17 +12,23 @@ run，非常常用 的 AHK 命令之一;
 #0::Run http://ehlxr.me
 #9::Run http://www.google.com
 
-!c::run,C:\Program Files (x86)\Google\Chrome\Application\chrome.exe /high-dpi-support=1 /force-device-scale-factor=1
+#c::run,C:\Program Files (x86)\Google\Chrome\Application\chrome.exe /high-dpi-support=1 /force-device-scale-factor=1
+#f::run,D:\Program Files\Mozilla Firefox\firefox.exe
 ^!f::run,D:\Program Files\Everything\Everything.exe
 
 ^#!Numpad9::run,D:\works\IntelliJ IDEA 2016.3\bin\idea64.exe
 ^#!Numpad8::run,D:\works\OpenVPN\bin\openvpn-gui.exe
 ^#!Numpad7::run,D:\works\GreenVPN\greenvpn.exe
 ^#!Numpad6::run,D:\works\cmder\Cmder.exe
+^#!Numpad5::run,"D:\Program Files\网易云音乐PC版\cloudmusic.exe"
+^#!Numpad4::run,D:\Program Files\Dict\YodaoDict.exe
 ^#!Numpad3::run,D:\works\Notepad++\notepad++.exe
 ^#!Numpad2::run,D:\Program Files\Thunder Network\Thunder\Program\Thunder.exe
 ^#!Numpad1::run,D:\works\KeePass-2.34\KeePass.exe
 ^#!Numpad0::run,D:\works\Sublime Text 3\sublime_text.exe
+
+#Numpad0::run,D:\Program Files\Evernote\Evernote.exe
+#1::run,D:\works\Sublime Text 3\sublime_text.exe
 
 /*
 一键拷贝文件路径
