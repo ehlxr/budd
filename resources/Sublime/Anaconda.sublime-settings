@@ -1,12 +1,12 @@
 {
-    "anaconda_linter_underlines": false,
+    // "anaconda_linter_underlines": false,
     "auto_formatting": true,
-    "complete_all_parameters": true,
-    "complete_parameters": true,
+    // "complete_all_parameters": true,
+    // "complete_parameters": true,
     "pep8_ignore": [
         "E501"
     ],
-    "python_interpreter": "python",
+    "python_interpreter": "D:\\works\\Python35\\python.exe",
     "suppress_explicit_completions": true,
     "suppress_word_completions": true
 }
