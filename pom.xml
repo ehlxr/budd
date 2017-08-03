@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>osc.git.eh3</groupId>
-    <artifactId>useful-code</artifactId>
+    <artifactId>java-utils</artifactId>
     <packaging>war</packaging>
     <version>0.0.1-SNAPSHOT</version>
 
@@ -233,7 +233,7 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>useful-code</finalName>
+        <finalName>java-utils</finalName>
         <pluginManagement>
             <plugins>
                 <!-- mybatis-generator 插件; Run AS——>Maven Build… ——>在Goals框中输入：mybatis-generator:generate -->
