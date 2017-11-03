@@ -13,4 +13,9 @@ public class ClassDependency {
         // do something
         return false;
     }
+
+    public boolean isGod(String oh){
+        System.out.println(oh);
+        return false;
+    }
 }

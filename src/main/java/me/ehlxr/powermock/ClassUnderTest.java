@@ -52,4 +52,9 @@ public class ClassUnderTest {
     private void testVoid() {
         System.out.println("do nothing");
     }
+
+    public boolean callDependency() {
+        ClassDependency classDependency = new ClassDependency();
+        return classDependency.isGod("hh");
+    }
 }

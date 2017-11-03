@@ -9,6 +9,9 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.io.File;
 
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.powermock.api.mockito.PowerMockito.*;
+
 /**
  * Created by lixiangrong on 2017/7/21.
  */
@@ -16,7 +19,7 @@ import java.io.File;
 public class TestClassUnderTest {
     @Test
     public void testCallArgumentInstance() {
-        File file = PowerMockito.mock(File.class);
+        File file = mock(File.class);
         ClassUnderTest underTest = new ClassUnderTest();
         PowerMockito.when(file.exists()).thenReturn(true);
         Assert.assertTrue(underTest.callArgumentInstance(file));
@@ -25,7 +28,7 @@ public class TestClassUnderTest {
     @Test
     @PrepareForTest(ClassUnderTest.class)
     public void testCallInternalInstance() throws Exception {
-        File file = PowerMockito.mock(File.class);
+        File file = mock(File.class);
         ClassUnderTest underTest = new ClassUnderTest();
         PowerMockito.whenNew(File.class).withArguments("bbb").thenReturn(file);
         PowerMockito.when(file.exists()).thenReturn(true);
@@ -35,7 +38,7 @@ public class TestClassUnderTest {
     @Test
     @PrepareForTest(ClassDependency.class)
     public void testCallFinalMethod() {
-        ClassDependency depencency = PowerMockito.mock(ClassDependency.class);
+        ClassDependency depencency = mock(ClassDependency.class);
         ClassUnderTest underTest = new ClassUnderTest();
         PowerMockito.when(depencency.isAlive()).thenReturn(true);
         Assert.assertTrue(underTest.callFinalMethod(depencency));
@@ -44,7 +47,7 @@ public class TestClassUnderTest {
     @Test
     @PrepareForTest(ClassUnderTest.class)
     public void testCallSystemFinalMethod() {
-        String str = PowerMockito.mock(String.class);
+        String str = mock(String.class);
         ClassUnderTest underTest = new ClassUnderTest();
         PowerMockito.when(str.isEmpty()).thenReturn(false);
         Assert.assertFalse(underTest.callSystemFinalMethod(str));
@@ -71,7 +74,7 @@ public class TestClassUnderTest {
     @Test
     @PrepareForTest(ClassUnderTest.class)
     public void testCallPrivateMethod() throws Exception {
-        ClassUnderTest underTest = PowerMockito.mock(ClassUnderTest.class);
+        ClassUnderTest underTest = mock(ClassUnderTest.class);
         PowerMockito.when(underTest.callPrivateMethod()).thenCallRealMethod();
         PowerMockito.when(underTest, "isExist").thenReturn(true);
         Assert.assertTrue(underTest.callPrivateMethod());
@@ -80,9 +83,23 @@ public class TestClassUnderTest {
     @Test
     @PrepareForTest(ClassUnderTest.class)
     public void testCallVoidPrivateMethod() throws Exception {
-        ClassUnderTest underTest = PowerMockito.mock(ClassUnderTest.class);
+        ClassUnderTest underTest = mock(ClassUnderTest.class);
         PowerMockito.when(underTest.callVoidPrivateMethod()).thenCallRealMethod();
         PowerMockito.doNothing().when(underTest, "testVoid");
         Assert.assertTrue(underTest.callVoidPrivateMethod());
+    }
+
+
+    @Test
+    @PrepareForTest(ClassUnderTest.class)
+    public void testDependency() throws Exception {
+        ClassUnderTest underTest = new ClassUnderTest();
+        ClassDependency dependency = mock(ClassDependency.class);
+
+        // @PrepareForTest(ClassUnderTest.class)
+        whenNew(ClassDependency.class).withAnyArguments().thenReturn(dependency);
+
+        when(dependency.isGod(anyString())).thenReturn(true);
+        Assert.assertTrue(underTest.callDependency());
     }
 }
