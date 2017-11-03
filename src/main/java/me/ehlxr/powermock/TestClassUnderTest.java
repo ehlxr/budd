@@ -9,8 +9,6 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.io.File;
 
-import static org.mockito.ArgumentMatchers.anyString;
-
 /**
  * Created by lixiangrong on 2017/7/21.
  */
@@ -75,7 +73,7 @@ public class TestClassUnderTest {
     public void testCallPrivateMethod() throws Exception {
         ClassUnderTest underTest = PowerMockito.mock(ClassUnderTest.class);
         PowerMockito.when(underTest.callPrivateMethod()).thenCallRealMethod();
-        PowerMockito.when(underTest, "isExist", anyString()).thenReturn(true);
+        PowerMockito.when(underTest, "isExist").thenReturn(true);
         Assert.assertTrue(underTest.callPrivateMethod());
     }
 
