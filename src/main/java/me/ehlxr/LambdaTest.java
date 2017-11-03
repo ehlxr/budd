@@ -46,5 +46,7 @@ public class LambdaTest {
         System.out.println("------------求平方和-----new way-----");
         System.out.println(list.stream().map(n -> n * n).reduce((x, y) -> x + y).get());
 
+        System.out.println();
+
     }
 }
