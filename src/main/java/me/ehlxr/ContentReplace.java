@@ -4,6 +4,8 @@ import java.io.*;
 
 /**
  * Created by lixiangrong on 2017/11/17.
+ * <p>
+ * 递归扫描 Java 文件，添加 CopyRight 信息，已有跳过
  */
 public class ContentReplace {
     private static int total = 0;
@@ -39,7 +41,7 @@ public class ContentReplace {
                 byte[] buf = new byte[64];
                 int hasRead;
                 while ((hasRead = raf.read(buf)) > 0) {
-                    if (new String(buf).startsWith("/*")) {
+                    if (new String(buf).contains("Copyright")) {
                         ++unDeal;
                         System.out.println("未处理文件：" + file.getPath());
                         return;
