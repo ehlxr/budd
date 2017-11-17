@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+import org.powermock.reflect.Whitebox;
 
 import java.io.File;
 
@@ -101,5 +102,14 @@ public class TestClassUnderTest {
 
         when(dependency.isGod(anyString())).thenReturn(true);
         Assert.assertTrue(underTest.callDependency());
+    }
+
+    @Test
+    @PrepareForTest(ClassUnderTest.class)
+    public void testInvokPrivate() throws Exception {
+        ClassUnderTest underTest = spy(new ClassUnderTest());
+
+        Whitebox.invokeMethod(underTest, "isExist");
+        verifyPrivate(underTest).invoke("isExist");
     }
 }

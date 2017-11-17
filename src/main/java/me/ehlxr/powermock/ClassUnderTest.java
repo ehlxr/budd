@@ -10,6 +10,8 @@ import java.io.File;
  * Created by lixiangrong on 2017/7/21.
  */
 public class ClassUnderTest {
+    private String f1 = "test";
+
     public boolean callArgumentInstance(File file) {
         return file.exists();
     }
