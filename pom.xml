@@ -258,6 +258,11 @@
             <artifactId>guava</artifactId>
             <version>22.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.jodd</groupId>
+            <artifactId>jodd-props</artifactId>
+            <version>3.6.1</version>
+        </dependency>
     </dependencies>
     <build>
         <finalName>java-utils</finalName>

@@ -13,22 +13,24 @@ public class HelloRxJava {
     }
 
     private static void hello(String... names) {
-        Observable.from(names).subscribe(new Subscriber<String>() {
-            @Override
-            public void onCompleted() {
-                System.out.println("Completed!");
-            }
+         Observable.from(names).subscribe(new Subscriber<String>() {
+             @Override
+             public void onCompleted() {
+                 System.out.println("Completed!");
+             }
 
-            @Override
-            public void onError(Throwable throwable) {
-                throwable.printStackTrace();
-            }
+             @Override
+             public void onError(Throwable throwable) {
+                 throwable.printStackTrace();
+             }
 
-            @Override
-            public void onNext(String strings) {
-                System.out.println("same hello " + strings);
-            }
+             @Override
+             public void onNext(String strings) {
+                 System.out.println("say hello " + strings);
+             }
 
-        });
+         });
+
+        // Observable.from(names).subscribe(name -> System.out.println("say hello " + name), Throwable::printStackTrace, () -> System.out.println("Completed!"));
     }
 }

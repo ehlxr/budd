@@ -19,29 +19,42 @@ public class TestRx {
 
         // Tasks oa -> oc,  both in the same thread 1.
         Observable<String> oa = Observable.just("oa").observeOn(Schedulers.io()).flatMap(
-                soa -> Observable.fromCallable(new TimeConsumingService("fa", 1000, new String[]{}))
+                soa -> {
+                    System.out.println("oa Thread: " + Thread.currentThread().getName());
+                    return Observable.fromCallable(new TimeConsumingService("fa", 2000, new String[]{soa}));
+                }
         );
         Observable<String> oc = oa.flatMap(
                 res -> {
-                    System.out.println(res);
-                    System.out.println("Executed At： " + (System.currentTimeMillis() - startTime) + "ms");
-                    return Observable.fromCallable(
-                            new TimeConsumingService("fc", 2000, new String[]{res}));
+                    System.out.println("oc Thread: " + Thread.currentThread().getName());
+                    // System.out.println(res);
+                    // System.out.println("Executed At： " + (System.currentTimeMillis() - startTime) + "ms");
+                    return Observable.fromCallable(new TimeConsumingService("fc", 1000, new String[]{res}));
                 });
 
         // tasks ob -> (od,oe),  ob, od, oe have special thread 2,3,4.
         Observable<String> ob = Observable.just("ob").observeOn(Schedulers.io()).flatMap(
-                sob -> Observable.fromCallable(new TimeConsumingService("fb", 2000, new String[]{}))
+                sob -> {
+                    System.out.println("ob Thread: " + Thread.currentThread().getName());
+                    return Observable.fromCallable(new TimeConsumingService("fb", 2000, new String[]{sob}));
+                }
         );
         Observable<String> od_oe = ob.flatMap(
                 res -> {
-                    System.out.println(res);
-                    System.out.println("Executed At： " + (System.currentTimeMillis() - startTime) + "ms");
+                    System.out.println("od_oe Thread: " + Thread.currentThread().getName());
+                    // System.out.println(res);
+                    // System.out.println("Executed At： " + (System.currentTimeMillis() - startTime) + "ms");
                     Observable<String> od = Observable.just("od").observeOn(Schedulers.io()).flatMap(
-                            sod -> Observable.fromCallable(new TimeConsumingService("fd", 1000, new String[]{res}))
+                            sod -> {
+                                System.out.println("od Thread: " + Thread.currentThread().getName());
+                                return Observable.fromCallable(new TimeConsumingService("fd", 1000, new String[]{sod}));
+                            }
                     );
                     Observable<String> oe = Observable.just("oe").observeOn(Schedulers.io()).flatMap(
-                            sod -> Observable.fromCallable(new TimeConsumingService("fe", 1000, new String[]{res}))
+                            soe -> {
+                                System.out.println("oe Thread: " + Thread.currentThread().getName());
+                                return Observable.fromCallable(new TimeConsumingService("fe", 1000, new String[]{soe}));
+                            }
                     );
                     return Observable.merge(od, oe);
                 });
@@ -51,8 +64,9 @@ public class TestRx {
         // tasks join oc,(od_oe) and subscribe
         Observable.merge(oc, od_oe).toBlocking().subscribe(
                 res -> {
-                    System.out.println(res);
-                    System.out.println("Executed At： " + (System.currentTimeMillis() - startTime) + "ms");
+                    System.out.println("ss Thread: " + Thread.currentThread().getName());
+                    // System.out.println(res);
+                    // System.out.println("Executed At： " + (System.currentTimeMillis() - startTime) + "ms");
                 });
 
         System.out.println("End executed: " + (System.currentTimeMillis() - startTime) + "ms");

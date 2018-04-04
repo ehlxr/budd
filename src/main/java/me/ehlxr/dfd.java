@@ -1,10 +1,16 @@
 package me.ehlxr;
 
+import com.google.common.collect.Maps;
+
 /**
  * Created by lixiangrong on 2016/12/23.
  */
 public class dfd {
+
     public static void main(String[] args) {
+        var map = Maps.newHashMap();
+        map.put("d",1);
+        System.out.println(map);
     }
     public void printCircle(int[][] matrix, int startX, int startY, int endX, int endY) {
         // only one column left
