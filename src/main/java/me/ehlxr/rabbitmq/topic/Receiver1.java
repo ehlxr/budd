@@ -14,6 +14,7 @@ import java.util.concurrent.TimeoutException;
  * @author lixiangrong
  * @since 2019-01-22.
  */
+@SuppressWarnings("ALL")
 public class Receiver1 {
     private final static String QUEUE_NAME = "queue_topic2";
     private final static String EXCHANGE_NAME = "exchange_topic";
