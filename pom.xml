@@ -19,7 +19,7 @@
         <file_encoding>utf-8</file_encoding>
         <jdk.verion>1.8</jdk.verion>
         <powermock.version>1.7.1</powermock.version>
-        <kotlin.version>1.2.60</kotlin.version>
+        <kotlin.version>1.3.61</kotlin.version>
     </properties>
 
     <dependencies>
@@ -264,11 +264,11 @@
             <artifactId>jodd-props</artifactId>
             <version>3.6.1</version>
         </dependency>
-        <dependency>
-            <groupId>cn.ceres.did</groupId>
-            <artifactId>did-sdk</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>cn.ceres.did</groupId>-->
+        <!--            <artifactId>did-sdk</artifactId>-->
+        <!--            <version>1.0-SNAPSHOT</version>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>cn.enncloud.ceres</groupId>
             <artifactId>ceres</artifactId>
