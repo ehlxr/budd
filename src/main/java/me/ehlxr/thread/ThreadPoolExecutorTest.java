@@ -4,8 +4,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * Created by lixiangrong on 2016/12/22.
+ * @author lixiangrong
+ * @date 2016/12/22
  */
+//@SuppressWarnings({"AlibabaRemoveCommentedCode", "Convert2Lambda", "UnnecessaryLocalVariable"})
 public class ThreadPoolExecutorTest {
     public static void main(String[] args) {
         ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
@@ -16,10 +18,11 @@ public class ThreadPoolExecutorTest {
             //} catch (InterruptedException e) {
             //    e.printStackTrace();
             //}
-            cachedThreadPool.execute (new Runnable() {
+            cachedThreadPool.execute(new Runnable() {
+                @Override
                 public void run() {
                     //System.out.println(index);
-                    System.out.println("Thread: "+Thread.currentThread().getName());
+                    System.out.println("Thread: " + Thread.currentThread().getName());
                 }
             });
         }
