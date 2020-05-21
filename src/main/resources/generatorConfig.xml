@@ -10,19 +10,19 @@
             <property name="suppressAllComments" value="false"/>
             <property name="addRemarkComments" value="true"/>
         </commentGenerator>
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://10.39.32.45:32125/phr-web" userId="root" password="root">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://10.39.32.45:32125/phr-reform" userId="root" password="root">
         </jdbcConnection>
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
-        <javaModelGenerator targetPackage="com.lk.phr.model.phr" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.lk.phr.model" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
-        <sqlMapGenerator targetPackage="com.lk.phr.dao.phr" targetProject="src/main/java">
+        <sqlMapGenerator targetPackage="com.lk.phr.dao" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.lk.phr.dao.phr" targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.lk.phr.dao" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <!--<javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="com.lk.phr.dao.phr" targetProject="src/main/java">-->
@@ -49,7 +49,7 @@
         <!--       enableSelectByExample="false"-->
         <!--       enableUpdateByExample="false"/>-->
 
-        <table tableName="user_history" domainObjectName="UserHistoryModel" mapperName="UserHistoryDao"
+        <table tableName="user_quota" domainObjectName="UserQuotaModel" mapperName="UserQuotaDao"
                enableCountByExample="false"
                enableDeleteByExample="false"
                enableSelectByExample="false"
