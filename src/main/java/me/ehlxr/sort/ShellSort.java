@@ -1,4 +1,4 @@
-package me.ehlxr.leetcode;
+package me.ehlxr.sort;
 
 /**
  * @author ehlxr
