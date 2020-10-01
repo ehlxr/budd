@@ -16,7 +16,7 @@ import java.util.Arrays;
  */
 public class QuickSort {
     public static void main(String[] args) {
-        int[] arr = {4, 9, 1, 6, 8, 2};
+        int[] arr = {4, 9, 1, 8, 6, 2};
         sort(arr, 0, arr.length - 1);
     }
 
@@ -47,26 +47,23 @@ public class QuickSort {
         int i = l, j = r,
                 // 一般选择数组左边界作为基准
                 k = l;
-        int p = arr[k];
-
         while (l < r) {
             // 首先循环递减右边界，直到找到小于基准的元素，相互交换
-            while (l < r && arr[r] >= p) {
+            while (l < r && arr[r] >= arr[k]) {
                 r--;
             }
-            arr[k] = arr[r];
+            swap(arr, k, r);
             k = r;
 
             // 其次循环递增左边界，直到找到大于基准的元素，相互交换
-            while (l < r && arr[l] <= p) {
+            while (l < r && arr[l] <= arr[k]) {
                 l++;
             }
-            arr[k] = arr[l];
+            swap(arr, k, l);
             k = l;
-
             // 循环以上步骤，直到 l 和 r 相遇
         }
-        arr[k] = p;
+        // arr[k] = p;
         System.out.println("Sorting: " + Arrays.toString(arr));
 
         sort(arr, i, k - 1);
