@@ -31,9 +31,8 @@ public class InsertSort {
                     break;
                 }
             }
+            System.out.println(Arrays.toString(arr));
         }
-
-        System.out.println(Arrays.toString(arr));
     }
 
     public static void swap(int[] arr, int i, int j) {
@@ -47,6 +46,6 @@ public class InsertSort {
     }
 
     public static void main(String[] args) {
-        sort(new int[]{4, 9, 1, 6, 8, 2});
+        sort(new int[]{4, 9, 1, 8, 6, 2});
     }
 }
