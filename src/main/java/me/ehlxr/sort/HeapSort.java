@@ -86,6 +86,29 @@ public class HeapSort {
      * @param i      非叶子结点在数组中的索引
      * @param length 对多少个元素进行调整，length在逐渐减少
      */
+    public static void adjustHeap(int[] arr, int i, int length) {
+        // 从 i 结点的左子结点开始，也就是 2i+1 处开始
+        for (int k = i * 2 + 1; k < length; k = k * 2 + 1) {
+            // 如果左子结点小于右子结点，k 指向右子结点
+            if (k + 1 < length && arr[k] < arr[k + 1]) {
+                k++;
+            }
+            // 如果子节点大于父节点，将子节点和父节点交换
+            if (arr[k] > arr[i]) {
+                swap(arr, k, i);
+                i = k;
+            } else {
+                break;
+            }
+        }
+    }
+
+    public static void swap(int[] arr, int i, int j) {
+        int tmp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = tmp;
+    }
+
     // public static void adjustHeap(int[] arr, int i, int length) {
     //     // 先取出当前元素 i
     //     int temp = arr[i];
@@ -106,26 +129,4 @@ public class HeapSort {
     //     // 将 temp 值放到最终的位置
     //     arr[i] = temp;
     // }
-    public static void adjustHeap(int[] arr, int i, int length) {
-        // 从 i 结点的左子结点开始，也就是 2i+1 处开始
-        for (int k = i * 2 + 1; k < length; k = k * 2 + 1) {
-            // 如果左子结点小于右子结点，k 指向右子结点
-            if (k + 1 < length && arr[k] < arr[k + 1]) {
-                k++;
-            }
-            // 如果子节点大于父节点，将子节点值赋给父节点（不用进行交换）
-            if (arr[k] > arr[i]) {
-                swap(arr, k, i);
-                i = k;
-            } else {
-                break;
-            }
-        }
-    }
-
-    public static void swap(int[] arr, int i, int j) {
-        int tmp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = tmp;
-    }
 }
