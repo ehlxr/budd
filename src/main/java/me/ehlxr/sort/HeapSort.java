@@ -1,6 +1,7 @@
 package me.ehlxr.sort;
 
 import java.util.Arrays;
+import java.util.PriorityQueue;
 
 /**
  * 堆排序
@@ -32,6 +33,20 @@ public class HeapSort {
         int[] arr = {4, 6, 8, 5, 9};
         sort(arr);
         System.out.println("results: " + Arrays.toString(arr));
+
+        // PriorityQueue<Integer> queue = new PriorityQueue<>();
+        // for (int val : arr) {
+        //     queue.add(val);
+        // }
+        // System.out.println(Arrays.toString(queue.toArray()));
+        //
+        //
+        arr = new int[]{4, 6, 8, 5, 9};
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(arr.length, (o1, o2) -> o2 - o1);
+        for (int val : arr) {
+            maxHeap.add(val);
+        }
+        System.out.println(Arrays.toString(maxHeap.toArray()));
     }
 
     public static void sort(int[] arr) {
