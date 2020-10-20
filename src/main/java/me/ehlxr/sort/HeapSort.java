@@ -34,48 +34,21 @@ public class HeapSort {
         System.out.println("results: " + Arrays.toString(arr));
     }
 
-    // public static void adjustHeap(int[] arr, int len) {
-    //     if (arr == null || arr.length <= 1 || len <= 1) {
-    //         return;
-    //     }
-    //
-    //     // 第一个非叶子结点：arr.length/2-1
-    //
-    //     for (int i = len / 2 - 1; i >= 0; i--) {
-    //         // 找出左、右节点的最大值
-    //         int k = 2 * i + 1;
-    //         if (2 * i + 2 < len && arr[2 * i + 1] < arr[2 * i + 2]) {
-    //             k = 2 * i + 2;
-    //         }
-    //
-    //         if (arr[k] > arr[i]) {
-    //             swap(arr, i, k);
-    //         }
-    //     }
-    // }
-    //
-    // public static void sort(int[] arr) {
-    //     for (int i = arr.length; i > 1; i--) {
-    //         adjustHeap(arr, i);
-    //
-    //         System.out.println(Arrays.toString(arr));
-    //         swap(arr, 0, i - 1);
-    //     }
-    // }
-
-
     public static void sort(int[] arr) {
-        // 1. 构建大顶堆
+        // 1. 将无序序列构建为一个堆
         for (int i = arr.length / 2 - 1; i >= 0; i--) {
             // 从第一个非叶子结点从下至上，从右至左调整结构
             adjustHeap(arr, i, arr.length);
         }
-        // 2. 调整堆结构 + 交换堆顶元素与末尾元素
+        System.out.println("max heap: " + Arrays.toString(arr));
+
+        // 2. 将堆顶元素与末尾元素交换，将最大元素"沉"到数组末端
+        // 3. 重新调整结构，使其满足堆定义，然后继续交换堆顶元素与当前末尾元素，反复执行调整 + 交换，直到整个序列有序
         for (int j = arr.length - 1; j > 0; j--) {
-            // 将堆顶元素与末尾元素进行交换
             swap(arr, 0, j);
-            // 重新对堆进行调整
+
             adjustHeap(arr, 0, j);
+            System.out.println(Arrays.toString(arr));
         }
     }
 
@@ -84,9 +57,11 @@ public class HeapSort {
      *
      * @param arr    调整的数组
      * @param i      非叶子结点在数组中的索引
-     * @param length 对多少个元素进行调整，length在逐渐减少
+     * @param length 对多少个元素进行调整，length 在逐渐减少
      */
     public static void adjustHeap(int[] arr, int i, int length) {
+        // 先取出当前元素 i
+        int temp = arr[i];
         // 从 i 结点的左子结点开始，也就是 2i+1 处开始
         for (int k = i * 2 + 1; k < length; k = k * 2 + 1) {
             // 如果左子结点小于右子结点，k 指向右子结点
@@ -94,13 +69,20 @@ public class HeapSort {
                 k++;
             }
             // 如果子节点大于父节点，将子节点和父节点交换
-            if (arr[k] > arr[i]) {
-                swap(arr, k, i);
+            // if (arr[k] > arr[i]) {
+            // swap(arr, k, i);
+            if (arr[k] > temp) {
+                // 不用进行交换
+                arr[i] = arr[k];
+
                 i = k;
             } else {
                 break;
             }
         }
+
+        // 将 temp 值放到最终的位置
+        arr[i] = temp;
     }
 
     public static void swap(int[] arr, int i, int j) {
@@ -108,25 +90,4 @@ public class HeapSort {
         arr[i] = arr[j];
         arr[j] = tmp;
     }
-
-    // public static void adjustHeap(int[] arr, int i, int length) {
-    //     // 先取出当前元素 i
-    //     int temp = arr[i];
-    //     // 从 i 结点的左子结点开始，也就是 2i+1 处开始
-    //     for (int k = i * 2 + 1; k < length; k = k * 2 + 1) {
-    //         // 如果左子结点小于右子结点，k 指向右子结点
-    //         if (k + 1 < length && arr[k] < arr[k + 1]) {
-    //             k++;
-    //         }
-    //         // 如果子节点大于父节点，将子节点值赋给父节点（不用进行交换）
-    //         if (arr[k] > temp) {
-    //             arr[i] = arr[k];
-    //             i = k;
-    //         } else {
-    //             break;
-    //         }
-    //     }
-    //     // 将 temp 值放到最终的位置
-    //     arr[i] = temp;
-    // }
 }
