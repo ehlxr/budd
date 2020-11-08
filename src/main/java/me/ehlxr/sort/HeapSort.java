@@ -53,7 +53,7 @@ public class HeapSort {
     public static void sort(int[] arr) {
         // 1. 将无序序列构建为一个堆
         for (int i = arr.length / 2 - 1; i >= 0; i--) {
-            // 从第一个非叶子结点从下至上，从右至左调整结构
+            // 从最后一个非叶子结点从下至上，从右至左调整结构
             adjustHeap(arr, i, arr.length);
         }
         System.out.println("max heap: " + Arrays.toString(arr));
