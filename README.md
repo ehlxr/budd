@@ -5,5 +5,4 @@
 [![](https://badgen.net/github/last-commit/ehlxr/budd)]((https://github.com/ehlxr/budd/commits/))
 [![](https://badgen.net/github/releases/ehlxr/budd)](https://github.com/ehlxr/budd/releases)
 
-common utils of java
-
+常用的一些 Java 代码
