@@ -17,8 +17,6 @@ package me.ehlxr.cache;
  * Company:
  * </p>
  * 
- * @author Deepblue 2008-11-11
- * @version 1.0
  */
 public class Cache {
 	private String key;// 缓存ID

@@ -77,8 +77,6 @@ import java.util.Arrays;
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  * 
- * @version 2.2
- * @author Mikael Grev Date: 2004-aug-02 Time: 11:31:11
  */
 
 public class Base64 {

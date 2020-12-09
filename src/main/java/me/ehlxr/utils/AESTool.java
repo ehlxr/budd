@@ -9,22 +9,18 @@ import org.bouncycastle.crypto.params.ParametersWithIV;
 import org.bouncycastle.util.encoders.Hex;
 /**
  * AES encryption and decryption tool.
- * 
- * @author ben
- * @creation 2014年3月20日
  */
-public   class AESTool {
-	private static byte[] initVector = { 0x32, 0x37, 0x36, 0x35, 0x34, 0x33, 0x32, 0x31,
-			0x38, 0x27, 0x36, 0x35, 0x33, 0x23, 0x32, 0x31 };
+public class AESTool {
+	private static final byte[] initVector = {0x32, 0x37, 0x36, 0x35, 0x34, 0x33, 0x32, 0x31,
+			0x38, 0x27, 0x36, 0x35, 0x33, 0x23, 0x32, 0x31};
 
 	/**
 	 * Encrypt the content with a given key using aes algorithm.
-	 * 
+	 *
 	 * @param content
-	 * @param key
-	 * 			must contain exactly 32 characters
+	 * @param key     must contain exactly 32 characters
 	 * @return
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public static String encrypt(String content, String key) throws Exception {
 		if (key == null) {

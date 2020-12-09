@@ -1,6 +1,8 @@
 package me.ehlxr.cache;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map.Entry;
 
 /**
@@ -16,16 +18,14 @@ import java.util.Map.Entry;
  * <p>
  * Copyright: Copyright (c) 2008
  * </p>
- * 
+ *
  * <p>
  * Company:
  * </p>
- * 
- * @author Deepblue 2008-11-11
- * @version 1.0
+ *
  */
 public class CacheManager {
-	private static HashMap<String, Object> cacheMap = new HashMap<String, Object>();
+	private static final HashMap<String, Object> cacheMap = new HashMap<String, Object>();
 
 	// 单实例构造方法
 	private CacheManager() {
@@ -55,7 +55,7 @@ public class CacheManager {
 		try {
 			while (i.hasNext()) {
 				Entry<String, Object> entry = i.next();
-				key = (String) entry.getKey();
+				key = entry.getKey();
 				if (key.startsWith(type)) { // 如果匹配则删除掉
 					arr.add(key);
 				}
@@ -118,11 +118,9 @@ public class CacheManager {
 		}
 		long nowDt = System.currentTimeMillis(); // 系统当前的毫秒数
 		long cacheDt = cache.getTimeOut(); // 缓存内的过期毫秒数
-		if (cacheDt <= 0 || cacheDt > nowDt) { // 过期时间小于等于零时,或者过期时间大于当前时间时，则为FALSE
-			return false;
-		} else { // 大于过期时间 即过期
-			return true;
-		}
+		// 过期时间小于等于零时,或者过期时间大于当前时间时，则为FALSE
+		// 大于过期时间 即过期
+		return cacheDt > 0 && cacheDt <= nowDt;
 	}
 
 	// 获取缓存中的大小
@@ -138,7 +136,7 @@ public class CacheManager {
 		try {
 			while (i.hasNext()) {
 				Entry<String, Object> entry = i.next();
-				key = (String) entry.getKey();
+				key = entry.getKey();
 				if (key.indexOf(type) != -1) { // 如果匹配则删除掉
 					k++;
 				}
@@ -157,7 +155,7 @@ public class CacheManager {
 			Iterator<Entry<String, Object>> i = cacheMap.entrySet().iterator();
 			while (i.hasNext()) {
 				Entry<String, Object> entry = i.next();
-				a.add((String) entry.getKey());
+				a.add(entry.getKey());
 			}
 		} catch (Exception ex) {
 		}
@@ -172,7 +170,7 @@ public class CacheManager {
 			Iterator<Entry<String, Object>> i = cacheMap.entrySet().iterator();
 			while (i.hasNext()) {
 				Entry<String, Object> entry = i.next();
-				key = (String) entry.getKey();
+				key = entry.getKey();
 				if (key.indexOf(type) != -1) {
 					a.add(key);
 				}

@@ -20,7 +20,6 @@ public class PrintMatrixClockWisely {
      * 当前矩阵，最后 1 行 坐标 (start,columns-1-start+1)   =>   (start,endX-1)
      * 当前矩阵，第 1 行 坐标 (start+1,columns-1+1)        =>   (start+1,endY-1)
      *
-     * @author WangSai
      */
     public static void main(String[] args) {
         // TODO Auto-generated method stub

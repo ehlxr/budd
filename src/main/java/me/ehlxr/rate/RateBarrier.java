@@ -12,7 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @since 2019-07-19.
  */
 public class RateBarrier {
-    private AtomicInteger op = new AtomicInteger(0);
+    private final AtomicInteger op = new AtomicInteger(0);
     private List<Integer> source;
     private int base;
     private int rate;

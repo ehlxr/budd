@@ -7,7 +7,7 @@ import me.ehlxr.redis.JedisUtil;
  */
 public class Main {
     public static void main(String[] args) {
-        JedisUtil.set("test_20160614","20160614");
+        JedisUtil.set("test_20160614", "20160614");
         System.out.println(JedisUtil.getStr("test_20160614"));
     }
 }
