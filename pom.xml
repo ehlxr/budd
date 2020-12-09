@@ -1,12 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>osc.git.eh3</groupId>
-    <artifactId>java-utils</artifactId>
+    <groupId>io.github.budd</groupId>
+    <artifactId>budd</artifactId>
     <packaging>war</packaging>
     <version>0.0.1-SNAPSHOT</version>
 
-    <name>java-utils</name>
+    <name>budd</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -323,7 +323,7 @@
 
     </dependencies>
     <build>
-        <finalName>java-utils</finalName>
+        <finalName>budd</finalName>
         <pluginManagement>
             <plugins>
                 <!-- mybatis-generator 插件; Run AS——>Maven Build… ——>在Goals框中输入：mybatis-generator:generate -->
