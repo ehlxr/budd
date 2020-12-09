@@ -1,7 +1,7 @@
 package me.ehlxr.reactive;
 
 /**
- * Created by lixiangrong on 2018/1/16.
+ * Created by ehlxr on 2018/1/16.
  */
 public class TestLambda {
     public static void main(String[] args) {

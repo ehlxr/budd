@@ -168,19 +168,19 @@ public class TestCode {
 //		System.out.println(Integer.valueOf("11", 2));
 
 
-//		System.out.println(AESTool.encrypt("lixiangrong"));
-//		System.out.println(AESTool.decrypt(AESEncrypter.encrypt("lixiangrong")));
+//		System.out.println(AESTool.encrypt("ehlxr"));
+//		System.out.println(AESTool.decrypt(AESEncrypter.encrypt("ehlxr")));
 
 //		System.out.println(AESTool.encrypt("liixangrong","adjdjfjfjfjdkdkd"));
 //		System.out.println(AESTool.decrypt("bfb0c038342ffead45511879853279bf","adjdjfjfjfjdkdkd"));
 //		System.out.println(Base64.encodeToString(AESTool.encrypt("fa4d7d90618dcba5fa1d969cffc04def","002020202").getBytes(), false));
 
-//		byte[] bytes = "lixiangrong".getBytes();
+//		byte[] bytes = "ehlxr".getBytes();
 //		for (int i = 0; i < bytes.length; i++) {
 //			System.out.println(bytes[i]);
 //		}
 
-//		System.out.println(Base64.encodeToString("lixiangrong".getBytes(), false));
+//		System.out.println(Base64.encodeToString("ehlxr".getBytes(), false));
 
 //		double lon1 = 109.0145193759;
 //		double lat1 = 34.236080797698;

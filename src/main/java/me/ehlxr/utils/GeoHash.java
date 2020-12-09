@@ -7,7 +7,7 @@ import java.util.HashMap;
 /**
  * GeoHash算法实现
  * 
- * @author lixiangrong
+ * @author ehlxr
  * 
  *         1、GeoHash将经纬度转换成一个可以排序，可以比较的字符串编码
  *         2、GeoHash表示的并不是一个点，而是一个矩形区域。比如编码wx4g0ec19，它表示的是一个矩形区域

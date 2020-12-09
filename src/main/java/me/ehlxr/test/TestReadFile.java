@@ -12,7 +12,7 @@ import java.util.Map;
 public class TestReadFile {
 
 	public static void readFile() {
-		File file = new File("C:/Users/lixiangrong/Desktop/IPB.txt");
+		File file = new File("C:/Users/ehlxr/Desktop/IPB.txt");
 		BufferedReader reader = null;
 		Map<String, Object> resultMap = null;
 		List<Long> startList = null;
@@ -52,7 +52,7 @@ public class TestReadFile {
 	}
 
 	public static void readFile1() {
-		File file = new File("C:\\Users\\lixiangrong\\Desktop\\白名单\\IMEI\\000000_0");
+		File file = new File("C:\\Users\\ehlxr\\Desktop\\白名单\\IMEI\\000000_0");
 		BufferedReader reader = null;
 		try {
 			reader = new BufferedReader(new FileReader(file));

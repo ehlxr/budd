@@ -5,7 +5,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 /**
- * @author lixiangrong
+ * @author ehlxr
  * @date 2018/1/16
  * <p>
  * Future<V> 是一个泛型接口，如果一个可运行的函数（实现 Callable 或 Runable 的类）在一个线程中运行，

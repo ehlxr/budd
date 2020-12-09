@@ -11,7 +11,7 @@ import java.util.concurrent.TimeoutException;
 /**
  * 简单模式：一个生产者，一个消费者
  *
- * @author lixiangrong
+ * @author ehlxr
  * @since 2019-01-22.
  */
 public class Receiver {

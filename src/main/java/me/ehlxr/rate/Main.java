@@ -1,7 +1,7 @@
 package me.ehlxr.rate;
 
 /**
- * @author lixiangrong
+ * @author ehlxr
  * @since 2019-07-18.
  */
 public class Main {

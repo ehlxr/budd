@@ -1,7 +1,7 @@
 package me.ehlxr;
 
 /**
- * @author lixiangrong
+ * @author ehlxr
  * @date 2018/8/21
  */
 public class ReferenceCountingGC {

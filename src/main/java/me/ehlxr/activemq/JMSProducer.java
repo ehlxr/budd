@@ -13,7 +13,7 @@ import javax.jms.TextMessage;
 
 /**
  * 消息的生产者（发送者）
- * Created by lixiangrong on 2016-07-11.
+ * Created by ehlxr on 2016-07-11.
  */
 public class JMSProducer {
 

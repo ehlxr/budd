@@ -1,7 +1,7 @@
 package me.ehlxr;
 
 /**
- * Created by lixiangrong on 2018/2/13.
+ * Created by ehlxr on 2018/2/13.
  */
 public class PrintMatrixClockWisely {
     /**

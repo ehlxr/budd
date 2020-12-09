@@ -381,7 +381,7 @@ public class JedisUtil {
 	}
 	
 	public static void main(String[] args) {
-		JedisUtil.set("lxr", "hah lixiangrong");
+		JedisUtil.set("lxr", "hah ehlxr");
 		System.out.println(JedisUtil.getStr("lxr"));
 	}
 }

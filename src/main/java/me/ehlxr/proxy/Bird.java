@@ -3,7 +3,7 @@ package me.ehlxr.proxy;
 import java.util.Random;
 
 /**
- * @author lixiangrong
+ * @author ehlxr
  * @since 2019-06-28.
  */
 public class Bird implements Flyable {

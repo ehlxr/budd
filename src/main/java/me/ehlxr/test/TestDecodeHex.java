@@ -3,7 +3,7 @@ package me.ehlxr.test;
 import org.apache.commons.codec.binary.Hex;
 
 /**
- * Created by lixiangrong on 2016/9/12.
+ * Created by ehlxr on 2016/9/12.
  */
 public class TestDecodeHex {
     // 十六进制转字符串

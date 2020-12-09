@@ -4,7 +4,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * @author lixiangrong
+ * @author ehlxr
  * @date 2016/12/22
  */
 //@SuppressWarnings({"AlibabaRemoveCommentedCode", "Convert2Lambda", "UnnecessaryLocalVariable"})

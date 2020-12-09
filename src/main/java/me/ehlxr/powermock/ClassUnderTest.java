@@ -1,13 +1,13 @@
 package me.ehlxr.powermock;
 
 /**
- * Created by lixiangrong on 2017/11/3.
+ * Created by ehlxr on 2017/11/3.
  */
 
 import java.io.File;
 
 /**
- * Created by lixiangrong on 2017/7/21.
+ * Created by ehlxr on 2017/7/21.
  */
 public class ClassUnderTest {
     private String f1 = "test";

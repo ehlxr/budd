@@ -3,7 +3,7 @@ package me.ehlxr;
 import java.io.*;
 
 /**
- * @author lixiangrong
+ * @author ehlxr
  * @date 2017/3/27
  */
 public class Rename {

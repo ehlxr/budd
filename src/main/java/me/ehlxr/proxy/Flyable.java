@@ -1,7 +1,7 @@
 package me.ehlxr.proxy;
 
 /**
- * @author lixiangrong
+ * @author ehlxr
  * @since 2019-06-28.
  */
 public interface Flyable {

@@ -1,7 +1,7 @@
 package me.ehlxr;
 
 /**
- * Created by lixiangrong on 2017/8/3.
+ * Created by ehlxr on 2017/8/3.
  */
 public class CharToHex {
     private final static char[] hexArray = "0123456789ABCDEF".toCharArray();

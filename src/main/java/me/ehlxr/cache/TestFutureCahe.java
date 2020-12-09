@@ -6,7 +6,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
 
 /**
- * Created by lixiangrong on 2017/4/11.
+ * Created by ehlxr on 2017/4/11.
  */
 public class TestFutureCahe<K, V> {
     private final ConcurrentHashMap<K, Future<V>> cacheMap = new ConcurrentHashMap<K, Future<V>>();

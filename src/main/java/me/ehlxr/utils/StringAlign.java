@@ -1,7 +1,7 @@
 package me.ehlxr.utils;
 
 /**
- * Created by lixiangrong on 2017/8/17.
+ * Created by ehlxr on 2017/8/17.
  * 字符串对齐器。可以指定对齐格式和一行的最大字符数 对齐格式有左对齐、居中、右对齐
  */
 public class StringAlign {

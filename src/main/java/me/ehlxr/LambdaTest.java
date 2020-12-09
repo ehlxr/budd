@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by lixiangrong on 2017/6/20.
+ * Created by ehlxr on 2017/6/20.
  */
 public class LambdaTest {
     public static void main(String[] args) {

@@ -13,7 +13,7 @@ public class ExecBaics50Log {
 	public static void main(String[] args) throws Exception {
 		StringBuffer sb = new StringBuffer("");
 
-		FileReader reader = new FileReader("C:\\Users\\lixiangrong\\Desktop\\minisite\\20160606\\3\\2016-06-06(3、4、5).txt");
+		FileReader reader = new FileReader("C:\\Users\\ehlxr\\Desktop\\minisite\\20160606\\3\\2016-06-06(3、4、5).txt");
 		BufferedReader br = new BufferedReader(reader);
 		String str = null;
 		while ((str = br.readLine()) != null) {

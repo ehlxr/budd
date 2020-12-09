@@ -1,7 +1,7 @@
 package me.ehlxr.powermock;
 
 /**
- * Created by lixiangrong on 2017/11/3.
+ * Created by ehlxr on 2017/11/3.
  */
 public class ClassDependency {
     public static boolean isExist() {

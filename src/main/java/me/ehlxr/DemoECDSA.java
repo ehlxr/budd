@@ -9,7 +9,7 @@ import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 
 /**
- * Created by lixiangrong on 2017/8/1.
+ * Created by ehlxr on 2017/8/1.
  */
 public class DemoECDSA {
 

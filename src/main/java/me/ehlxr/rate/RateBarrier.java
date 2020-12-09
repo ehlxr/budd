@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * 按比例控制流量
  *
- * @author lixiangrong
+ * @author ehlxr
  * @since 2019-07-19.
  */
 public class RateBarrier {

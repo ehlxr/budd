@@ -3,7 +3,7 @@ package me.ehlxr;
 import java.io.*;
 
 /**
- * Created by lixiangrong on 2017/11/17.
+ * Created by ehlxr on 2017/11/17.
  * <p>
  * 递归扫描 Java 文件，添加 CopyRight 信息，已有跳过
  */

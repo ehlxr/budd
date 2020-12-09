@@ -1,7 +1,7 @@
 package me.ehlxr.utils;
 
 /**
- * Created by lixiangrong on 2017/3/18.
+ * Created by ehlxr on 2017/3/18.
  */
 
 import java.io.File;

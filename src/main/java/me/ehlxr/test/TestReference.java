@@ -1,7 +1,7 @@
 package me.ehlxr.test;
 
 /**
- * Created by lixiangrong on 2017/4/14.
+ * Created by ehlxr on 2017/4/14.
  */
 public class TestReference {
     public static void main(String[] args) {

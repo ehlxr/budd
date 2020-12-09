@@ -5,7 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
- * @author lixiangrong
+ * @author ehlxr
  * @since 2019-06-28.
  */
 public class MyInvocationHandler implements InvocationHandler {

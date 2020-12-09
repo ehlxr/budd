@@ -14,7 +14,7 @@
      <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
      
      <!-- 配置扫描路径 -->
-     <context:component-scan base-package="osc.git.eh3.springamq">
+     <context:component-scan base-package="me.ehlxr.springamq">
      	<!-- 只扫描Service，也可以添加Repostory，但是要把Controller排除在外，Controller由spring-mvc.xml去加载 -->
      	<!-- <context:include-filter type="annotation" expression="org.springframework.stereotype.Service" /> -->
      	<!-- <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" /> -->

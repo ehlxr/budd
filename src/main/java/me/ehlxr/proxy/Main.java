@@ -3,7 +3,7 @@ package me.ehlxr.proxy;
 import java.lang.reflect.Proxy;
 
 /**
- * @author lixiangrong
+ * @author ehlxr
  * @since 2019-06-28.
  */
 public class Main {

@@ -1,7 +1,7 @@
 package me.ehlxr;
 
 /**
- * Created by lixiangrong on 2018/1/16.
+ * Created by ehlxr on 2018/1/16.
  * 可变参数
  */
 public class VarArgsTest {

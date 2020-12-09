@@ -8,7 +8,7 @@ import java.util.zip.CRC32;
 /**
  * IntelliJ IDEA 14.0.1 注册机
  * 
- * @author lixiangrong
+ * @author ehlxr
  *
  */
 public class keygen {

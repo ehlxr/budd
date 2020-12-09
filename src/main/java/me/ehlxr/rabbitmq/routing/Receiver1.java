@@ -11,7 +11,7 @@ import java.util.concurrent.TimeoutException;
 /**
  * 发送消息到交换机并且要指定路由 key ，消费者将队列绑定到交换机时需要指定路由 key
  *
- * @author lixiangrong
+ * @author ehlxr
  * @since 2019-01-22.
  */
 public class Receiver1 {

@@ -4,7 +4,7 @@ import rx.Observable;
 import rx.schedulers.Schedulers;
 
 /**
- * Created by lixiangrong on 2018/1/16.
+ * Created by ehlxr on 2018/1/16.
  */
 public class TestRx {
     public static void main(String[] args) {

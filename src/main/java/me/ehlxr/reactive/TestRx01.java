@@ -7,7 +7,7 @@ import rx.Subscriber;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * Created by lixiangrong on 2018/1/16.
+ * Created by ehlxr on 2018/1/16.
  * 链式函数式处理
  */
 public class TestRx01 {

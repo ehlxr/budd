@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
 /**
- * @author lixiangrong
+ * @author ehlxr
  * @since 2019-01-22.
  */
 public class ConnectionUtil {

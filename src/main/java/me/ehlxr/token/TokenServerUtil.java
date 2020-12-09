@@ -5,7 +5,7 @@ package me.ehlxr.token;
 import java.io.IOException;
 
 /**
- * Created by lixiangrong on 2018/2/2.
+ * Created by ehlxr on 2018/2/2.
  */
 public class TokenServerUtil {
 

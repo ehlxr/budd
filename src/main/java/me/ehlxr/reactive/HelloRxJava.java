@@ -4,7 +4,7 @@ import rx.Observable;
 import rx.Subscriber;
 
 /**
- * Created by lixiangrong on 2018/1/16.
+ * Created by ehlxr on 2018/1/16.
  */
 public class HelloRxJava {
 

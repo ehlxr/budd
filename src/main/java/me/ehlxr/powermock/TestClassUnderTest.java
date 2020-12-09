@@ -14,7 +14,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.powermock.api.mockito.PowerMockito.*;
 
 /**
- * Created by lixiangrong on 2017/7/21.
+ * Created by ehlxr on 2017/7/21.
  */
 @RunWith(PowerMockRunner.class)
 public class TestClassUnderTest {

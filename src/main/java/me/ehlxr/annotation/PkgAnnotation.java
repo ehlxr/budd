@@ -9,7 +9,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @author lixiangrong
+ * @author ehlxr
  *
  */
 @Target(ElementType.PACKAGE)

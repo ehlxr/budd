@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class TestFile {
 	public static void main(String[] args) {
-		File file = new File("C:\\Users\\lixiangrong\\Desktop\\20160628\\161845");
+		File file = new File("C:\\Users\\ehlxr\\Desktop\\20160628\\161845");
 		BufferedReader reader = null;
 		try {
 
