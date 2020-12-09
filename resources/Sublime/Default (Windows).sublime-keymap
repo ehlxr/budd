@@ -1,7 +1,0 @@
-[
-    { "keys": ["ctrl+e", "ctrl+o"], "command": "open_evernote_note" },
-    { "keys": ["ctrl+s"], "command": "save_evernote_note", "context": [{"key": "evernote_note"}, {"key": "evernote_has_guid"}] },
-    { "keys": ["ctrl+s"], "command": "send_to_evernote", "context": [{"key": "evernote_note"}, {"key": "evernote_has_guid", "operator": "equal", "operand": false}] },
-    { "keys": ["ctrl+e","ctrl+w"], "command": "toggle_setting", "args": {"setting": "word_wrap"}},
-    { "keys": ["Ctrl+\\"], "command": "toggle_side_bar" }
-]
