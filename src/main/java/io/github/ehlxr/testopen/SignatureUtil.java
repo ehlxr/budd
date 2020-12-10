@@ -1,3 +1,27 @@
+/*
+ * The MIT License (MIT)
+ *
+ * Copyright © 2020 xrv <xrg@live.com>
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
 package io.github.ehlxr.testopen;
 
 
@@ -40,7 +64,7 @@ public class SignatureUtil {
 
 	/**
 	 * 使用指定算法生成消息摘要，默认是md5
-	 * 
+	 *
 	 * @param strSrc
 	 *            , a string will be encrypted; <br/>
 	 * @param encName
@@ -66,7 +90,7 @@ public class SignatureUtil {
 
 	/**
 	 * 根据appid、token、lol以及时间戳来生成签名
-	 * 
+	 *
 	 * @param appid
 	 * @param token
 	 * @param lol
@@ -101,7 +125,7 @@ public class SignatureUtil {
 	 * 1.根据appid获取该渠道的token;<br/>
 	 * 2.根据appid、token、lol以及时间戳计算一次签名;<br/>
 	 * 3.比较传过来的签名以及计算出的签名是否一致;
-	 * 
+	 *
 	 * @param signature
 	 * @param appid
 	 * @param lol
@@ -117,17 +141,17 @@ public class SignatureUtil {
 	public   static void main(String[] args) {
 		String xmlString = "<root><name>test</name><name>test</name><name>test</name><name>test</name><name>test</name><name>test</name><name>test</name><name>test</name><name>test</name><name>test</name><name>test</name><name>test</name><name>test</name><name>test</name><name>test</name><name>test</name><name>test</name><name>test</name><name>test</name><name>test</name><name>test</name><name>test</name><name>test</name><name>test</name><name>test</name><name>test</name><name>test</name><name>test</name><name>test</name></root>";
 		System.out.println(xmlString.getBytes().length);
-		
+
 		//消息
 		String digest = SignatureUtil.digest(xmlString, "MD5");
 		System.out.println("----" + digest);
 		System.out.println(digest.getBytes().length);
-		
-		
+
+
 		String appid = "canairport001";
 		String token = "111ddff";
 		long millis = System.currentTimeMillis();
-		
+
 		//生成签名
 		String signature = SignatureUtil.generateSignature(appid, token, digest, millis);
 

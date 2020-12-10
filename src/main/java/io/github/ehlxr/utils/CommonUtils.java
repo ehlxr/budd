@@ -1,3 +1,27 @@
+/*
+ * The MIT License (MIT)
+ *
+ * Copyright © 2020 xrv <xrg@live.com>
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
 package io.github.ehlxr.utils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +49,7 @@ public class CommonUtils {
 
 	/**
 	 * 对象转换成另一个类对象
-	 * 
+	 *
 	 * @param bean
 	 *            转换的数据对象
 	 * @param clazz
@@ -127,7 +151,7 @@ public class CommonUtils {
 
 	/**
 	 * 获取当前网络ip
-	 * 
+	 *
 	 * @param request
 	 * @return
 	 */
@@ -191,7 +215,7 @@ public class CommonUtils {
 
 	/**
 	 * 基于googleMap中的算法得到两经纬度之间的距离,计算精度与谷歌地图的距离精度差不多，相差范围在0.2米以下
-	 * 
+	 *
 	 * @param lon1
 	 *            第一点的精度
 	 * @param lat1
