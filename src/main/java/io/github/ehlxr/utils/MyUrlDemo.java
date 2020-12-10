@@ -24,25 +24,24 @@ public class MyUrlDemo {
 
         // 第一种：获取类加载的根路径   D:\git\daotie\daotie\target\classes
         File f = new File(this.getClass().getResource("/").getPath());
-        System.out.println(f);
+        System.out.println("第一种：获取类加载的根路径 == " + f);
 
         // 获取当前类的所在工程路径; 如果不加“/”  获取当前类的加载目录  D:\git\daotie\daotie\target\classes\my
         File f2 = new File(this.getClass().getResource("").getPath());
-        System.out.println(f2);
+        System.out.println("获取当前类的所在工程路径 == " + f2);
 
         // 第二种：获取项目路径    D:\git\daotie\daotie
-        File directory = new File("");// 参数为空
-        String courseFile = directory.getCanonicalPath();
-        System.out.println(courseFile);
+        String courseFile = new File("LICENSE").getCanonicalPath();
+        System.out.println("第二种：获取项目路径 == " + courseFile);
 
 
         // 第三种：  file:/D:/git/daotie/daotie/target/classes/
         URL xmlpath = this.getClass().getClassLoader().getResource("");
-        System.out.println(xmlpath);
+        System.out.println("第三种 == " + xmlpath);
 
 
         // 第四种： D:\git\daotie\daotie
-        System.out.println(System.getProperty("user.dir"));
+        System.out.println("第四种 == " + System.getProperty("user.dir"));
         /*
          * 结果： C:\Documents and Settings\Administrator\workspace\projectName
          * 获取当前工程路径

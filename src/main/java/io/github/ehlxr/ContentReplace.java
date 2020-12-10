@@ -12,10 +12,13 @@ public class ContentReplace {
     private static int unDeal = 0;
 
     public static void main(String[] args) throws IOException {
-        File dir = new File("/Users/ehlxr/WorkSpaces/enncloud/Ceres");
-        deal(dir);
-        System.out.println("总文件数：" + total);
-        System.out.println("未处理文件数：" + unDeal);
+        // File dir = new File("/Users/ehlxr/WorkSpaces/enncloud/Ceres");
+        // deal(dir);
+        // System.out.println("总文件数：" + total);
+        // System.out.println("未处理文件数：" + unDeal);
+
+        File license = new File("LICENSE");
+
     }
 
     private static void deal(File file) throws IOException {
