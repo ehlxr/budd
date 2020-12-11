@@ -49,17 +49,15 @@ public class Try {
         return new Try.F<>(function);
     }
 
+    public static Try.V of(Void v) {
+        return new Try.V(v);
+    }
+
     @SuppressWarnings("ConstantConditions")
     public static void main(String[] args) {
-
-        String param = "10s";
-
-        Long result = Try.<String, Long>of(Long::valueOf).get(param, -1L, Throwable::printStackTrace);
-
-        System.out.println(result);
-
         // 有返回值，无入参
-        System.out.println(Try.of(() -> Long.valueOf("s")).get(0L));
+        System.out.println(Try.of(() -> Long.valueOf("s")).get(0L, e -> {
+        }));
         System.out.println(Try.of(() -> Long.valueOf("21")).get(0L, e -> {
         }));
 
@@ -67,51 +65,20 @@ public class Try {
         System.out.println(Try.<String, Long>of(Long::valueOf).get("s", 0L, e -> {
         }));
 
-        ArrayList<String> list = new ArrayList<>();
+        ArrayList<String> list = null;
 
         // 无返回值，无入参
-        Try.<String>of(e1 -> list.clear()).accept(null, e -> System.out.println("...." + e.getMessage()));
+        Try.of(() -> Thread.sleep(-1L)).exec();
 
         // 无返回值，有入参
         Try.<String>
-                of(v -> list.add(10, v))
-                .accept("test", e -> System.out.println(e.getMessage()));
+                of(v -> list.add(0, v))
+                .accept("test", e -> System.out.println("222222" + e.getMessage()));
     }
 
-    public static class C<T> {
-        private final Consumer<? super T> consumer;
-
-        C(Consumer<? super T> consumer) {
-            Objects.requireNonNull(consumer, "No value present");
-            this.consumer = consumer;
-        }
-
-        /**
-         * 如果有异常忽略，否则计算结果
-         *
-         * @param t 要计算的入参
-         */
-        public void accept(T t) {
-            try {
-                consumer.accept(t);
-            } catch (Throwable e) {
-                e.printStackTrace();
-            }
-        }
-
-        /**
-         * 如果有异常调用自定义异常处理表达式并返回默认值，否则返回计算结果
-         *
-         * @param t 要计算的入参
-         * @param e 自定义异常处理 lambda 表达式
-         */
-        public void accept(T t, Consumer<? super Throwable> e) {
-            try {
-                consumer.accept(t);
-            } catch (Throwable th) {
-                e.accept(th);
-            }
-        }
+    @FunctionalInterface
+    public interface Void {
+        void exec() throws Throwable;
     }
 
     public static class S<R> {
@@ -194,6 +161,75 @@ public class Try {
             } catch (Throwable th) {
                 e.accept(th);
                 return r;
+            }
+        }
+    }
+
+    public static class V {
+        private final Void v;
+
+        V(Void v) {
+            Objects.requireNonNull(v, "No value present");
+            this.v = v;
+        }
+
+        /**
+         * 如果有异常忽略，否则计算结果
+         */
+        public void exec() {
+            try {
+                v.exec();
+            } catch (Throwable e) {
+                e.printStackTrace();
+            }
+        }
+
+        /**
+         * 如果有异常调用自定义异常处理表达式并返回默认值，否则计算结果
+         *
+         * @param e 自定义异常处理 lambda 表达式
+         */
+        public void exec(Consumer<? super Throwable> e) {
+            try {
+                v.exec();
+            } catch (Throwable th) {
+                e.accept(th);
+            }
+        }
+    }
+
+    public static class C<T> {
+        private final Consumer<? super T> consumer;
+
+        C(Consumer<? super T> consumer) {
+            Objects.requireNonNull(consumer, "No value present");
+            this.consumer = consumer;
+        }
+
+        /**
+         * 如果有异常忽略，否则计算结果
+         *
+         * @param t 要计算的入参
+         */
+        public void accept(T t) {
+            try {
+                consumer.accept(t);
+            } catch (Throwable e) {
+                e.printStackTrace();
+            }
+        }
+
+        /**
+         * 如果有异常调用自定义异常处理表达式并返回默认值，否则计算结果
+         *
+         * @param t 要计算的入参
+         * @param e 自定义异常处理 lambda 表达式
+         */
+        public void accept(T t, Consumer<? super Throwable> e) {
+            try {
+                consumer.accept(t);
+            } catch (Throwable th) {
+                e.accept(th);
             }
         }
     }
