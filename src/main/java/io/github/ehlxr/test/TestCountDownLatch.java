@@ -32,7 +32,7 @@ import java.util.concurrent.CountDownLatch;
 public class TestCountDownLatch {
     private static final int N = 10;
 
-    private static final Map<String, Object> cache = new ConcurrentHashMap<String, Object>();
+    private static final Map<String, Object> cache = new ConcurrentHashMap<>();
 
     public static void main(String[] args) throws InterruptedException {
         CountDownLatch doneSignal = new CountDownLatch(N);

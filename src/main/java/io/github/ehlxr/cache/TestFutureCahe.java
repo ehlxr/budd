@@ -33,7 +33,7 @@ import java.util.concurrent.FutureTask;
  * Created by ehlxr on 2017/4/11.
  */
 public class TestFutureCahe<K, V> {
-    private final ConcurrentHashMap<K, Future<V>> cacheMap = new ConcurrentHashMap<K, Future<V>>();
+    private final ConcurrentHashMap<K, Future<V>> cacheMap = new ConcurrentHashMap<>();
 
     public static void main(String[] args) {
         final TestFutureCahe<String, String> TestGuaVA = new TestFutureCahe<String, String>();

@@ -22,43 +22,33 @@
  * THE SOFTWARE.
  */
 
-package io.github.ehlxr.thread;
+package io.github.ehlxr.test;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-class MyThread extends Thread {
-    private final String name;
-
-
-    public MyThread(String name) {
-        this.name = name;
-    }
-
-
-    @Override
-    public void run() {
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println(name + "正在进行。。。。。");
-    }
-}
-
-
-public class TestSingleThreadExecutor {
+/**
+ * @author ehlxr
+ * @date 2016/12/22
+ */
+//@SuppressWarnings({"AlibabaRemoveCommentedCode", "Convert2Lambda", "UnnecessaryLocalVariable"})
+public class ThreadPoolExecutorTest {
     public static void main(String[] args) {
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
-        Thread t1 = new MyThread("t1");
-        Thread t2 = new MyThread("t2");
-        Thread t3 = new MyThread("t3");
-        Thread t4 = new MyThread("t4");
-        executorService.execute(t1);
-        executorService.execute(t2);
-        executorService.execute(t3);
-        executorService.execute(t4);
-        executorService.shutdown();
+        ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
+        for (int i = 0; i < 10; i++) {
+            final int index = i;
+            //try {
+            //    Thread.sleep(index * 1000);
+            //} catch (InterruptedException e) {
+            //    e.printStackTrace();
+            //}
+            cachedThreadPool.execute(new Runnable() {
+                @Override
+                public void run() {
+                    //System.out.println(index);
+                    System.out.println("Thread: " + Thread.currentThread().getName());
+                }
+            });
+        }
     }
 }

@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package io.github.ehlxr;
+package io.github.ehlxr.test;
 
 import java.util.Arrays;
 import java.util.List;

@@ -22,22 +22,32 @@
  * THE SOFTWARE.
  */
 
-package io.github.ehlxr;
-
-/**
- * Created by ehlxr on 2018/1/16.
- * 可变参数
- */
-public class VarArgsTest {
-    private static void m1(String s, String... ss) {
-        for (String s1 : ss) {
-            System.out.println(s1);
-        }
-    }
-
-    public static void main(String[] args) {
-        m1("");
-        m1("aaa");
-        m1("aaa", "bbb");
-    }
-}
+package io.github.ehlxr.test;
+//
+// import cn.ceres.did.client.SdkClient;
+// import cn.ceres.did.sdk.SdkProto;
+//
+// import java.util.concurrent.CountDownLatch;
+//
+// /**
+//  * @author ehlxr
+//  */
+// public class DidSdkTest {
+//
+//     public static void main(String[] args) throws Exception {
+//         SdkClient client = new SdkClient("10.19.248.200", 30581);
+//         // SdkClient client = new SdkClient();
+//         client.init();
+//         client.start();
+//
+//         // client.invokeOneWay(new SdkProto(), 2000);
+//         // System.out.println(client.invokeSync(new SdkProto(), 2000).getDid());
+//         CountDownLatch countDownLatch = new CountDownLatch(1);
+//         client.invokeAsync(new SdkProto(), 2000, responseFuture -> {
+//             System.out.println(responseFuture.getSdkProto().getDid());
+//             countDownLatch.countDown();
+//         });
+//         countDownLatch.await();
+//         client.shutdown();
+//     }
+// }
