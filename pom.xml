@@ -269,16 +269,16 @@
             <artifactId>jodd-props</artifactId>
             <version>3.6.1</version>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>cn.ceres.did</groupId>-->
-        <!--            <artifactId>did-sdk</artifactId>-->
-        <!--            <version>1.0-SNAPSHOT</version>-->
-        <!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>cn.enncloud.ceres</groupId>-->
-<!--            <artifactId>ceres</artifactId>-->
-<!--            <version>1.1.0-SNAPSHOT</version>-->
-<!--        </dependency>-->
+        <!--<dependency>-->
+        <!--    <groupId>cn.ceres.did</groupId>-->
+        <!--    <artifactId>did-sdk</artifactId>-->
+        <!--    <version>1.0-SNAPSHOT</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--    <groupId>cn.enncloud.ceres</groupId>-->
+        <!--    <artifactId>ceres</artifactId>-->
+        <!--    <version>1.1.0-SNAPSHOT</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib-jdk8</artifactId>
@@ -321,6 +321,11 @@
             <version>3.14.7</version>
         </dependency>
 
+        <dependency>
+            <groupId>io.vavr</groupId>
+            <artifactId>vavr</artifactId>
+            <version>0.10.3</version>
+        </dependency>
     </dependencies>
     <build>
         <finalName>budd</finalName>

@@ -37,62 +37,78 @@ import java.util.function.Supplier;
  * @author ehlxr
  * @since 2020-12-03 10:37.
  */
-public class Try {
-    public static <T> Try.C<T> of(Consumer<? super T> consumer) {
+public interface Try {
+    static <T> Try.C<T> of(Consumer<? super T> consumer) {
         return new Try.C<>(consumer);
     }
 
-    public static <R> Try.S<R> of(Supplier<? extends R> supplier) {
+    static <R> Try.S<R> of(Supplier<? extends R> supplier) {
         return new Try.S<>(supplier);
     }
 
-    public static <T, R> Try.F<T, R> of(Function<? super T, ? extends R> function) {
+    static <T, R> Try.F<T, R> of(Function<? super T, ? extends R> function) {
         return new Try.F<>(function);
     }
 
-    public static Try.V of(Void v) {
+    static Try.V of(CheckedRunnable0 v) {
         return new Try.V(v);
     }
 
-    public static class V {
-        private final Void v;
-        private Consumer<? super Throwable> th;
+    class V {
+        private final CheckedRunnable0 checkedRunnable0;
+        private Consumer<? super Throwable> throwableConsumer;
+        private CheckedRunnable1 finallyRunnable;
 
-        V(Void v) {
-            Objects.requireNonNull(v, "No value present");
-            this.v = v;
+        V(CheckedRunnable0 checkedRunnable0) {
+            Objects.requireNonNull(checkedRunnable0, "No checkedRunnable0 present");
+            this.checkedRunnable0 = checkedRunnable0;
         }
 
         /**
          * 计算结果
          */
-        public void exec() {
+        public void run() {
             try {
-                v.exec();
+                checkedRunnable0.run();
             } catch (Throwable e) {
-                Optional.ofNullable(th).ifPresent(c -> c.accept(e));
+                Optional.ofNullable(throwableConsumer).ifPresent(c -> c.accept(e));
+            } finally {
+                Optional.ofNullable(finallyRunnable).ifPresent(CheckedRunnable1::run);
             }
         }
 
         /**
          * 如果有异常，调用自定义异常处理表达式
          *
-         * @param th 自定义异常处理 lambda 表达式
+         * @param throwableConsumer 自定义异常处理 lambda 表达式
          * @return {@link V}
          */
-        public V trap(Consumer<? super Throwable> th) {
-            Objects.requireNonNull(th, "No value present");
-            this.th = th;
+        public V trap(Consumer<? super Throwable> throwableConsumer) {
+            Objects.requireNonNull(throwableConsumer, "No throwableConsumer present");
+            this.throwableConsumer = throwableConsumer;
+            return this;
+        }
+
+        /**
+         * 自定义 finally 处理表达式
+         *
+         * @param finallyRunnable finally 处理 lambda 表达式
+         * @return {@link V}
+         */
+        public V andFinally(CheckedRunnable1 finallyRunnable) {
+            Objects.requireNonNull(finallyRunnable, "No finallyRunnable present");
+            this.finallyRunnable = finallyRunnable;
             return this;
         }
     }
 
-    public static class C<T> {
+    class C<T> {
         private final Consumer<? super T> consumer;
-        private Consumer<? super Throwable> th;
+        private Consumer<? super Throwable> throwableConsumer;
+        private CheckedRunnable1 finallyRunnable;
 
         C(Consumer<? super T> consumer) {
-            Objects.requireNonNull(consumer, "No value present");
+            Objects.requireNonNull(consumer, "No consumer present");
             this.consumer = consumer;
         }
 
@@ -105,29 +121,44 @@ public class Try {
             try {
                 consumer.accept(t);
             } catch (Throwable e) {
-                Optional.ofNullable(th).ifPresent(c -> c.accept(e));
+                Optional.ofNullable(throwableConsumer).ifPresent(c -> c.accept(e));
+            } finally {
+                Optional.ofNullable(finallyRunnable).ifPresent(CheckedRunnable1::run);
             }
         }
 
         /**
          * 如果有异常，调用自定义异常处理表达式
          *
-         * @param th 自定义异常处理 lambda 表达式
+         * @param throwableConsumer 自定义异常处理 lambda 表达式
          * @return {@link C}
          */
-        public C<T> trap(Consumer<? super Throwable> th) {
-            Objects.requireNonNull(th, "No value present");
-            this.th = th;
+        public C<T> trap(Consumer<? super Throwable> throwableConsumer) {
+            Objects.requireNonNull(throwableConsumer, "No throwableConsumer present");
+            this.throwableConsumer = throwableConsumer;
+            return this;
+        }
+
+        /**
+         * 自定义 finally 处理表达式
+         *
+         * @param finallyRunnable finally 处理 lambda 表达式
+         * @return {@link C}
+         */
+        public C<T> andFinally(CheckedRunnable1 finallyRunnable) {
+            Objects.requireNonNull(finallyRunnable, "No finallyRunnable present");
+            this.finallyRunnable = finallyRunnable;
             return this;
         }
     }
 
-    public static class S<R> {
+    class S<R> {
         private final Supplier<? extends R> supplier;
-        private Consumer<? super Throwable> th;
+        private Consumer<? super Throwable> throwableConsumer;
+        private CheckedRunnable1 finallyRunnable;
 
         S(Supplier<? extends R> supplier) {
-            Objects.requireNonNull(supplier, "No value present");
+            Objects.requireNonNull(supplier, "No supplier present");
             this.supplier = supplier;
         }
 
@@ -141,8 +172,10 @@ public class Try {
             try {
                 return supplier.get();
             } catch (Throwable e) {
-                Optional.ofNullable(th).ifPresent(c -> c.accept(e));
+                Optional.ofNullable(throwableConsumer).ifPresent(c -> c.accept(e));
                 return r;
+            } finally {
+                Optional.ofNullable(finallyRunnable).ifPresent(CheckedRunnable1::run);
             }
         }
 
@@ -150,30 +183,45 @@ public class Try {
             try {
                 return supplier.get();
             } catch (Throwable e) {
-                Optional.ofNullable(th).ifPresent(c -> c.accept(e));
+                Optional.ofNullable(throwableConsumer).ifPresent(c -> c.accept(e));
                 return null;
+            } finally {
+                Optional.ofNullable(finallyRunnable).ifPresent(CheckedRunnable1::run);
             }
         }
 
         /**
          * 如果有异常，调用自定义异常处理表达式
          *
-         * @param th 自定义异常处理 lambda 表达式
+         * @param throwableConsumer 自定义异常处理 lambda 表达式
          * @return {@link S}
          */
-        public S<R> trap(Consumer<? super Throwable> th) {
-            Objects.requireNonNull(th, "No value present");
-            this.th = th;
+        public S<R> trap(Consumer<? super Throwable> throwableConsumer) {
+            Objects.requireNonNull(throwableConsumer, "No throwableConsumer present");
+            this.throwableConsumer = throwableConsumer;
+            return this;
+        }
+
+        /**
+         * 自定义 finally 处理表达式
+         *
+         * @param finallyRunnable finally 处理 lambda 表达式
+         * @return {@link S}
+         */
+        public S<R> andFinally(CheckedRunnable1 finallyRunnable) {
+            Objects.requireNonNull(finallyRunnable, "No finallyRunnable present");
+            this.finallyRunnable = finallyRunnable;
             return this;
         }
     }
 
-    public static class F<T, R> {
+    class F<T, R> {
         private final Function<? super T, ? extends R> function;
-        private Consumer<? super Throwable> th;
+        private Consumer<? super Throwable> throwableConsumer;
+        private CheckedRunnable1 finallyRunnable;
 
         F(Function<? super T, ? extends R> function) {
-            Objects.requireNonNull(function, "No value present");
+            Objects.requireNonNull(function, "No function present");
             this.function = function;
         }
 
@@ -188,8 +236,10 @@ public class Try {
             try {
                 return function.apply(t);
             } catch (Throwable e) {
-                Optional.ofNullable(th).ifPresent(c -> c.accept(e));
+                Optional.ofNullable(throwableConsumer).ifPresent(c -> c.accept(e));
                 return r;
+            } finally {
+                Optional.ofNullable(finallyRunnable).ifPresent(CheckedRunnable1::run);
             }
         }
 
@@ -197,31 +247,50 @@ public class Try {
             try {
                 return function.apply(t);
             } catch (Throwable e) {
-                Optional.ofNullable(th).ifPresent(c -> c.accept(e));
+                Optional.ofNullable(throwableConsumer).ifPresent(c -> c.accept(e));
                 return null;
+            } finally {
+                Optional.ofNullable(finallyRunnable).ifPresent(CheckedRunnable1::run);
             }
         }
 
         /**
          * 如果有异常，调用自定义异常处理表达式
          *
-         * @param th 自定义异常处理 lambda 表达式
+         * @param throwableConsumer 自定义异常处理 lambda 表达式
          * @return {@link F}
          */
-        public F<T, R> trap(Consumer<? super Throwable> th) {
-            Objects.requireNonNull(th, "No value present");
-            this.th = th;
+        public F<T, R> trap(Consumer<? super Throwable> throwableConsumer) {
+            Objects.requireNonNull(throwableConsumer, "No throwableConsumer present");
+            this.throwableConsumer = throwableConsumer;
+            return this;
+        }
+
+        /**
+         * 自定义 finally 处理表达式
+         *
+         * @param finallyRunnable finally 处理 lambda 表达式
+         * @return {@link F}
+         */
+        public F<T, R> andFinally(CheckedRunnable1 finallyRunnable) {
+            Objects.requireNonNull(finallyRunnable, "No finallyRunnable present");
+            this.finallyRunnable = finallyRunnable;
             return this;
         }
     }
 
     @FunctionalInterface
-    public interface Void {
-        void exec() throws Throwable;
+    interface CheckedRunnable0 {
+        void run() throws Throwable;
+    }
+
+    @FunctionalInterface
+    interface CheckedRunnable1 {
+        void run();
     }
 
     @SuppressWarnings("ConstantConditions")
-    public static void main(String[] args) {
+    static void main(String[] args) {
         // 有返回值，无入参
         System.out.println(Try.of(() -> Long.valueOf("s")).trap(System.out::println).get(0L));
         System.out.println(Try.of(() -> Long.valueOf("2w1")).get());
@@ -232,7 +301,7 @@ public class Try {
         ArrayList<String> list = null;
 
         // 无返回值，无入参
-        Try.of(() -> Thread.sleep(-1L)).exec();
+        Try.of(() -> Thread.sleep(-1L)).andFinally(() -> System.out.println("ddf")).trap(System.out::println).run();
 
         // 无返回值，有入参
         Try.<String>
