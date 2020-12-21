@@ -1,31 +1,8 @@
-/*
- * The MIT License (MIT)
- *
- * Copyright © 2020 xrv <xrg@live.com>
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-
-package io.github.ehlxr.utils;
+package com.laikang.dd.common;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -34,7 +11,7 @@ import java.util.function.Supplier;
  * 异常处理，简化 try catch
  *
  * @author ehlxr
- * @since 2020-12-06 21:32.
+ * @since 2020-12-03 10:37.
  */
 public class Try {
     public static <T> Try.C<T> of(Consumer<? super T> consumer) {
@@ -53,36 +30,75 @@ public class Try {
         return new Try.V(v);
     }
 
-    @SuppressWarnings("ConstantConditions")
-    public static void main(String[] args) {
-        // 有返回值，无入参
-        System.out.println(Try.of(() -> Long.valueOf("s")).get(0L, e -> {
-        }));
-        System.out.println(Try.of(() -> Long.valueOf("21")).get(0L, e -> {
-        }));
+    public static class V {
+        private final Void v;
+        private Consumer<? super Throwable> ec;
 
-        // 有返回值，有入参
-        System.out.println(Try.<String, Long>of(Long::valueOf).get("s", 0L, e -> {
-        }));
+        V(Void v) {
+            Objects.requireNonNull(v, "No value present");
+            this.v = v;
+        }
 
-        ArrayList<String> list = null;
+        /**
+         * 计算结果
+         */
+        public void exec() {
+            try {
+                v.exec();
+            } catch (Throwable e) {
+                Optional.ofNullable(ec).ifPresent(c -> c.accept(e));
+            }
+        }
 
-        // 无返回值，无入参
-        Try.of(() -> Thread.sleep(-1L)).exec();
-
-        // 无返回值，有入参
-        Try.<String>
-                of(v -> list.add(0, v))
-                .accept("test", e -> System.out.println("222222" + e.getMessage()));
+        /**
+         * 如果有异常，调用自定义异常处理表达式
+         *
+         * @param c 自定义异常处理 lambda 表达式
+         * @return {@link V}
+         */
+        public V trap(Consumer<? super Throwable> c) {
+            ec = c;
+            return this;
+        }
     }
 
-    @FunctionalInterface
-    public interface Void {
-        void exec() throws Throwable;
+    public static class C<T> {
+        private final Consumer<? super T> consumer;
+        private Consumer<? super Throwable> ec;
+
+        C(Consumer<? super T> consumer) {
+            Objects.requireNonNull(consumer, "No value present");
+            this.consumer = consumer;
+        }
+
+        /**
+         * 计算结果
+         *
+         * @param t 要计算的入参
+         */
+        public void accept(T t) {
+            try {
+                consumer.accept(t);
+            } catch (Throwable e) {
+                Optional.ofNullable(ec).ifPresent(c -> c.accept(e));
+            }
+        }
+
+        /**
+         * 如果有异常,调用自定义异常处理表达式
+         *
+         * @param c 自定义异常处理 lambda 表达式
+         * @return {@link C}
+         */
+        public C<T> trap(Consumer<? super Throwable> c) {
+            ec = c;
+            return this;
+        }
     }
 
     public static class S<R> {
         private final Supplier<? extends R> supplier;
+        private Consumer<? super Throwable> ec;
 
         S(Supplier<? extends R> supplier) {
             Objects.requireNonNull(supplier, "No value present");
@@ -90,7 +106,7 @@ public class Try {
         }
 
         /**
-         * 如果有异常忽略并返回默认值，否则返回计算结果
+         * 如果有异常返回默认值，否则返回计算结果
          *
          * @param r 指定默认值
          * @return 实际值或默认值
@@ -99,31 +115,35 @@ public class Try {
             try {
                 return supplier.get();
             } catch (Throwable e) {
-                e.printStackTrace();
+                Optional.ofNullable(ec).ifPresent(c -> c.accept(e));
                 return r;
             }
         }
 
-        /**
-         * 如果有异常调用自定义异常处理表达式并返回默认值，否则返回计算结果
-         *
-         * @param r 指定默认值
-         * @param e 自定义异常处理 lambda 表达式
-         * @return 实际值或默认值
-         */
-        public R get(R r, Consumer<? super Throwable> e) {
-            Objects.requireNonNull(supplier, "No supplier present");
+        public R get() {
             try {
                 return supplier.get();
-            } catch (Throwable th) {
-                e.accept(th);
-                return r;
+            } catch (Throwable e) {
+                Optional.ofNullable(ec).ifPresent(c -> c.accept(e));
+                return null;
             }
+        }
+
+        /**
+         * 如果有异常，调用自定义异常处理表达式
+         *
+         * @param c 自定义异常处理 lambda 表达式
+         * @return {@link S}
+         */
+        public S<R> trap(Consumer<? super Throwable> c) {
+            ec = c;
+            return this;
         }
     }
 
     public static class F<T, R> {
         private final Function<? super T, ? extends R> function;
+        private Consumer<? super Throwable> ec;
 
         F(Function<? super T, ? extends R> function) {
             Objects.requireNonNull(function, "No value present");
@@ -141,96 +161,55 @@ public class Try {
             try {
                 return function.apply(t);
             } catch (Throwable e) {
-                e.printStackTrace();
+                Optional.ofNullable(ec).ifPresent(c -> c.accept(e));
                 return r;
             }
         }
 
-        /**
-         * 如果有异常调用自定义异常处理表达式并返回默认值，否则返回计算结果
-         *
-         * @param t 要计算的入参
-         * @param r 指定默认值
-         * @param e 自定义异常处理 lambda 表达式
-         * @return 实际值或默认值
-         */
-        public R get(T t, R r, Consumer<? super Throwable> e) {
-            Objects.requireNonNull(function, "No function present");
+        public R get(T t) {
             try {
                 return function.apply(t);
-            } catch (Throwable th) {
-                e.accept(th);
-                return r;
+            } catch (Throwable e) {
+                Optional.ofNullable(ec).ifPresent(c -> c.accept(e));
+                return null;
             }
+        }
+
+        /**
+         * 如果有异常，调用自定义异常处理表达式
+         *
+         * @param c 自定义异常处理 lambda 表达式
+         * @return {@link F}
+         */
+        public F<T, R> trap(Consumer<? super Throwable> c) {
+            ec = c;
+            return this;
         }
     }
 
-    public static class V {
-        private final Void v;
-
-        V(Void v) {
-            Objects.requireNonNull(v, "No value present");
-            this.v = v;
-        }
-
-        /**
-         * 如果有异常忽略，否则计算结果
-         */
-        public void exec() {
-            try {
-                v.exec();
-            } catch (Throwable e) {
-                e.printStackTrace();
-            }
-        }
-
-        /**
-         * 如果有异常调用自定义异常处理表达式并返回默认值，否则计算结果
-         *
-         * @param e 自定义异常处理 lambda 表达式
-         */
-        public void exec(Consumer<? super Throwable> e) {
-            try {
-                v.exec();
-            } catch (Throwable th) {
-                e.accept(th);
-            }
-        }
+    @FunctionalInterface
+    public interface Void {
+        void exec() throws Throwable;
     }
 
-    public static class C<T> {
-        private final Consumer<? super T> consumer;
+    @SuppressWarnings("ConstantConditions")
+    public static void main(String[] args) {
+        // 有返回值，无入参
+        System.out.println(Try.of(() -> Long.valueOf("s")).trap(System.out::println).get(0L));
+        System.out.println(Try.of(() -> Long.valueOf("2w1")).get());
 
-        C(Consumer<? super T> consumer) {
-            Objects.requireNonNull(consumer, "No value present");
-            this.consumer = consumer;
-        }
+        // 有返回值，有入参
+        System.out.println(Try.<String, Long>of(Long::valueOf).trap(e -> System.out.println("exception is: " + e.getMessage())).get("s"));
 
-        /**
-         * 如果有异常忽略，否则计算结果
-         *
-         * @param t 要计算的入参
-         */
-        public void accept(T t) {
-            try {
-                consumer.accept(t);
-            } catch (Throwable e) {
-                e.printStackTrace();
-            }
-        }
+        ArrayList<String> list = null;
 
-        /**
-         * 如果有异常调用自定义异常处理表达式并返回默认值，否则计算结果
-         *
-         * @param t 要计算的入参
-         * @param e 自定义异常处理 lambda 表达式
-         */
-        public void accept(T t, Consumer<? super Throwable> e) {
-            try {
-                consumer.accept(t);
-            } catch (Throwable th) {
-                e.accept(th);
-            }
-        }
+        // 无返回值，无入参
+        Try.of(() -> Thread.sleep(-1L)).exec();
+
+        // 无返回值，有入参
+        Try.<String>
+                of(v -> list.add(0, v))
+                .trap(e -> System.out.println("222222" + e.getMessage()))
+                .accept("test");
     }
 }
