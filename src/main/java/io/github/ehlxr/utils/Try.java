@@ -32,7 +32,7 @@ public class Try {
 
     public static class V {
         private final Void v;
-        private Consumer<? super Throwable> ec;
+        private Consumer<? super Throwable> th;
 
         V(Void v) {
             Objects.requireNonNull(v, "No value present");
@@ -46,25 +46,26 @@ public class Try {
             try {
                 v.exec();
             } catch (Throwable e) {
-                Optional.ofNullable(ec).ifPresent(c -> c.accept(e));
+                Optional.ofNullable(th).ifPresent(c -> c.accept(e));
             }
         }
 
         /**
          * 如果有异常，调用自定义异常处理表达式
          *
-         * @param c 自定义异常处理 lambda 表达式
+         * @param th 自定义异常处理 lambda 表达式
          * @return {@link V}
          */
-        public V trap(Consumer<? super Throwable> c) {
-            ec = c;
+        public V trap(Consumer<? super Throwable> th) {
+            Objects.requireNonNull(th, "No value present");
+            this.th = th;
             return this;
         }
     }
 
     public static class C<T> {
         private final Consumer<? super T> consumer;
-        private Consumer<? super Throwable> ec;
+        private Consumer<? super Throwable> th;
 
         C(Consumer<? super T> consumer) {
             Objects.requireNonNull(consumer, "No value present");
@@ -80,25 +81,26 @@ public class Try {
             try {
                 consumer.accept(t);
             } catch (Throwable e) {
-                Optional.ofNullable(ec).ifPresent(c -> c.accept(e));
+                Optional.ofNullable(th).ifPresent(c -> c.accept(e));
             }
         }
 
         /**
-         * 如果有异常,调用自定义异常处理表达式
+         * 如果有异常，调用自定义异常处理表达式
          *
-         * @param c 自定义异常处理 lambda 表达式
+         * @param th 自定义异常处理 lambda 表达式
          * @return {@link C}
          */
-        public C<T> trap(Consumer<? super Throwable> c) {
-            ec = c;
+        public C<T> trap(Consumer<? super Throwable> th) {
+            Objects.requireNonNull(th, "No value present");
+            this.th = th;
             return this;
         }
     }
 
     public static class S<R> {
         private final Supplier<? extends R> supplier;
-        private Consumer<? super Throwable> ec;
+        private Consumer<? super Throwable> th;
 
         S(Supplier<? extends R> supplier) {
             Objects.requireNonNull(supplier, "No value present");
@@ -115,7 +117,7 @@ public class Try {
             try {
                 return supplier.get();
             } catch (Throwable e) {
-                Optional.ofNullable(ec).ifPresent(c -> c.accept(e));
+                Optional.ofNullable(th).ifPresent(c -> c.accept(e));
                 return r;
             }
         }
@@ -124,7 +126,7 @@ public class Try {
             try {
                 return supplier.get();
             } catch (Throwable e) {
-                Optional.ofNullable(ec).ifPresent(c -> c.accept(e));
+                Optional.ofNullable(th).ifPresent(c -> c.accept(e));
                 return null;
             }
         }
@@ -132,18 +134,19 @@ public class Try {
         /**
          * 如果有异常，调用自定义异常处理表达式
          *
-         * @param c 自定义异常处理 lambda 表达式
+         * @param th 自定义异常处理 lambda 表达式
          * @return {@link S}
          */
-        public S<R> trap(Consumer<? super Throwable> c) {
-            ec = c;
+        public S<R> trap(Consumer<? super Throwable> th) {
+            Objects.requireNonNull(th, "No value present");
+            this.th = th;
             return this;
         }
     }
 
     public static class F<T, R> {
         private final Function<? super T, ? extends R> function;
-        private Consumer<? super Throwable> ec;
+        private Consumer<? super Throwable> th;
 
         F(Function<? super T, ? extends R> function) {
             Objects.requireNonNull(function, "No value present");
@@ -161,7 +164,7 @@ public class Try {
             try {
                 return function.apply(t);
             } catch (Throwable e) {
-                Optional.ofNullable(ec).ifPresent(c -> c.accept(e));
+                Optional.ofNullable(th).ifPresent(c -> c.accept(e));
                 return r;
             }
         }
@@ -170,7 +173,7 @@ public class Try {
             try {
                 return function.apply(t);
             } catch (Throwable e) {
-                Optional.ofNullable(ec).ifPresent(c -> c.accept(e));
+                Optional.ofNullable(th).ifPresent(c -> c.accept(e));
                 return null;
             }
         }
@@ -178,11 +181,12 @@ public class Try {
         /**
          * 如果有异常，调用自定义异常处理表达式
          *
-         * @param c 自定义异常处理 lambda 表达式
+         * @param th 自定义异常处理 lambda 表达式
          * @return {@link F}
          */
-        public F<T, R> trap(Consumer<? super Throwable> c) {
-            ec = c;
+        public F<T, R> trap(Consumer<? super Throwable> th) {
+            Objects.requireNonNull(th, "No value present");
+            this.th = th;
             return this;
         }
     }
