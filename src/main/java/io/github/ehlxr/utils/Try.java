@@ -1,4 +1,4 @@
-package com.laikang.dd.common;
+package io.github.ehlxr.utils;
 
 import java.util.ArrayList;
 import java.util.Objects;
