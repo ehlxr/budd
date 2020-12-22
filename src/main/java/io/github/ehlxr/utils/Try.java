@@ -36,18 +36,46 @@ import java.util.function.Consumer;
  * @since 2020-12-03 10:37.
  */
 public interface Try {
+    /**
+     * 构建消费型（有入参，无返回）Tryable 对象
+     *
+     * @param consumer {@link ThrowableConsumer} 类型函数式接口
+     * @param <T>      入参类型
+     * @return {@link TryConsumer}
+     */
     static <T> TryConsumer<T> of(ThrowableConsumer<? super T> consumer) {
         return new TryConsumer<>(consumer);
     }
 
+    /**
+     * 构建供给型（无入参，有返回）Tryable 对象
+     *
+     * @param supplier {@link ThrowableSupplier} 类型函数式接口
+     * @param <R>      返回值类型
+     * @return {@link TrySupplier}
+     */
     static <R> TrySupplier<R> of(ThrowableSupplier<? extends R> supplier) {
         return new TrySupplier<>(supplier);
     }
 
+    /**
+     * 构建功能型（有入参，有返回）Tryable 对象
+     *
+     * @param function {@link ThrowableFunction} 类型函数式接口
+     * @param <T>      入参类型
+     * @param <R>      返回值类型
+     * @return {@link TryFunction}
+     */
     static <T, R> TryFunction<T, R> of(ThrowableFunction<? super T, ? extends R> function) {
         return new TryFunction<>(function);
     }
 
+    /**
+     * 构建运行型（无入参，无返回）Tryable 对象
+     *
+     * @param runnable {@link ThrowableRunnable} 类型函数式接口
+     * @return {@link TryRunnable}
+     */
     static TryRunnable of(ThrowableRunnable runnable) {
         return new TryRunnable(runnable);
     }
@@ -61,7 +89,7 @@ public interface Try {
         /**
          * 处理 finally
          */
-        protected void _finally() {
+        protected void doFinally() {
             Optional.ofNullable(finallyRunnable).ifPresent(r -> {
                 try {
                     r.run();
@@ -127,7 +155,7 @@ public interface Try {
             } catch (final Throwable e) {
                 Optional.ofNullable(throwConsumer).ifPresent(c -> c.accept(e));
             } finally {
-                _finally();
+                doFinally();
             }
         }
     }
@@ -155,7 +183,7 @@ public interface Try {
             } catch (final Throwable e) {
                 Optional.ofNullable(throwConsumer).ifPresent(c -> c.accept(e));
             } finally {
-                _finally();
+                doFinally();
             }
         }
     }
@@ -183,7 +211,7 @@ public interface Try {
                 Optional.ofNullable(throwConsumer).ifPresent(c -> c.accept(e));
                 return r;
             } finally {
-                _finally();
+                doFinally();
             }
         }
 
@@ -199,7 +227,7 @@ public interface Try {
                 Optional.ofNullable(throwConsumer).ifPresent(c -> c.accept(e));
                 return null;
             } finally {
-                _finally();
+                doFinally();
             }
         }
     }
@@ -222,7 +250,7 @@ public interface Try {
          * @return {@link TryFunction}
          */
         public TryFunction<T, R> apply(T t) {
-            Objects.requireNonNull(t, "Apply t shoud not null");
+            Objects.requireNonNull(t, "Apply t should not null");
 
             this.t = t;
             return this;
@@ -243,7 +271,7 @@ public interface Try {
                 Optional.ofNullable(throwConsumer).ifPresent(c -> c.accept(e));
                 return r;
             } finally {
-                _finally();
+                doFinally();
             }
         }
 
@@ -261,28 +289,52 @@ public interface Try {
                 Optional.ofNullable(throwConsumer).ifPresent(c -> c.accept(e));
                 return null;
             } finally {
-                _finally();
+                doFinally();
             }
         }
     }
 
     @FunctionalInterface
     interface ThrowableRunnable {
+        /**
+         * Performs this operation
+         *
+         * @throws Throwable throwable
+         */
         void run() throws Throwable;
     }
 
     @FunctionalInterface
     interface ThrowableConsumer<T> {
+        /**
+         * Performs this operation on the given argument.
+         *
+         * @param t the input argument
+         * @throws Throwable throwable
+         */
         void accept(T t) throws Throwable;
     }
 
     @FunctionalInterface
     interface ThrowableSupplier<T> {
+        /**
+         * Gets a result.
+         *
+         * @return a result
+         * @throws Throwable throwable
+         */
         T get() throws Throwable;
     }
 
     @FunctionalInterface
     interface ThrowableFunction<T, R> {
+        /**
+         * Applies this function to the given argument.
+         *
+         * @param t the function argument
+         * @return the function result
+         * @throws Throwable throwable
+         */
         R apply(T t) throws Throwable;
     }
 
