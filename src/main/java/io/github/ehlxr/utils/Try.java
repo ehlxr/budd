@@ -52,7 +52,7 @@ public interface Try {
         return new TryRunnable(runnable);
     }
 
-    class Tryable<C> {
+    abstract class Tryable<C> {
         Consumer<? super Throwable> throwConsumer;
         ThrowableRunnable finallyRunnable;
         Consumer<? super Throwable> finallyThrowConsumer;
@@ -61,7 +61,7 @@ public interface Try {
         /**
          * 处理 finally
          */
-        public void dealFinally() {
+        protected void _finally() {
             Optional.ofNullable(finallyRunnable).ifPresent(r -> {
                 try {
                     r.run();
@@ -111,7 +111,7 @@ public interface Try {
     class TryRunnable extends Tryable<TryRunnable> {
         private final ThrowableRunnable runnable;
 
-        TryRunnable(ThrowableRunnable runnable) {
+        protected TryRunnable(ThrowableRunnable runnable) {
             Objects.requireNonNull(runnable, "No runnable present");
             this.runnable = runnable;
 
@@ -127,7 +127,7 @@ public interface Try {
             } catch (final Throwable e) {
                 Optional.ofNullable(throwConsumer).ifPresent(c -> c.accept(e));
             } finally {
-                dealFinally();
+                _finally();
             }
         }
     }
@@ -135,7 +135,7 @@ public interface Try {
     class TryConsumer<T> extends Tryable<TryConsumer<T>> {
         private final ThrowableConsumer<? super T> consumer;
 
-        TryConsumer(ThrowableConsumer<? super T> consumer) {
+        protected TryConsumer(ThrowableConsumer<? super T> consumer) {
             Objects.requireNonNull(consumer, "No consumer present");
             this.consumer = consumer;
 
@@ -155,7 +155,7 @@ public interface Try {
             } catch (final Throwable e) {
                 Optional.ofNullable(throwConsumer).ifPresent(c -> c.accept(e));
             } finally {
-                dealFinally();
+                _finally();
             }
         }
     }
@@ -163,7 +163,7 @@ public interface Try {
     class TrySupplier<R> extends Tryable<TrySupplier<R>> {
         private final ThrowableSupplier<? extends R> supplier;
 
-        TrySupplier(ThrowableSupplier<? extends R> supplier) {
+        protected TrySupplier(ThrowableSupplier<? extends R> supplier) {
             Objects.requireNonNull(supplier, "No supplier present");
             this.supplier = supplier;
 
@@ -183,7 +183,7 @@ public interface Try {
                 Optional.ofNullable(throwConsumer).ifPresent(c -> c.accept(e));
                 return r;
             } finally {
-                dealFinally();
+                _finally();
             }
         }
 
@@ -199,7 +199,7 @@ public interface Try {
                 Optional.ofNullable(throwConsumer).ifPresent(c -> c.accept(e));
                 return null;
             } finally {
-                dealFinally();
+                _finally();
             }
         }
     }
@@ -208,7 +208,7 @@ public interface Try {
         private final ThrowableFunction<? super T, ? extends R> function;
         private T t;
 
-        TryFunction(ThrowableFunction<? super T, ? extends R> function) {
+        protected TryFunction(ThrowableFunction<? super T, ? extends R> function) {
             Objects.requireNonNull(function, "No function present");
             this.function = function;
 
@@ -243,7 +243,7 @@ public interface Try {
                 Optional.ofNullable(throwConsumer).ifPresent(c -> c.accept(e));
                 return r;
             } finally {
-                dealFinally();
+                _finally();
             }
         }
 
@@ -261,7 +261,7 @@ public interface Try {
                 Optional.ofNullable(throwConsumer).ifPresent(c -> c.accept(e));
                 return null;
             } finally {
-                dealFinally();
+                _finally();
             }
         }
     }
