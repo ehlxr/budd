@@ -25,7 +25,8 @@
 package io.github.ehlxr.forkjoin;
 
 import java.util.concurrent.ForkJoinPool;
-import java.util.concurrent.RecursiveAction;
+import java.util.concurrent.RecursiveTask;
+import java.util.stream.IntStream;
 
 /**
  * @author ehlxr
@@ -34,59 +35,57 @@ import java.util.concurrent.RecursiveAction;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println(sumOfSquares(ForkJoinPool.commonPool(), new double[]{1.2, 2.4, 3.5, 4.2, 5.0, 6, 7.6}));
+        ForkJoinPool forkJoinPool = new ForkJoinPool(Runtime.getRuntime().availableProcessors());
+
+        // Future<Integer> future = forkJoinPool.submit(new RecursiveTaskDemo(arr, 0, arr.length));
+        // System.out.println("计算出来的总和="+future.get());
+
+
+        int[] arr = IntStream.range(0, 1000).toArray();
+        Integer integer = forkJoinPool.invoke(new RecursiveTaskDemo(arr, 0, arr.length));
+        System.out.println("计算出来的总和=" + integer);
+
+        // 关闭线程池
+        forkJoinPool.shutdown();
     }
 
-    static double sumOfSquares(ForkJoinPool pool, double[] array) {
-        int n = array.length;
-        Applyer a = new Applyer(array, 0, n, null);
-        pool.invoke(a);
-        return a.result;
-    }
+    static class RecursiveTaskDemo extends RecursiveTask<Integer> {
+        /**
+         * 每个"小任务"最多只打印70个数
+         */
+        private static final int MAX = 100;
+        private final int[] arr;
+        private final int start;
+        private final int end;
 
-    static class Applyer extends RecursiveAction {
-        final double[] array;
-        final int lo, hi;
-        double result;
-        Applyer next; // keeps track of right-hand-side tasks
-
-        Applyer(double[] array, int lo, int hi, Applyer next) {
-            this.array = array;
-            this.lo = lo;
-            this.hi = hi;
-            this.next = next;
-        }
-
-        double atLeaf(int l, int h) {
-            double sum = 0;
-            for (int i = l; i < h; ++i) {// perform leftmost base step}
-                sum += array[i] * array[i];
-            }
-            return sum;
+        public RecursiveTaskDemo(int[] arr, int start, int end) {
+            this.arr = arr;
+            this.start = start;
+            this.end = end;
         }
 
         @Override
-        protected void compute() {
-            int l = lo;
-            int h = hi;
-            Applyer right = null;
-            while (h - l > 1 && getSurplusQueuedTaskCount() <= 3) {
-                int mid = (l + h) >>> 1;
-                right = new Applyer(array, mid, h, right);
-                right.fork();
-                h = mid;
-            }
-            double sum = atLeaf(l, h);
-            while (right != null) {
-                if (right.tryUnfork()) {// directly calculate if not stolen}
-                    sum += right.atLeaf(right.lo, right.hi);
-                } else {
-                    right.join();
-                    sum += right.result;
+        protected Integer compute() {
+            int sum = 0;
+            // 当end-start的值小于MAX时候，开始打印
+            if ((end - start) < MAX) {
+                for (int i = start; i < end; i++) {
+                    sum += arr[i];
                 }
-                right = right.next;
+                return sum;
+            } else {
+                System.err.println("=====任务分解======");
+                // 将大任务分解成两个小任务
+                int middle = (start + end) / 2;
+                RecursiveTaskDemo left = new RecursiveTaskDemo(arr, start, middle);
+                RecursiveTaskDemo right = new RecursiveTaskDemo(arr, middle, end);
+                // 并行执行两个小任务
+                left.fork();
+                right.fork();
+                // 把两个小任务累加的结果合并起来
+                return left.join() + right.join();
             }
-            result = sum;
         }
+
     }
 }
