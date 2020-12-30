@@ -25,10 +25,7 @@
 package io.github.ehlxr.utils;
 
 import java.util.Set;
-import java.util.concurrent.CopyOnWriteArraySet;
-import java.util.concurrent.CyclicBarrier;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 
 /**
  * Twitter_Snowflake
@@ -222,13 +219,13 @@ public class SnowflakeIdUtil {
 
         // 并发数
         int count = 4000;
-        CyclicBarrier cyclicBarrier = new CyclicBarrier(count, () -> {
+        CyclicBarrier cyclicBarrier = new CyclicBarrier(count);
 
-        });
-        ExecutorService executorService = Executors.newFixedThreadPool(count);
+        // ExecutorService pool = Executors.newFixedThreadPool(count);
+        ForkJoinPool pool = new ForkJoinPool(count);
         long now = System.currentTimeMillis();
         for (int i = 0; i < count; i++) {
-            executorService.execute(() -> {
+            pool.execute(() -> {
                 // 等待所有任务准备就绪
                 Try.of((Try.ThrowableRunnable) cyclicBarrier::await).trap(System.out::println).run();
 
@@ -239,8 +236,8 @@ public class SnowflakeIdUtil {
             });
         }
 
-        executorService.shutdown();
-        while (!executorService.isTerminated()) {
+        pool.shutdown();
+        while (!pool.isTerminated()) {
             Try.of(() -> Thread.sleep(10)).trap(System.out::println).run();
         }
         long end = System.currentTimeMillis();
