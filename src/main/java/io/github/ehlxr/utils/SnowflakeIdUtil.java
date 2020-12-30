@@ -22,9 +22,7 @@
  * THE SOFTWARE.
  */
 
-package io.github.ehlxr;
-
-import io.github.ehlxr.utils.Try;
+package io.github.ehlxr.utils;
 
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
