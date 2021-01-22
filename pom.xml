@@ -334,9 +334,9 @@
         </dependency>
 
         <dependency>
-            <groupId>cn.ceres.did</groupId>
             <artifactId>did-sdk</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>io.github.ehlxr</groupId>
+            <version>1.0.2-SNAPSHOT</version>
         </dependency>
     </dependencies>
     <build>
@@ -484,33 +484,33 @@
         <defaultGoal>compile</defaultGoal>
     </build>
 
-    <!--<repositories>-->
-    <!--    <repository>-->
-    <!--        <id>github</id>-->
-    <!--        <url>https://raw.githubusercontent.com/ehlxr/mvn-repository/mvn-repo</url>-->
-    <!--    </repository>-->
-    <!--</repositories>-->
-
     <repositories>
         <repository>
-            <!--
-            需要在 setting.xml 中配置认证信息
-            <servers>
-                <server>
-                    <id>github</id>
-                    <username>ehlxr</username>
-                    <password>${env.GITHUB_MVN_TOKEN}</password>
-                </server>
-            </servers>
-            -->
             <id>github</id>
-            <url>https://maven.pkg.github.com/ehlxr/mvn-repository</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
+            <url>https://raw.githubusercontent.com/ehlxr/maven-repository/main</url>
         </repository>
     </repositories>
+
+    <!--<repositories>-->
+    <!--    <repository>-->
+    <!--        &lt;!&ndash;-->
+    <!--        需要在 setting.xml 中配置认证信息-->
+    <!--        <servers>-->
+    <!--            <server>-->
+    <!--                <id>github</id>-->
+    <!--                <username>ehlxr</username>-->
+    <!--                <password>${env.GITHUB_MVN_TOKEN}</password>-->
+    <!--            </server>-->
+    <!--        </servers>-->
+    <!--        &ndash;&gt;-->
+    <!--        <id>github</id>-->
+    <!--        <url>https://maven.pkg.github.com/ehlxr/mvn-repository</url>-->
+    <!--        <releases>-->
+    <!--            <enabled>true</enabled>-->
+    <!--        </releases>-->
+    <!--        <snapshots>-->
+    <!--            <enabled>true</enabled>-->
+    <!--        </snapshots>-->
+    <!--    </repository>-->
+    <!--</repositories>-->
 </project>
