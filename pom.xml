@@ -487,7 +487,8 @@
     <repositories>
         <repository>
             <id>github</id>
-            <url>https://raw.githubusercontent.com/ehlxr/maven-repository/main</url>
+            <url>https://git.ehlxr.me/ehlxr/maven-repository/raw/branch/main</url>
+            <!--<url>https://raw.githubusercontent.com/ehlxr/maven-repository/main</url>-->
         </repository>
     </repositories>
 
