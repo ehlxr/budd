@@ -94,7 +94,7 @@ public interface Try {
                 try {
                     r.run();
                 } catch (final Throwable t) {
-                    Optional.ofNullable(finallyThrowConsumer).ifPresent(c -> c.accept(t));
+                    Optional.ofNullable(finallyThrowConsumer).ifPresent(tc -> tc.accept(t));
                 }
             });
         }
