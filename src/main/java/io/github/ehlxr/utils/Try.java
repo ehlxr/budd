@@ -265,7 +265,7 @@ public interface Try {
          */
         public void accept(P p) {
             try {
-                Objects.requireNonNull(p, "No accept p present");
+                Objects.requireNonNull(p, "No accept param present");
 
                 consumer.accept(p);
             } catch (final Throwable e) {
@@ -294,7 +294,7 @@ public interface Try {
          * @return {@link TryFunction}
          */
         public TryFunction<P, R> apply(P p) {
-            Objects.requireNonNull(p, "Apply p should not null");
+            Objects.requireNonNull(p, "Apply param should not null");
 
             this.p = p;
             return this;
@@ -308,7 +308,7 @@ public interface Try {
          */
         public R get(R r) {
             try {
-                Objects.requireNonNull(function, "No apply p present");
+                Objects.requireNonNull(function, "No apply param present");
 
                 return function.apply(p);
             } catch (final Throwable e) {
@@ -326,7 +326,7 @@ public interface Try {
          */
         public R get() {
             try {
-                Objects.requireNonNull(p, "No apply p present");
+                Objects.requireNonNull(p, "No apply param present");
 
                 return function.apply(p);
             } catch (final Throwable e) {
