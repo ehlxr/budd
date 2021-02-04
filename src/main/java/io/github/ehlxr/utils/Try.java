@@ -93,8 +93,8 @@ public interface Try {
             Optional.ofNullable(finallyRunnable).ifPresent(r -> {
                 try {
                     r.run();
-                } catch (final Throwable t) {
-                    Optional.ofNullable(finallyThrowConsumer).ifPresent(tc -> tc.accept(t));
+                } catch (final Throwable e) {
+                    Optional.ofNullable(finallyThrowConsumer).ifPresent(tc -> tc.accept(e));
                 }
             });
         }
@@ -153,7 +153,7 @@ public interface Try {
             try {
                 runnable.run();
             } catch (final Throwable e) {
-                Optional.ofNullable(throwConsumer).ifPresent(c -> c.accept(e));
+                Optional.ofNullable(throwConsumer).ifPresent(tc -> tc.accept(e));
             } finally {
                 doFinally();
             }
@@ -191,7 +191,7 @@ public interface Try {
             try {
                 return supplier.get();
             } catch (final Throwable e) {
-                Optional.ofNullable(throwConsumer).ifPresent(c -> c.accept(e));
+                Optional.ofNullable(throwConsumer).ifPresent(tc -> tc.accept(e));
                 return r;
             } finally {
                 doFinally();
@@ -207,7 +207,7 @@ public interface Try {
             try {
                 return supplier.get();
             } catch (final Throwable e) {
-                Optional.ofNullable(throwConsumer).ifPresent(c -> c.accept(e));
+                Optional.ofNullable(throwConsumer).ifPresent(tc -> tc.accept(e));
                 return null;
             } finally {
                 doFinally();
@@ -269,7 +269,7 @@ public interface Try {
 
                 consumer.accept(p);
             } catch (final Throwable e) {
-                Optional.ofNullable(throwConsumer).ifPresent(c -> c.accept(e));
+                Optional.ofNullable(throwConsumer).ifPresent(tc -> tc.accept(e));
             } finally {
                 doFinally();
             }
@@ -312,7 +312,7 @@ public interface Try {
 
                 return function.apply(p);
             } catch (final Throwable e) {
-                Optional.ofNullable(throwConsumer).ifPresent(c -> c.accept(e));
+                Optional.ofNullable(throwConsumer).ifPresent(tc -> tc.accept(e));
                 return r;
             } finally {
                 doFinally();
@@ -330,7 +330,7 @@ public interface Try {
 
                 return function.apply(p);
             } catch (final Throwable e) {
-                Optional.ofNullable(throwConsumer).ifPresent(c -> c.accept(e));
+                Optional.ofNullable(throwConsumer).ifPresent(tc -> tc.accept(e));
                 return null;
             } finally {
                 doFinally();
