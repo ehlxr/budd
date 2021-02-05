@@ -24,7 +24,11 @@
 
 package io.github.ehlxr.utils;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.google.common.collect.ImmutableMap;
+
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -83,6 +87,7 @@ public interface Try {
     abstract class Tryable<C> {
         Consumer<? super Throwable> throwConsumer;
         ThrowableRunnable finallyRunnable;
+        ThrowableConsumer<? super Object> finallyConsumer;
         Consumer<? super Throwable> finallyThrowConsumer;
         C c;
 
@@ -100,6 +105,24 @@ public interface Try {
         }
 
         /**
+         * 处理带参数类型 finally
+         *
+         * @param p   入参
+         * @param <P> 入参类型
+         */
+        protected <P> void doFinally(P p) {
+            if (Objects.nonNull(finallyConsumer)) {
+                try {
+                    finallyConsumer.accept(p);
+                } catch (final Throwable e) {
+                    Optional.ofNullable(finallyThrowConsumer).ifPresent(tc -> tc.accept(e));
+                }
+            } else {
+                doFinally();
+            }
+        }
+
+        /**
          * 如果有异常，调用自定义异常处理表达式
          *
          * @param throwableConsumer 自定义异常处理 lambda 表达式
@@ -113,6 +136,8 @@ public interface Try {
 
         /**
          * 自定义 finally 处理表达式
+         * <p>
+         * 注意：如果类型为 {@link TryConsumer}、{@link TryFunction} 并且已经调用 {@link #andFinally(ThrowableConsumer)} 则忽略
          *
          * @param finallyRunnable finally 处理 lambda 表达式
          * @return {@link C}
@@ -120,6 +145,20 @@ public interface Try {
         public C andFinally(ThrowableRunnable finallyRunnable) {
             Objects.requireNonNull(finallyRunnable, "No finallyRunnable present");
             this.finallyRunnable = finallyRunnable;
+            return c;
+        }
+
+        /**
+         * 自定义 finally 处理表达式
+         * <p>
+         * 注意：只会对 {@link TryConsumer}、{@link TryFunction} 类型对象起作用
+         *
+         * @param finallyConsumer finally 处理 lambda 表达式
+         * @return {@link C}
+         */
+        public C andFinally(ThrowableConsumer<? super Object> finallyConsumer) {
+            Objects.requireNonNull(finallyConsumer, "No finallyConsumer present");
+            this.finallyConsumer = finallyConsumer;
             return c;
         }
 
@@ -158,17 +197,6 @@ public interface Try {
                 doFinally();
             }
         }
-    }
-
-    @FunctionalInterface
-    interface ThrowableConsumer<P> {
-        /**
-         * Performs this operation on the given argument.
-         *
-         * @param p the input argument
-         * @throws Throwable throwable
-         */
-        void accept(P p) throws Throwable;
     }
 
     class TrySupplier<R> extends Tryable<TrySupplier<R>> {
@@ -215,39 +243,6 @@ public interface Try {
         }
     }
 
-    @FunctionalInterface
-    interface ThrowableSupplier<P> {
-        /**
-         * Gets a result.
-         *
-         * @return a result
-         * @throws Throwable throwable
-         */
-        P get() throws Throwable;
-    }
-
-    @FunctionalInterface
-    interface ThrowableRunnable {
-        /**
-         * Performs this operation
-         *
-         * @throws Throwable throwable
-         */
-        void run() throws Throwable;
-    }
-
-    @FunctionalInterface
-    interface ThrowableFunction<P, R> {
-        /**
-         * Applies this function to the given argument.
-         *
-         * @param p the function argument
-         * @return the function result
-         * @throws Throwable throwable
-         */
-        R apply(P p) throws Throwable;
-    }
-
     class TryConsumer<P> extends Tryable<TryConsumer<P>> {
         private final ThrowableConsumer<? super P> consumer;
 
@@ -271,7 +266,8 @@ public interface Try {
             } catch (final Throwable e) {
                 Optional.ofNullable(throwConsumer).ifPresent(tc -> tc.accept(e));
             } finally {
-                doFinally();
+                // doFinally();
+                doFinally(p);
             }
         }
     }
@@ -315,7 +311,8 @@ public interface Try {
                 Optional.ofNullable(throwConsumer).ifPresent(tc -> tc.accept(e));
                 return r;
             } finally {
-                doFinally();
+                // doFinally();
+                doFinally(p);
             }
         }
 
@@ -333,39 +330,98 @@ public interface Try {
                 Optional.ofNullable(throwConsumer).ifPresent(tc -> tc.accept(e));
                 return null;
             } finally {
-                doFinally();
+                // doFinally();
+                doFinally(p);
             }
         }
     }
 
+    @FunctionalInterface
+    interface ThrowableConsumer<P> {
+        /**
+         * Performs this operation on the given argument.
+         *
+         * @param p the input argument
+         * @throws Throwable throwable
+         */
+        void accept(P p) throws Throwable;
+    }
+
+    @FunctionalInterface
+    interface ThrowableSupplier<R> {
+        /**
+         * Gets a result.
+         *
+         * @return a result
+         * @throws Throwable throwable
+         */
+        R get() throws Throwable;
+    }
+
+    @FunctionalInterface
+    interface ThrowableRunnable {
+        /**
+         * Performs this operation
+         *
+         * @throws Throwable throwable
+         */
+        void run() throws Throwable;
+    }
+
+    @FunctionalInterface
+    interface ThrowableFunction<P, R> {
+        /**
+         * Applies this function to the given argument.
+         *
+         * @param p the function argument
+         * @return the function result
+         * @throws Throwable throwable
+         */
+        R apply(P p) throws Throwable;
+    }
+
     @SuppressWarnings({"ConstantConditions", "Convert2MethodRef"})
     static void main(String[] args) {
+        System.out.println("------------有返回值，无入参----------------");
         // 有返回值，无入参
-        String param = "s";
+        String param = "hello";
         Long result = Try.of(() -> Long.valueOf(param)).get(0L);
         System.out.println("Long.valueOf 1: " + result);
 
         result = Try.of(() -> Long.valueOf(param)).get();
         System.out.println("Long.valueOf 2: " + result);
 
+        System.out.println("------------有返回值，有入参----------------");
         // 有返回值，有入参
-        result = Try.<String, Long>of(s -> Long.valueOf(s))
-                .apply(param)
-                .trap((e) -> System.out.println("Long.valueOf exception: " + e.getMessage()))
-                .andFinally(() -> System.out.println("Long.valueOf finally run code."))
-                .finallyTrap((e) -> System.out.println("Long.valueOf finally exception: " + e.getMessage()))
+        result = Try.<Map<String, String>, Long>of(s -> Long.valueOf(s.get("k1")))
+                .apply(ImmutableMap.of("k1", param))
+                .trap(e -> System.out.println("Long.valueOf exception: " + e.getMessage()))
+                .andFinally(() -> System.out.println("This message will ignore."))
+                .andFinally(s -> {
+                    Map<String, Object> returnMap = JsonUtils.string2Obj(JsonUtils.obj2String(s), new TypeReference<Map<String, Object>>() {
+                    });
+                    System.out.println("Long.valueOf finally run code." + s);
+                    // 演示抛异常
+                    String k2 = returnMap.get("k2").toString();
+                    System.out.println(k2);
+                })
+                .finallyTrap(e -> System.out.println("Long.valueOf finally exception: " + e.getMessage()))
                 .get();
         System.out.println("Long.valueOf 3: " + result);
 
         ArrayList<String> list = null;
 
+        System.out.println("-----------无返回值，无入参-----------------");
         // 无返回值，无入参
         Try.of(() -> Thread.sleep(-1L))
                 .andFinally(() -> list.clear())
                 // .andFinally(list::clear) //https://stackoverflow.com/questions/37413106/java-lang-nullpointerexception-is-thrown-using-a-method-reference-but-not-a-lamb
                 .run();
 
+        System.out.println("--------------无返回值，有入参--------------");
         // 无返回值，有入参
-        Try.<String>of(v -> list.add(0, v)).accept("test");
+        Try.<String>of(v -> list.add(0, v))
+                .andFinally(s -> System.out.println(s))
+                .accept("hello");
     }
 }
