@@ -24,8 +24,6 @@
 
 package io.github.ehlxr.extension;
 
-import io.github.ehlxr.did.extension.ExtensionLoader;
-
 import java.lang.annotation.*;
 
 /**
