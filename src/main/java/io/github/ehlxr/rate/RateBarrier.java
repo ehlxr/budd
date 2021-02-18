@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.IntStream;
 
 /**
  * 按比例控制流量
@@ -39,18 +40,16 @@ public class RateBarrier {
     private final AtomicInteger op = new AtomicInteger(0);
     private List<Integer> source;
     private int base;
-    private int rate;
 
-    public boolean allow() {
-        return source.get(op.incrementAndGet() % base) < rate;
+    public int rate() {
+        return source.get(op.incrementAndGet() % base);
     }
 
     private RateBarrier() {
     }
 
-    public RateBarrier(int base, int rate) {
+    public RateBarrier(int base) {
         this.base = base;
-        this.rate = rate;
 
         source = new ArrayList<>(base);
         for (int i = 0; i < base; i++) {
@@ -61,4 +60,39 @@ public class RateBarrier {
         Collections.shuffle(source);
     }
 
+    public static void main(String[] args) {
+        RateBarrier rateBarrier = new RateBarrier(10);
+
+        IntStream.range(0, 20).parallel().forEach(i -> {
+            int rate = rateBarrier.rate();
+            if (rate < 2) {
+                System.out.println("this is on 2");
+            } else if (rate < 5) {
+                System.out.println("this is on 3");
+            } else {
+                System.out.println("this is on 5");
+            }
+        });
+
+        // final Thread[] threads = new Thread[20];
+        // for (int i = 0; i < threads.length; i++) {
+        //     threads[i] = new Thread(() -> {
+        //         if (rateBarrier.allow()) {
+        //             System.out.println("this is on 3");
+        //         } else {
+        //             System.out.println("this is on 7");
+        //         }
+        //     });
+        //     threads[i].start();
+        // }
+        //
+        // for (Thread t : threads) {
+        //     try {
+        //         t.join();
+        //     } catch (InterruptedException e) {
+        //         e.printStackTrace();
+        //     }
+        // }
+
+    }
 }
