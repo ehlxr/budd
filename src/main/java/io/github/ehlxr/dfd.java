@@ -24,42 +24,44 @@
 
 package io.github.ehlxr;
 
+import com.google.common.collect.Maps;
+
 /**
  * Created by ehlxr on 2016/12/23.
  */
 public class dfd {
 
     public static void main(String[] args) {
-        // var map = Maps.newHashMap();
-        // map.put("d",1);
-        // System.out.println(map);
+        var map = Maps.newHashMap();
+        map.put("d", 1);
+        System.out.println(map);
     }
 
     public void printCircle(int[][] matrix, int startX, int startY, int endX, int endY) {
         // only one column left
         if (startY == endY) {
-            for (int i = startX; i <= endX; i++ ) {
+            for (int i = startX; i <= endX; i++) {
                 System.out.println(matrix[i][endY]);
             }
             return;
         }
         // only one row left
         if (startX == endX) {
-            for (int i = startY; i <= endY; i++ ) {
+            for (int i = startY; i <= endY; i++) {
                 System.out.println(matrix[startX][i]);
             }
             return;
         }
-        for (int i = startY; i < endY; i++ ) {
+        for (int i = startY; i < endY; i++) {
             System.out.println(matrix[startX][i]);
         }
-        for (int i = startX; i < endX; i++ ) {
+        for (int i = startX; i < endX; i++) {
             System.out.println(matrix[i][endY]);
         }
-        for (int i = endY; i > startY; i-- ) {
+        for (int i = endY; i > startY; i--) {
             System.out.println(matrix[endX][i]);
         }
-        for (int i = endX; i > startX; i-- ) {
+        for (int i = endX; i > startX; i--) {
             System.out.println(matrix[i][startY]);
         }
 

@@ -24,6 +24,8 @@
 
 package io.github.ehlxr.test;
 
+import java.util.LinkedHashMap;
+
 /**
  * Created by ehlxr on 2016/12/15.
  */
@@ -39,5 +41,18 @@ public class Test {
         System.out.println(s0 == s1);
         System.out.println(s0 == s1.intern());
         System.out.println(s0 == s2);
+
+
+        // LinkedHashMap
+        System.out.println("*****LinkedHashMap*****");
+
+        LinkedHashMap<Object, Object> map = new LinkedHashMap<>();
+        map.put("a", "111");
+        map.put("b", "222");
+        map.put("c", "333");
+        map.put("d", "444");
+        map.put("a", "555");
+
+        System.out.println(map);
     }
 }
