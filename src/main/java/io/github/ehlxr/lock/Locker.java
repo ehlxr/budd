@@ -24,7 +24,6 @@
 
 package io.github.ehlxr.lock;
 
-import java.util.concurrent.locks.AbstractQueuedLongSynchronizer;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -37,7 +36,12 @@ public class Locker {
     public static void main(String[] args) {
         ReentrantLock lock = new ReentrantLock();
 
-        lock.tryLock();
+        lock.lock();  // block until condition holds
+        try {
+            // ... method body
+        } finally {
+            lock.unlock();
+        }
     }
 
 }
