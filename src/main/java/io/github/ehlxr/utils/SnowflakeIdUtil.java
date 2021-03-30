@@ -158,7 +158,7 @@ public class SnowflakeIdUtil {
         // 上次生成 id 的时间截
         lastTimestamp = timestamp;
 
-        //  移位并通过或运算拼到一起组成 64 位的 id
+        // 移位并通过或运算拼到一起组成 64 位的 id
         return ((timestamp - twepoch) << timestampLeftShift)
                 | (datacenterId << datacenterIdShift)
                 | (workerId << workerIdShift)

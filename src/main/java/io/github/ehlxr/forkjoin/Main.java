@@ -47,6 +47,10 @@ public class Main {
 
         // 关闭线程池
         forkJoinPool.shutdown();
+
+        System.out.println(IntStream.range(0, 1000).parallel().reduce((i, j) -> i + j));
+        System.out.println(IntStream.range(0, 1000).parallel().reduce(Integer::sum));
+        System.out.println(IntStream.range(0, 1000).parallel().sum());
     }
 
     static class RecursiveTaskDemo extends RecursiveTask<Integer> {
@@ -54,6 +58,7 @@ public class Main {
          * 每个"小任务"最多只打印70个数
          */
         private static final int MAX = 100;
+        private static final long serialVersionUID = -134954066152987391L;
         private final int[] arr;
         private final int start;
         private final int end;
