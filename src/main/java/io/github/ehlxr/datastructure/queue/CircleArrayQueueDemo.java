@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package io.github.ehlxr.datastructure;
+package io.github.ehlxr.datastructure.queue;
 
 import java.util.Scanner;
 
