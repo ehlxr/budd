@@ -38,7 +38,7 @@ public class SingleLinkedListDemo {
         //创建要给链表
         SingleLinkedList singleLinkedList = new SingleLinkedList();
 
-        //加入
+        // 加入
         // singleLinkedList.add(hero1);
         // singleLinkedList.add(hero4);
         // singleLinkedList.add(hero2);
@@ -51,6 +51,11 @@ public class SingleLinkedListDemo {
 
         singleLinkedList.list();
 
+        // 反转链表
+        reverseList(singleLinkedList.getHead());
+        System.out.println("反转之后的链表");
+        singleLinkedList.list();
+
         HeroNode newHeroNode = new HeroNode(3, "小吴", "智多星..");
         singleLinkedList.update(newHeroNode);
         System.out.println("修改后的链表");
@@ -60,10 +65,33 @@ public class SingleLinkedListDemo {
         System.out.println("删除 no 为 3 的节点");
         singleLinkedList.list();
     }
+
+    /**
+     * 反转链表
+     */
+    public static void reverseList(HeroNode head) {
+        HeroNode pre = null;
+        HeroNode cur = head.next;
+        while (cur != null) {
+            HeroNode next = cur.next;
+
+            cur.next = pre;
+
+            pre = cur;
+
+            cur = next;
+        }
+
+        head.next = pre;
+    }
 }
 
 class SingleLinkedList {
     private final HeroNode head = new HeroNode(0, "", "");
+
+    public HeroNode getHead() {
+        return head;
+    }
 
     public void list() {
         HeroNode temp = head.next;
@@ -131,7 +159,7 @@ class SingleLinkedList {
 
         while (true) {
             if (temp.next == null) {
-                System.out.printf("没找到要删除吃 %d 节点\n", no);
+                System.out.printf("没找到要删除的 %d 节点\n", no);
                 break;
             }
 
