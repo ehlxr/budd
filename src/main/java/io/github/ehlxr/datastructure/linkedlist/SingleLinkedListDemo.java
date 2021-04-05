@@ -24,6 +24,8 @@
 
 package io.github.ehlxr.datastructure.linkedlist;
 
+import java.util.Stack;
+
 /**
  * @author ehlxr
  * @since 2021-04-04 14:19.
@@ -31,11 +33,10 @@ package io.github.ehlxr.datastructure.linkedlist;
 public class SingleLinkedListDemo {
     public static void main(String[] args) {
         HeroNode hero1 = new HeroNode(1, "宋江", "及时雨");
-        HeroNode hero2 = new HeroNode(2, "卢俊义", "玉麒麟");
-        HeroNode hero3 = new HeroNode(3, "吴用", "智多星");
-        HeroNode hero4 = new HeroNode(4, "林冲", "豹子头");
+        HeroNode hero2 = new HeroNode(3, "卢俊义", "玉麒麟");
+        HeroNode hero3 = new HeroNode(5, "吴用", "智多星");
+        HeroNode hero4 = new HeroNode(8, "林冲", "豹子头");
 
-        //创建要给链表
         SingleLinkedList singleLinkedList = new SingleLinkedList();
 
         // 加入
@@ -48,22 +49,31 @@ public class SingleLinkedListDemo {
         singleLinkedList.addByOrder(hero4);
         singleLinkedList.addByOrder(hero2);
         singleLinkedList.addByOrder(hero3);
-
         singleLinkedList.list();
 
         // 反转链表
-        reverseList(singleLinkedList.getHead());
-        System.out.println("反转之后的链表");
-        singleLinkedList.list();
+        // reverseList(singleLinkedList.getHead());
+        // System.out.println("反转之后的链表");
+        // singleLinkedList.list();
+        //
+        // HeroNode newHeroNode = new HeroNode(3, "小吴", "智多星..");
+        // singleLinkedList.update(newHeroNode);
+        // System.out.println("修改后的链表");
+        // singleLinkedList.list();
+        //
+        // singleLinkedList.del(3);
+        // System.out.println("删除 no 为 3 的节点");
+        // singleLinkedList.list();
 
-        HeroNode newHeroNode = new HeroNode(3, "小吴", "智多星..");
-        singleLinkedList.update(newHeroNode);
-        System.out.println("修改后的链表");
-        singleLinkedList.list();
+        SingleLinkedList singleLinkedList2 = new SingleLinkedList();
+        singleLinkedList2.addByOrder(new HeroNode(2, "2", "2"));
+        singleLinkedList2.addByOrder(new HeroNode(3, "3", "3"));
+        singleLinkedList2.addByOrder(new HeroNode(8, "8", "8"));
+        singleLinkedList2.addByOrder(new HeroNode(9, "9", "9"));
+        singleLinkedList2.list();
 
-        singleLinkedList.del(3);
-        System.out.println("删除 no 为 3 的节点");
-        singleLinkedList.list();
+        bind2(singleLinkedList.getHead(), singleLinkedList2.getHead());
+
     }
 
     /**
@@ -83,6 +93,75 @@ public class SingleLinkedListDemo {
         }
 
         head.next = pre;
+    }
+
+    /**
+     * 合并有序链表
+     */
+    public static void bind2(HeroNode node1, HeroNode node2) {
+        Stack<HeroNode> stack = new Stack<>();
+
+        HeroNode cur = node1.next;
+        while (cur != null) {
+            stack.push(cur);
+            cur = cur.next;
+        }
+
+        cur = node2.next;
+        while (cur != null) {
+            stack.push(cur);
+            cur = cur.next;
+        }
+
+        SingleLinkedList result = new SingleLinkedList();
+        for (HeroNode node : stack) {
+            result.addByOrder(node);
+        }
+
+        // 打印结果
+        System.out.println("合并结果");
+        result.list();    }
+
+    /**
+     * 合并有序链表
+     */
+    public static void bind(HeroNode node1, HeroNode node2) {
+        SingleLinkedList result = new SingleLinkedList();
+
+        if (node1.next == null) {
+            result.add(node2.next);
+            return;
+        }
+        if (node2.next == null) {
+            result.add(node1.next);
+            return;
+        }
+        while (node1.next != null || node2.next != null) {
+            HeroNode temp = null;
+            if (node1.next == null) {
+                result.add(node2.next);
+                break;
+            }
+            if (node2.next == null) {
+                result.add(node1.next);
+                break;
+            }
+
+            if (node1.next.no < node2.next.no) {
+                temp = node1.next;
+                node1.next = node1.next.next;
+            } else {
+                temp = node2.next;
+                node2.next = node2.next.next;
+            }
+
+            temp.next = null;
+            result.add(temp);
+        }
+
+        // 打印结果
+        System.out.println("合并结果");
+        result.list();
     }
 }
 
