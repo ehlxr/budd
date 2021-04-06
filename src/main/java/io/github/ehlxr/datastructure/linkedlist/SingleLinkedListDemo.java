@@ -120,7 +120,8 @@ public class SingleLinkedListDemo {
 
         // 打印结果
         System.out.println("合并结果");
-        result.list();    }
+        result.list();
+    }
 
     /**
      * 合并有序链表
@@ -254,8 +255,9 @@ class SingleLinkedList {
     }
 }
 
-
-// 定义HeroNode ， 每个HeroNode 对象就是一个节点
+/**
+ * 定义HeroNode ， 每个HeroNode 对象就是一个节点
+ */
 class HeroNode {
     public int no;
     public String name;
@@ -269,7 +271,9 @@ class HeroNode {
         this.nickname = nickname;
     }
 
-    // 为了显示方法，我们重新 toString
+    /**
+     * 为了显示方法，我们重新 toString
+     */
     @Override
     public String toString() {
         return "HeroNode [no=" + no + ", name=" + name + ", nickname=" + nickname + "]";
