@@ -24,8 +24,6 @@
 
 package io.github.ehlxr.datastructure.linkedlist;
 
-import java.util.Stack;
-
 /**
  * @author ehlxr
  * @since 2021-04-04 14:19.
@@ -162,7 +160,6 @@ class HeroNode2 {
     public HeroNode2 next; //指向下一个节点
     public HeroNode2 pre;// 指向上一个节点
 
-    // 构造器
     public HeroNode2(int no, String name, String nickname) {
         this.no = no;
         this.name = name;
