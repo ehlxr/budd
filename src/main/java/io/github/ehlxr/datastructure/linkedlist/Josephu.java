@@ -38,6 +38,9 @@ public class Josephu {
     }
 }
 
+/**
+ * 循环单向链表
+ */
 class CircleSingleLinkedList {
     private Boy first = null;
 

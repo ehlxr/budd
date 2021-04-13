@@ -53,6 +53,9 @@ public class DoubleLinkedListDemo {
     }
 }
 
+/**
+ * 双向链表
+ */
 class DoubleLinkedList {
     private final HeroNode2 head = new HeroNode2(0, "", "");
 
