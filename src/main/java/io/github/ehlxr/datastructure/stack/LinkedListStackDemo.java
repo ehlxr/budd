@@ -32,7 +32,7 @@ import java.util.Scanner;
  */
 public class LinkedListStackDemo {
     public static void main(String[] args) {
-        LinkedListStack stack = new LinkedListStack(4);
+        LinkedListStack2 stack = new LinkedListStack2(4);
         String key;
         boolean loop = true; //控制是否退出菜单
         Scanner scanner = new Scanner(System.in);
@@ -76,6 +76,9 @@ public class LinkedListStackDemo {
 
 }
 
+/**
+ * 栈顶是链表的最后一个节点
+ */
 class LinkedListStack {
     private final int maxSize;
     private int top = -1;
@@ -127,7 +130,6 @@ class LinkedListStack {
             }
             temp = temp.next;
         }
-
     }
 
     public void list() {
@@ -163,6 +165,72 @@ class LinkedListStack {
         }
 
         head.next = pre;
+    }
+}
+
+/**
+ * 栈底是链表的最后一个节点
+ */
+class LinkedListStack2 {
+    private final Node head = new Node(0);
+    private final int maxSize;
+    private int top = -1;
+
+    public LinkedListStack2(int maxSize) {
+        this.maxSize = maxSize;
+    }
+
+    public boolean isEmpty() {
+        return top == -1;
+    }
+
+    public boolean isFull() {
+        return top == maxSize - 1;
+    }
+
+    /**
+     * 入栈：插入新元素到链表第一个节点
+     */
+    public void push(int id) {
+        if (isFull()) {
+            System.out.println("栈满");
+            return;
+        }
+        Node newNode = new Node(id);
+
+        Node temp = head.next;
+        head.next = newNode;
+        newNode.next = temp;
+        top++;
+    }
+
+    /**
+     * 出栈：取出链表第一个元素
+     */
+    public int pop() {
+        if (isEmpty()) {
+            throw new RuntimeException("栈空，无法取出数据");
+        }
+
+        Node temp = head.next;
+
+        head.next = temp.next;
+        top--;
+
+        return temp.id;
+    }
+
+    public void list() {
+        if (isEmpty()) {
+            System.out.println("栈空，无数据");
+        }
+
+        Node temp = head.next;
+        while (temp != null) {
+            System.out.println(temp);
+
+            temp = temp.next;
+        }
     }
 }
 
