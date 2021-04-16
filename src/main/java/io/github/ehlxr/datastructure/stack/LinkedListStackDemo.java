@@ -31,10 +31,7 @@ import java.util.Scanner;
  * @since 2021-04-15 22:18.
  */
 public class LinkedListStackDemo {
-
     public static void main(String[] args) {
-        //测试一下ArrayStack 是否正确
-        //先创建一个ArrayStack对象->表示栈
         LinkedListStack stack = new LinkedListStack(4);
         String key;
         boolean loop = true; //控制是否退出菜单
@@ -119,9 +116,9 @@ class LinkedListStack {
 
         Node temp = head;
         while (true) {
-            if (temp.next == null) {
-                throw new RuntimeException("栈空");
-            }
+            // if (temp.next == null) {
+            //     throw new RuntimeException("栈空~~~");
+            // }
             if (temp.next.next == null) {
                 top--;
                 int id = temp.next.id;
@@ -152,22 +149,22 @@ class LinkedListStack {
 
     }
 
+    /**
+     * 反转单向链表
+     */
     private void revert() {
         Node pre = null;
         Node cur = head.next;
         while (cur != null) {
-            Node temp = cur;
-            cur = cur.next;
-
-            temp.next = pre;
-            pre = temp;
+            Node next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
         }
 
         head.next = pre;
     }
-
 }
-
 
 class Node {
     public int id;
