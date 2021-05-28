@@ -51,13 +51,18 @@ public class BubbleSort {
         //外层：需要 length-1 次循环比较
         for (int i = 0; i < arr.length - 1; i++) {
 
+            boolean flag = false;
             //内层：每次循环需要两两比较的次数，每次比较后，都会将当前最大的数放到最后位置，所以每次比较次数递减一次
             for (int j = 0; j < arr.length - 1 - i; j++) {
                 if (arr[j] > arr[j + 1]) {
+                    flag = true;
                     swap(arr, j, j + 1);
                 }
             }
             System.out.println("Sorting: " + Arrays.toString(arr));
+            if (!flag) {
+                break;
+            }
         }
     }
 
@@ -72,6 +77,6 @@ public class BubbleSort {
     }
 
     public static void main(String[] args) {
-        sort(new int[]{4, 9, 1, 6, 8, 2});
+        sort(new int[]{4, 9, 1, 6, 8, 10});
     }
 }
