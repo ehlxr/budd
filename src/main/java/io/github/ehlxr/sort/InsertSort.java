@@ -59,6 +59,24 @@ public class InsertSort {
         }
     }
 
+    public static void sort2(int[] arr) {
+        for (int i = 1; i < arr.length; i++) {
+            int value = arr[i]; // 一个元素（新元素）
+            int j = i - 1; // 已排序的最后一个元素下标
+            while (j >= 0 && arr[j] > value) {
+                arr[j + 1] = arr[j]; // arr[j] 后移
+                j--;
+            }
+            arr[j + 1] = value;
+            // i=2, value=1
+            //  4, 9, 1, 8, 6, 2
+            //  4, 9, 9, 8, 6, 2
+            //  4, 4, 9, 8, 6, 2
+            //  1, 4, 9, 8, 6, 2
+            System.out.println(Arrays.toString(arr));
+        }
+    }
+
     public static void swap(int[] arr, int i, int j) {
         // arr[i] = arr[i] + arr[j];
         // arr[j] = arr[i] - arr[j];
@@ -70,6 +88,6 @@ public class InsertSort {
     }
 
     public static void main(String[] args) {
-        sort(new int[]{4, 9, 1, 8, 6, 2});
+        sort2(new int[]{4, 9, 1, 8, 6, 2});
     }
 }
