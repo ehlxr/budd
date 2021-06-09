@@ -61,7 +61,7 @@ public class InsertSort {
 
     public static void sort2(int[] arr) {
         for (int i = 1; i < arr.length; i++) {
-            int value = arr[i]; // 一个元素（新元素）
+            int value = arr[i]; // 下一个元素（新元素）
             int j = i - 1; // 已排序的最后一个元素下标
             while (j >= 0 && arr[j] > value) {
                 arr[j + 1] = arr[j]; // arr[j] 后移
