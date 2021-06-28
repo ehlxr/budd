@@ -24,7 +24,8 @@
 
 package io.github.ehlxr.sort;
 
-import java.util.Arrays;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * 希尔排序
@@ -61,7 +62,7 @@ public class ShellSort {
             }
         }
 
-        System.out.println(Arrays.toString(arr));
+        // System.out.println(Arrays.toString(arr));
 
         // 每次将 gap 折半减小，循环上述操作
         sort(arr, gap / 2);
@@ -74,9 +75,23 @@ public class ShellSort {
     }
 
     public static void main(String[] args) {
-        int[] arr = {4, 9, 1, 8, 6, 2};
+        // int[] arr = {4, 9, 1, 8, 6, 2};
+        int[] arr = new int[80000];
+        for (int i = 0; i < 80000; i++) {
+            arr[i] = (int) (Math.random() * 8000000); //生成一个[0, 8000000) 数
+        }
+
+        Date data1 = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date1Str = simpleDateFormat.format(data1);
+        System.out.println("排序前的时间是=" + date1Str);
+
         sort(arr, arr.length / 2);
         // sort(arr);
+
+        Date data2 = new Date();
+        String date2Str = simpleDateFormat.format(data2);
+        System.out.println("排序后的时间是=" + date2Str);
     }
 
     // public static void sort(int[] arr) {
