@@ -53,23 +53,42 @@ public class InsertSort {
                     break;
                 }
             }
-            // System.out.println(Arrays.toString(arr));
+            // System.out.println("第" + i + "轮：" + Arrays.toString(arr));
+        }
+    }
+
+    public static void sort3(int[] arr) {
+        for (int i = 1; i < arr.length; i++) {
+            int j = i - 1; // 已排序的最后一个元素下标
+            int temp = arr[i]; // 下一个元素（待排序元素）
+            for (; j >= 0; j--) {
+                if (temp < arr[j]) {
+                    arr[j + 1] = arr[j]; // arr[j] 后移
+                } else {
+                    break;
+                }
+            }
+
+            if (j + 1 != i) {
+                arr[j + 1] = temp;
+            }
+            // System.out.println("第" + i + "轮：" + Arrays.toString(arr));
         }
     }
 
     public static void sort2(int[] arr) {
         for (int i = 1; i < arr.length; i++) {
-            int value = arr[i]; // 下一个元素（新元素）
+            int temp = arr[i]; // 下一个元素（待排序元素）
             int j = i - 1; // 已排序的最后一个元素下标
-            while (j >= 0 && arr[j] > value) {
+            while (j >= 0 && arr[j] > temp) {
                 arr[j + 1] = arr[j]; // arr[j] 后移
                 j--;
             }
 
             if (j + 1 != i) {
-                arr[j + 1] = value;
+                arr[j + 1] = temp;
             }
-            // i=2, value=1
+            // i=2, temp=1
             //  4, 9, 1, 8, 6, 2
             //  4, 9, 9, 8, 6, 2
             //  4, 4, 9, 8, 6, 2
@@ -89,13 +108,15 @@ public class InsertSort {
     }
 
     public static void main(String[] args) {
-        int[] arr = new int[80000];
-        for (int i = 0; i < 80000; i++) {
-            arr[i] = (int) (Math.random() * 8000000); //生成一个[0, 8000000) 数
+        int[] arr = new int[80_000];
+        for (int i = 0; i < 80_000; i++) {
+            arr[i] = (int) (Math.random() * 8_000_000); //生成一个[0, 8000000) 数
         }
+        // int[] arr = {4, 9, 1, 8, 6, 2};
+
 
         long startTime = System.currentTimeMillis();
-        sort2(arr);
+        sort3(arr);
         System.out.printf("排序花费时间 %dms.", System.currentTimeMillis() - startTime);
     }
 }

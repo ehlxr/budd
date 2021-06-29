@@ -65,6 +65,34 @@ public class ShellSort {
         sort(arr, gap / 2);
     }
 
+    public static void sort2(int[] arr, int gap) {
+        if (arr == null || arr.length <= 0 || gap < 1) {
+            return;
+        }
+        for (int i = 0; i < gap; i++) {
+            // 对按照 gap 进行分组的元素进行插入排序
+            for (int j = gap + i; j < arr.length; j += gap) {
+                int k = j - gap;
+                int temp = arr[j];
+                for (; k >= 0; k -= gap) {
+                    if (arr[k] > temp) {
+                        arr[k + gap] = arr[k];
+                    } else {
+                        break;
+                    }
+                }
+
+                if (k + gap != j) {
+                    arr[k + gap] = temp;
+                }
+            }
+        }
+        // System.out.println(Arrays.toString(arr));
+
+        // 每次将 gap 折半减小，循环上述操作
+        sort2(arr, gap / 2);
+    }
+
     public static void swap(int[] arr, int i, int j) {
         int tmp = arr[i];
         arr[i] = arr[j];
@@ -72,13 +100,14 @@ public class ShellSort {
     }
 
     public static void main(String[] args) {
-        int[] arr = new int[80000];
-        for (int i = 0; i < 80000; i++) {
-            arr[i] = (int) (Math.random() * 8000000); //生成一个[0, 8000000) 数
+        int[] arr = new int[800_000];
+        for (int i = 0; i < 800_000; i++) {
+            arr[i] = (int) (Math.random() * 80_000_000); //生成一个[0, 8000000) 数
         }
+        // int[] arr = {4, 9, 1, 8, 6, 2};
 
         long startTime = System.currentTimeMillis();
-        sort(arr, arr.length / 2);
+        sort2(arr, arr.length / 2);
         System.out.printf("排序花费时间 %dms.", System.currentTimeMillis() - startTime);
     }
 
