@@ -24,8 +24,6 @@
 
 package io.github.ehlxr.sort;
 
-import java.util.Arrays;
-
 /**
  * 插入排序
  * <p>
@@ -67,13 +65,16 @@ public class InsertSort {
                 arr[j + 1] = arr[j]; // arr[j] 后移
                 j--;
             }
-            arr[j + 1] = value;
+
+            if (j + 1 != i) {
+                arr[j + 1] = value;
+            }
             // i=2, value=1
             //  4, 9, 1, 8, 6, 2
             //  4, 9, 9, 8, 6, 2
             //  4, 4, 9, 8, 6, 2
             //  1, 4, 9, 8, 6, 2
-            System.out.println(Arrays.toString(arr));
+            // System.out.println(Arrays.toString(arr));
         }
     }
 
@@ -94,7 +95,7 @@ public class InsertSort {
         }
 
         long startTime = System.currentTimeMillis();
-        sort(arr);
+        sort2(arr);
         System.out.printf("排序花费时间 %dms.", System.currentTimeMillis() - startTime);
     }
 }
