@@ -40,8 +40,16 @@ import java.util.Arrays;
  */
 public class QuickSort {
     public static void main(String[] args) {
-        int[] arr = {4, 9, 1, 8, 6, 2};
+        // int[] arr = {4, 9, 1, 8, 6, 2};
+        int[] arr = new int[800_000];
+        for (int i = 0; i < 800_000; i++) {
+            arr[i] = (int) (Math.random() * 80_000_000); //生成一个[0, 8000000) 数
+        }
+        // int[] arr = {4, 9, 1, 8, 6, 2};
+
+        long startTime = System.currentTimeMillis();
         sort(arr, 0, arr.length - 1);
+        System.out.printf("排序花费时间 %dms.", System.currentTimeMillis() - startTime);
     }
 
     /**
@@ -88,7 +96,7 @@ public class QuickSort {
             // 循环以上步骤，直到 l 和 r 相遇
         }
         // arr[k] = p;
-        System.out.println("Sorting: " + Arrays.toString(arr));
+        // System.out.println("Sorting: " + Arrays.toString(arr));
 
         sort(arr, i, k - 1);
         sort(arr, k + 1, j);
