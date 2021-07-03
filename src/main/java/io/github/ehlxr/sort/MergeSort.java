@@ -37,9 +37,17 @@ import java.util.Arrays;
  */
 public class MergeSort {
     public static void main(String[] args) {
-        int[] arr = {4, 9, 1, 8, 6, 2};
+        int[] arr = new int[800_000];
+        for (int i = 0; i < 800_000; i++) {
+            arr[i] = (int) (Math.random() * 80_000_000); //生成一个[0, 8000000) 数
+        }
+        long startTime = System.currentTimeMillis();
+        sort(arr);
+        System.out.printf("排序花费时间 %dms.", System.currentTimeMillis() - startTime);
+
+        // int[] arr = {4, 9, 1, 8, 6, 2};
         // merge(new int[]{1, 4, 9}, new int[]{2, 6, 8});
-        System.out.println(Arrays.toString(sort(arr)));
+        // System.out.println(Arrays.toString(sort(arr)));
     }
 
     /**

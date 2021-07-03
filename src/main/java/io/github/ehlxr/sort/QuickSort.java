@@ -45,8 +45,6 @@ public class QuickSort {
         for (int i = 0; i < 800_000; i++) {
             arr[i] = (int) (Math.random() * 80_000_000); //生成一个[0, 8000000) 数
         }
-        // int[] arr = {4, 9, 1, 8, 6, 2};
-
         long startTime = System.currentTimeMillis();
         sort(arr, 0, arr.length - 1);
         System.out.printf("排序花费时间 %dms.", System.currentTimeMillis() - startTime);
