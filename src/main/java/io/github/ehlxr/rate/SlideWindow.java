@@ -27,6 +27,7 @@ package io.github.ehlxr.rate;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 滑动时间窗口限流工具
@@ -65,7 +66,7 @@ public class SlideWindow {
      *
      * @return 是否允许通过
      */
-    public synchronized boolean isGo() {
+    public synchronized boolean acquire() {
         // 获取当前时间
         long nowTime = System.currentTimeMillis();
         // 如果队列还没满，则允许通过，并添加当前时间戳到队列开始位置
@@ -90,14 +91,36 @@ public class SlideWindow {
         }
     }
 
+    public synchronized void tryAcquire() throws InterruptedException {
+        long nowTime = System.currentTimeMillis();
+        if (list.size() < count) {
+            list.add(0, nowTime);
+            return;
+        }
+
+        long l = nowTime - list.get(count - 1);
+        if (l <= timeWindow) {
+            // 等待
+            TimeUnit.MILLISECONDS.sleep(timeWindow - l);
+            tryAcquire();
+        } else {
+            list.remove(count - 1);
+            list.add(0, nowTime);
+        }
+    }
+
     public static void main(String[] args) throws InterruptedException {
         SlideWindow slideWindow = new SlideWindow(5, 1000);
 
         while (true) {
             // 任意1秒内，只允许5次通过
-            if (slideWindow.isGo()) {
-                System.out.println(System.currentTimeMillis());
-            }
+            // if (slideWindow.acquire()) {
+            //     System.out.println(System.currentTimeMillis());
+            // }
+            slideWindow.tryAcquire();
+
+            System.out.println(System.currentTimeMillis());
+
             // 睡眠0-10ms
             Thread.sleep(new Random().nextInt(10));
         }
