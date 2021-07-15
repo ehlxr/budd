@@ -31,11 +31,10 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 滑动时间窗口限流工具
- * 本限流工具只适用于单机版，如果想要做全局限流，可以按本程序的思想，用redis的List结构去实现
- * https://www.cnblogs.com/dijia478/p/13807826.html#!comments
+ * 参考：https://www.cnblogs.com/dijia478/p/13807826.html#!comments
  *
- * @author dijia478
- * @date 2020-10-13 10:53
+ * @author ehlxr
+ * @since 2021-07-15 22:04.
  */
 public class SlideWindow {
     /**
@@ -91,6 +90,9 @@ public class SlideWindow {
         }
     }
 
+    /**
+     * 等待直到获得允许
+     */
     public synchronized void tryAcquire() throws InterruptedException {
         long nowTime = System.currentTimeMillis();
         if (list.size() < count) {
