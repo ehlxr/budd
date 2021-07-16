@@ -24,17 +24,15 @@
 
 package io.github.ehlxr;
 
-import com.google.common.collect.Maps;
-
 /**
  * Created by ehlxr on 2016/12/23.
  */
 public class dfd {
 
     public static void main(String[] args) {
-        var map = Maps.newHashMap();
-        map.put("d", 1);
-        System.out.println(map);
+        // var map = Maps.newHashMap();
+        // map.put("d", 1);
+        // System.out.println(map);
     }
 
     public void printCircle(int[][] matrix, int startX, int startY, int endX, int endY) {

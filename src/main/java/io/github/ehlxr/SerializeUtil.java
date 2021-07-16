@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package io.github.ehlxr.redis;
+package io.github.ehlxr;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

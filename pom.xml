@@ -5,18 +5,18 @@
     <artifactId>budd</artifactId>
     <packaging>war</packaging>
     <version>0.0.1-SNAPSHOT</version>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>11</source>
-                    <target>11</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+    <!--<build>-->
+    <!--    <plugins>-->
+    <!--        <plugin>-->
+    <!--            <groupId>org.apache.maven.plugins</groupId>-->
+    <!--            <artifactId>maven-compiler-plugin</artifactId>-->
+    <!--            <configuration>-->
+    <!--                <source>11</source>-->
+    <!--                <target>11</target>-->
+    <!--            </configuration>-->
+    <!--        </plugin>-->
+    <!--    </plugins>-->
+    <!--</build>-->
 
     <name>budd</name>
     <url>http://maven.apache.org</url>
@@ -173,7 +173,7 @@
         <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
-            <version>3.4.0</version>
+            <version>3.4.1</version>
         </dependency>
 
         <dependency>

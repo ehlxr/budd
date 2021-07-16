@@ -24,6 +24,7 @@
 
 package io.github.ehlxr.redis;
 
+import io.github.ehlxr.SerializeUtil;
 import org.springframework.util.StringUtils;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -83,8 +84,8 @@ public class JedisUtil {
      * 回收jedis
      */
     public static void returnJedis(Jedis jedis) {
-        if (jedis != null)
-            jedisPool.returnResource(jedis);
+        // if (jedis != null)
+        //     jedisPool.returnResource(jedis);
     }
 
     /**

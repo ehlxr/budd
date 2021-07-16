@@ -28,6 +28,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 /**
  * 滑动时间窗口限流工具
@@ -93,25 +94,19 @@ public class SlideWindow {
     /**
      * 等待直到获得允许
      */
-    public synchronized void tryAcquire() throws InterruptedException {
-        long nowTime = System.currentTimeMillis();
-        if (list.size() < count) {
-            list.add(0, nowTime);
-            return;
-        }
-
-        long l = nowTime - list.get(count - 1);
-        if (l <= timeWindow) {
+    public synchronized void tryAcquire(long timeout, TimeUnit unit) throws Exception {
+        if (!acquire()) {
+            long microsToWait = TimeUnit.MILLISECONDS.toMicros(System.currentTimeMillis() - list.get(count - 1));
+            if (unit.toMicros(timeout) < microsToWait) {
+                throw new TimeoutException();
+            }
             // 等待
-            TimeUnit.MILLISECONDS.sleep(timeWindow - l);
-            tryAcquire();
-        } else {
-            list.remove(count - 1);
-            list.add(0, nowTime);
+            TimeUnit.MICROSECONDS.sleep(microsToWait);
+            acquire();
         }
     }
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws Exception {
         SlideWindow slideWindow = new SlideWindow(5, 1000);
 
         while (true) {
@@ -119,7 +114,7 @@ public class SlideWindow {
             // if (slideWindow.acquire()) {
             //     System.out.println(System.currentTimeMillis());
             // }
-            slideWindow.tryAcquire();
+            slideWindow.tryAcquire(2, TimeUnit.SECONDS);
 
             System.out.println(System.currentTimeMillis());
 

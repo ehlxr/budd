@@ -24,18 +24,12 @@
 
 package io.github.ehlxr.http;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.Authenticator;
-import java.net.InetSocketAddress;
-import java.net.ProxySelector;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.file.Paths;
 import java.time.Duration;
-import java.util.concurrent.CompletableFuture;
 
 /**
  * @author ehlxr
