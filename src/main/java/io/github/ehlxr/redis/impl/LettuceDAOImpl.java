@@ -41,7 +41,7 @@ import java.util.concurrent.TimeUnit;
  * @since 2021-07-15 22:51.
  */
 public class LettuceDAOImpl implements RedisDAO {
-    private final Logger log = LoggerFactory.getLogger(LettuceDAOImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(LettuceDAOImpl.class);
 
     @Autowired
     private RedisTemplate<String, String> rt;
@@ -90,7 +90,7 @@ public class LettuceDAOImpl implements RedisDAO {
             }
             return false;
         } catch (Exception e) {
-            log.error("[logId:{}]", e);
+            log.error("", e);
             return false;
         }
     }
