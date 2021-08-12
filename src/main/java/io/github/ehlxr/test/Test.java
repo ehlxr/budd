@@ -24,6 +24,7 @@
 
 package io.github.ehlxr.test;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -34,7 +35,7 @@ import java.util.stream.Collectors;
  * Created by ehlxr on 2016/12/15.
  */
 public class Test {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // String s0 = "kvill";
         // String s1 = "kvill";
         // String s2 = "kvill";
@@ -84,5 +85,7 @@ public class Test {
         System.out.println(s1 == s2);
         System.out.println(s == t);   // false
         System.out.println(s.intern() == t.intern());   // true
+
+        System.in.read();
     }
 }
