@@ -13,13 +13,13 @@ import java.util.List;
  * @create 16:11
  */
 public class StudentTrace {
-    static List<WebPage> webpages = new ArrayList<WebPage>();
+    static List<WebPage> webpages = new ArrayList<>();
 
 
     public static void createWebPages() {
         for (int i = 0; i < 100; i++) {
             WebPage wp = new WebPage();
-            wp.setUrl("http://www." + Integer.toString(i) + ".com");
+            wp.setUrl("http://www." + i + ".com");
             wp.setContent(Integer.toString(i));
             webpages.add(wp);
         }

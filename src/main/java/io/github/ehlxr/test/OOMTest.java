@@ -28,7 +28,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * -Xms600m -Xmx600m -XX:SurvivorRatio=8 -XX:+PrintGCDetails -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/Users/ehlxr/Downloads/hprof/1.hprof
+ * -Xms600m -Xmx600m -XX:SurvivorRatio=8 -XX:+PrintGCDetails
+ * -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/Users/ehlxr/Downloads/hprof/1.hprof
  *
  * @author ehlxr
  * @since 2021-08-08 21:26.
@@ -48,7 +49,7 @@ public class OOMTest {
 }
 
 class Picture {
-    private byte[] pixels;
+    private final byte[] pixels;
 
     public Picture(int length) {
         this.pixels = new byte[length];

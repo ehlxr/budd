@@ -73,7 +73,6 @@ public interface RedisDAO {
     /**
      * 获取分布式锁
      *
-     * @param logId      日志 id
      * @param key        key
      * @param value      value，需要保证全局唯一，用来删除分布式锁时判断身份使用
      * @param expireTime 锁过期时间，毫秒，防止业务崩溃未删除锁，导致死锁
@@ -84,7 +83,6 @@ public interface RedisDAO {
     /**
      * 释放分布式锁
      *
-     * @param logId 日志 id
      * @param key   key
      * @param value value，需要和获取锁时传入的一致
      * @return 是否释放成功锁
@@ -95,7 +93,6 @@ public interface RedisDAO {
      * 分布式限流队列，在时间窗口内（包含该时间点），判断是否达到限流的阀值
      * 本接口实现的方法通过加锁避免并发问题，性能不高。只是为了说明限流逻辑如何实现
      *
-     * @param logId      日志 id
      * @param key        key
      * @param count      限流阀值
      * @param timeWindow 限流时间窗口
@@ -107,7 +104,6 @@ public interface RedisDAO {
      * 分布式限流队列，在时间窗口内（包含该时间点），判断是否达到限流的阀值
      * 本接口实现的方法通过 Lua 脚本避免并发问题，性能较高。
      *
-     * @param logId      日志 id
      * @param key        key
      * @param count      限流阀值
      * @param timeWindow 限流时间窗口

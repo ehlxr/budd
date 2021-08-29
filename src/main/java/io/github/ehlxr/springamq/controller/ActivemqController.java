@@ -26,7 +26,6 @@ package io.github.ehlxr.springamq.controller;
 
 import io.github.ehlxr.springamq.mq.producer.queue.QueueSender;
 import io.github.ehlxr.springamq.mq.producer.topic.TopicSender;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -37,8 +36,8 @@ import javax.annotation.Resource;
 /**
  * @description controller测试
  */
-@Controller
-@RequestMapping("/activemq")
+// @Controller
+// @RequestMapping("/activemq")
 public class ActivemqController {
 
     @Resource

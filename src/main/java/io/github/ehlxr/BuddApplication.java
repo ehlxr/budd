@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright © 2020 xrv <xrg@live.com>
+ * Copyright © 2021 xrv <xrg@live.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,26 +22,18 @@
  * THE SOFTWARE.
  */
 
+package io.github.ehlxr;
 
-package io.github.ehlxr.springamq.mq.consumer.queue;
-
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.MessageListener;
-import javax.jms.TextMessage;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * @description  队列消息监听器
+ * @author ehlxr
+ * @since 2021-08-29 09:35.
  */
-// @Component
-public class QueueReceiver2 implements MessageListener {
-
-	@Override
-	public void onMessage(Message message) {
-		try {
-			System.out.println("QueueReceiver2接收到消息:"+((TextMessage)message).getText());
-		} catch (JMSException e) {
-			e.printStackTrace();
-		}
-	}
+@SpringBootApplication
+public class BuddApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(BuddApplication.class, args);
+    }
 }

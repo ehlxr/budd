@@ -25,8 +25,6 @@
 
 package io.github.ehlxr.springamq.mq.consumer.queue;
 
-import org.springframework.stereotype.Component;
-
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
@@ -35,7 +33,7 @@ import javax.jms.TextMessage;
 /**
  * @description  队列消息监听器
  */
-@Component
+// @Component
 public class QueueReceiver1 implements MessageListener {
 
 	@Override

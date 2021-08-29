@@ -27,7 +27,6 @@ package io.github.ehlxr.redis.impl;
 import io.github.ehlxr.redis.RedisDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import redis.clients.jedis.JedisCluster;
 import redis.clients.jedis.params.SetParams;
 
@@ -41,10 +40,11 @@ import java.util.List;
  * @author ehlxr
  * @since 2021-07-15 22:44.
  */
+// @Component("jedisDAOImpl")
 public class JedisDAOImpl implements RedisDAO {
     private final Logger log = LoggerFactory.getLogger(JedisDAOImpl.class);
 
-    @Autowired
+    // @Autowired
     private JedisCluster jc;
 
     @Override

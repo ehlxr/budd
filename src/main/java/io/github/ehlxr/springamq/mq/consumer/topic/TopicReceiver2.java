@@ -24,8 +24,6 @@
 
 package io.github.ehlxr.springamq.mq.consumer.topic;
 
-import org.springframework.stereotype.Component;
-
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
@@ -34,7 +32,7 @@ import javax.jms.TextMessage;
 /**
  * @description  Topic消息监听器
  */
-@Component
+// @Component
 public class TopicReceiver2 implements MessageListener{
 
 	@Override

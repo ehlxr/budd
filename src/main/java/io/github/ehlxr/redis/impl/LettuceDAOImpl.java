@@ -32,6 +32,7 @@ import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.data.redis.core.script.RedisScript;
+import org.springframework.stereotype.Component;
 
 import java.util.Collections;
 import java.util.concurrent.TimeUnit;
@@ -40,18 +41,19 @@ import java.util.concurrent.TimeUnit;
  * @author ehlxr
  * @since 2021-07-15 22:51.
  */
+@Component("lettuceDAOImpl")
 public class LettuceDAOImpl implements RedisDAO {
     private static final Logger log = LoggerFactory.getLogger(LettuceDAOImpl.class);
 
     @Autowired
-    private RedisTemplate<String, String> rt;
+    private RedisTemplate<String, String> redisTemplate;
 
     @Override
     public Boolean getDistributedLock(String key, String value, long expireTime) {
         Boolean set = false;
         try {
-            set = rt.opsForValue().setIfAbsent(key, value, expireTime, TimeUnit.MILLISECONDS);
-            log.debug("getLock redis key: {}, value: {}, expireTime: {}, result: {}", key, value, expireTime, set);
+            set = redisTemplate.opsForValue().setIfAbsent(key, value, expireTime, TimeUnit.MILLISECONDS);
+            log.info("getLock redis key: {}, value: {}, expireTime: {}, result: {}", key, value, expireTime, set);
         } catch (Exception e) {
             log.error("getLock redis key: {}, value: {}, expireTime: {}", key, value, expireTime, e);
         }
@@ -63,7 +65,7 @@ public class LettuceDAOImpl implements RedisDAO {
         Long execute = null;
         try {
             RedisScript<Long> redisScript = new DefaultRedisScript<>(RELEASE_LOCK_LUA, Long.class);
-            execute = rt.execute(redisScript, Collections.singletonList(key), value);
+            execute = redisTemplate.execute(redisScript, Collections.singletonList(key), value);
             log.debug("releaseLock redis key: {}, value: {}, result: {}", key, value, execute);
         } catch (Exception e) {
             log.error("releaseLock redis key: {}, value: {}", key, value, e);
@@ -75,17 +77,17 @@ public class LettuceDAOImpl implements RedisDAO {
     public synchronized Boolean slideWindow(String key, int count, long timeWindow) {
         try {
             long nowTime = System.currentTimeMillis();
-            ListOperations<String, String> list = rt.opsForList();
+            ListOperations<String, String> list = redisTemplate.opsForList();
             String farTime = list.index(key, count - 1);
             if (farTime == null) {
                 list.leftPush(key, String.valueOf(nowTime));
-                rt.expire(key, timeWindow + 1000L, TimeUnit.MILLISECONDS);
+                redisTemplate.expire(key, timeWindow + 1000L, TimeUnit.MILLISECONDS);
                 return true;
             }
             if (nowTime - Long.parseLong(farTime) > timeWindow) {
                 list.rightPop(key);
                 list.leftPush(key, String.valueOf(nowTime));
-                rt.expire(key, timeWindow + 1000L, TimeUnit.MILLISECONDS);
+                redisTemplate.expire(key, timeWindow + 1000L, TimeUnit.MILLISECONDS);
                 return true;
             }
             return false;
@@ -103,7 +105,7 @@ public class LettuceDAOImpl implements RedisDAO {
         Long execute = null;
         try {
             RedisScript<Long> redisScript = new DefaultRedisScript<>(SLIDE_WINDOW_LUA, Long.class);
-            execute = rt.execute(redisScript, Collections.singletonList(key), String.valueOf(count - 1), String.valueOf(timeWindow), String.valueOf(System.currentTimeMillis()));
+            execute = redisTemplate.execute(redisScript, Collections.singletonList(key), String.valueOf(count - 1), String.valueOf(timeWindow), String.valueOf(System.currentTimeMillis()));
             log.debug("slideWindowLua redis key: {}, count: {}, timeWindow: {}, result: {}", key, count, timeWindow, execute);
         } catch (Exception e) {
             log.error("slideWindowLua redis key: {}, count: {}, timeWindow: {}", key, count, timeWindow, e);
