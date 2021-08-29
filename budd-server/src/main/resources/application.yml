@@ -1,0 +1,18 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: budd
+
+server:
+  tomcat:
+    uri-encoding: UTF-8
+    accept-count: 1000
+    connection-timeout: 30000
+  servlet:
+    context-path: /budd
+    session:
+      timeout: 60
+logging:
+  file:
+    path: /Users/ehlxr/logs/${spring.application.name}

@@ -1,0 +1,17 @@
+server:
+  port: 8081
+
+springfox:
+  documentation:
+    enabled: true
+swagger:
+  base-package: io.github.ehlxr
+  base-path: /**
+  contact:
+    email: xrv@live.com
+    name: rtg
+    url: https://ehlxr.me
+  description: swagger of budd server
+  exclude-path: /error, /ops/**
+  title: budd swagger
+  version: 0.0.1-SNAPSHOT
