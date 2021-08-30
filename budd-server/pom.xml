@@ -37,7 +37,7 @@
 
         <dependency>
             <groupId>io.github.ehlxr</groupId>
-            <artifactId>budd-common</artifactId>
+            <artifactId>budd-demo</artifactId>
         </dependency>
     </dependencies>
 

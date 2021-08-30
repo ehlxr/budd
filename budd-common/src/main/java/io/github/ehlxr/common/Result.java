@@ -15,7 +15,7 @@ import java.util.Objects;
 /**
  * 统一输出结果集
  *
- * @author lixiangrong
+ * @author ehlxr
  * @since 2020/3/18.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)

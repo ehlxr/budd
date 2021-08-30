@@ -53,6 +53,12 @@
                 <artifactId>budd-common</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>io.github.ehlxr</groupId>
+                <artifactId>budd-demo</artifactId>
+                <version>${project.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

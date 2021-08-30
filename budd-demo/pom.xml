@@ -10,4 +10,10 @@
     <artifactId>budd-demo</artifactId>
     <name>budd-demo</name>
 
+    <dependencies>
+        <dependency>
+            <groupId>io.github.ehlxr</groupId>
+            <artifactId>budd-common</artifactId>
+        </dependency>
+    </dependencies>
 </project>
