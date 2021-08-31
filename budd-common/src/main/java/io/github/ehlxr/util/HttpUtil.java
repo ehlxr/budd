@@ -29,19 +29,55 @@ import io.github.ehlxr.enums.FormType;
 import io.github.ehlxr.enums.HttpContentType;
 import okhttp3.*;
 
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 import java.io.File;
+import java.security.SecureRandom;
+import java.security.cert.X509Certificate;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
 
 /**
  * @author ehlxr
  * @since 2020/4/20.
  */
 public class HttpUtil {
-    private static final OkHttpClient OK_HTTP_CLIENT = new OkHttpClient.Builder()
+    private static OkHttpClient OK_HTTP_CLIENT = new OkHttpClient.Builder()
             .connectTimeout(1, TimeUnit.MINUTES)
             .readTimeout(1, TimeUnit.MINUTES)
             .build();
+
+
+    public static void trustAllClient() {
+        Try.of(() -> {
+            X509TrustManager x509TrustManager = new X509TrustManager() {
+                @Override
+                public void checkClientTrusted(X509Certificate[] chain, String authType) {
+                }
+
+                @Override
+                public void checkServerTrusted(X509Certificate[] chain, String authType) {
+                }
+
+                @Override
+                public X509Certificate[] getAcceptedIssuers() {
+                    return new X509Certificate[]{};
+                }
+            };
+
+            SSLContext sslContext = SSLContext.getInstance("TLS");
+            sslContext.init(null, new TrustManager[]{x509TrustManager}, new SecureRandom());
+
+            OK_HTTP_CLIENT = new OkHttpClient.Builder()
+                    .connectTimeout(1, TimeUnit.MINUTES)
+                    .readTimeout(1, TimeUnit.MINUTES)
+                    .sslSocketFactory(sslContext.getSocketFactory(), x509TrustManager)
+                    .hostnameVerifier((s, sslSession) -> true)
+                    .build();
+        }).trap(Throwable::printStackTrace).run();
+    }
 
     public static String get(String url, Map<String, String> headers) {
         String resp;
