@@ -26,6 +26,8 @@ package io.github.ehlxr.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,6 +38,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Api(tags = "测试辅助接口")
 public class IndexController {
+    private static final Logger log = LoggerFactory.getLogger(IndexController.class);
 
     /**
      * 健康检测
@@ -43,6 +46,8 @@ public class IndexController {
     @ApiOperation(value = "健康检测", notes = "健康检测")
     @GetMapping("/healthcheck")
     public String healthcheck() {
+        log.debug("env {}", System.getProperty("env"));
+
         return "ok";
     }
 
