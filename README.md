@@ -6,3 +6,7 @@
 [![](https://badgen.net/github/releases/ehlxr/budd)](https://github.com/ehlxr/budd/releases)
 
 常用的一些 Java 代码
+
+## Thanks to the following organizations for providing open source licenses
+
+[<img src="https://cdn.ehlxr.top/jetbrains.png" width = "200" height = "217" alt="图片名称" align=center />](https://jb.gg/OpenSource)
