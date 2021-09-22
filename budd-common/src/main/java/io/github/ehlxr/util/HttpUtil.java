@@ -44,11 +44,10 @@ import java.util.concurrent.TimeUnit;
  * @since 2020/4/20.
  */
 public class HttpUtil {
-    private static OkHttpClient OK_HTTP_CLIENT = new OkHttpClient.Builder()
+    private static OkHttpClient client = new OkHttpClient.Builder()
             .connectTimeout(1, TimeUnit.MINUTES)
             .readTimeout(1, TimeUnit.MINUTES)
             .build();
-
 
     public static void trustAllClient() {
         Try.of(() -> {
@@ -70,7 +69,7 @@ public class HttpUtil {
             SSLContext sslContext = SSLContext.getInstance("TLS");
             sslContext.init(null, new TrustManager[]{x509TrustManager}, new SecureRandom());
 
-            OK_HTTP_CLIENT = new OkHttpClient.Builder()
+            client = new OkHttpClient.Builder()
                     .connectTimeout(1, TimeUnit.MINUTES)
                     .readTimeout(1, TimeUnit.MINUTES)
                     .sslSocketFactory(sslContext.getSocketFactory(), x509TrustManager)
@@ -86,7 +85,7 @@ public class HttpUtil {
                     .url(url)
                     .headers(Headers.of(headers))
                     .build();
-            Response response = OK_HTTP_CLIENT.newCall(request).execute();
+            Response response = client.newCall(request).execute();
             if (response.isSuccessful()) {
                 resp = response.body() != null ? response.body().string() : "";
             } else {
@@ -113,7 +112,7 @@ public class HttpUtil {
                     .post(RequestBody.create(mediaType, body))
                     .build();
 
-            Response response = OK_HTTP_CLIENT.newCall(request).execute();
+            Response response = client.newCall(request).execute();
             if (response.isSuccessful()) {
                 resp = response.body() != null ? response.body().string() : "";
             } else {
@@ -155,7 +154,7 @@ public class HttpUtil {
                     .post(builder.build())
                     .headers(Headers.of(header))
                     .build();
-            Response response = OK_HTTP_CLIENT.newCall(request).execute();
+            Response response = client.newCall(request).execute();
             if (response.isSuccessful()) {
                 resp = response.body() != null ? response.body().string() : "";
             } else {
@@ -173,6 +172,10 @@ public class HttpUtil {
         param.forEach((k, v) -> sb.append(k).append("=").append(v).append("&"));
 
         return sb.substring(0, sb.length() - 1);
+    }
+
+    public static void main(String[] args) {
+        HttpUtil.trustAllClient();
     }
 }
 
