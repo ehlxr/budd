@@ -22,17 +22,17 @@
  * THE SOFTWARE.
  */
 
-package io.github.ehlxr.algorithm;
+package io.github.ehlxr.algorithm.dp;
 
 /**
  * 在一个数组 arr 中，找出一组不相邻的数字，使得最后的和最大
- *
+ * <p>
  * 图解 https://cdn.jsdelivr.net/gh/0vo/oss/images/dp.jpg
  *
  * @author ehlxr
  * @since 2021-10-31 22:46.
  */
-public class DynamicProgramming {
+public class FindMaxSum {
     public static int recOpt(int[] arr, int i) {
         if (i == 0) {
             return arr[0];
