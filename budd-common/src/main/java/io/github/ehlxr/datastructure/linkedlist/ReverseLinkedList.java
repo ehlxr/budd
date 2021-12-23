@@ -25,6 +25,8 @@
 package io.github.ehlxr.datastructure.linkedlist;
 
 /**
+ * 反转链表
+ *
  * @author ehlxr
  * @since 2021-12-23 14:40.
  */
