@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright © 2021 xrv <xrg@live.com>
+ * Copyright © 2020 xrv <xrg@live.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,71 +22,56 @@
  * THE SOFTWARE.
  */
 
-package io.github.ehlxr.datastructure.queue;
-
-import io.github.ehlxr.datastructure.Node;
+package io.github.ehlxr.datastructure.stack;
 
 /**
- * 基于链表实现的队列
- * <p>
- * 入队时间复杂度 O(n)
- *
  * @author ehlxr
- * @since 2021-12-25 16:02.
+ * @since 2021-12-25 22:10.
  */
-public class LinkedListQueue {
-    private Node<Integer> head;
+public class ArrayStack {
+    private final Integer[] data;
+    private final int size;
+    // 栈顶下标
+    private int top = 0;
 
     public static void main(String[] args) {
-        LinkedListQueue queue = new LinkedListQueue();
+        ArrayStack stack = new ArrayStack(5);
         for (int i = 0; i < 6; i++) {
-            System.out.println(queue.enqueue(i));
+            System.out.println(stack.push(i));
         }
 
         for (int i = 0; i < 6; i++) {
-            queue.getData().print();
-            System.out.println(queue.dequeue());
+            System.out.println(stack.pop());
         }
 
-        System.out.println(queue.dequeue());
+    }
+
+    public ArrayStack(int size) {
+        data = new Integer[size];
+        this.size = size;
     }
 
     /**
-     * 入队（从队尾添加元素）
-     * 时间复杂度 O(n)
+     * 入栈
      */
-    public boolean enqueue(Integer item) {
-        Node<Integer> node = new Node<>(item, null);
-        if (head == null) {
-            head = node;
-            return true;
+    public boolean push(Integer item) {
+        // 判断栈是否已满
+        if (top == size) {
+            return false;
         }
+        data[top++] = item;
 
-        // 找到队尾
-        Node<Integer> tail = head;
-        while (tail.getNext() != null) {
-            tail = tail.getNext();
-        }
-
-        tail.setNext(node);
         return true;
     }
 
     /**
-     * 出队（从队首取出元素）
+     * 出栈
      */
-    public Integer dequeue() {
-        if (head == null) {
+    public Integer pop() {
+        // 判断栈是否为空
+        if (top == 0) {
             return null;
         }
-
-        Integer val = head.getVal();
-        head = head.getNext();
-
-        return val;
-    }
-
-    public Node<Integer> getData() {
-        return head;
+        return data[--top];
     }
 }

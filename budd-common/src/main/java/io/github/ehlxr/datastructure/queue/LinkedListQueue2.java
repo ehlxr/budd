@@ -24,7 +24,7 @@
 
 package io.github.ehlxr.datastructure.queue;
 
-import io.github.ehlxr.datastructure.linkedlist.Node;
+import io.github.ehlxr.datastructure.Node;
 
 /**
  * 基于链表实现的队列
@@ -35,14 +35,13 @@ import io.github.ehlxr.datastructure.linkedlist.Node;
  * @since 2021-12-25 16:48.
  */
 public class LinkedListQueue2 {
-    private Node head = null;
-    private Node tail = null;
+    private Node<Integer> head = null;
+    private Node<Integer> tail = null;
 
     public static void main(String[] args) {
         LinkedListQueue2 queue = new LinkedListQueue2();
         for (int i = 0; i < 6; i++) {
             System.out.println(queue.enqueue(i));
-            queue.getData().print();
         }
 
         for (int i = 0; i < 6; i++) {
@@ -58,7 +57,7 @@ public class LinkedListQueue2 {
      * 时间复杂度 O(1)
      */
     public boolean enqueue(Integer item) {
-        Node node = new Node(item, null);
+        Node<Integer> node = new Node<Integer>(item, null);
 
         if (tail == null) {
             head = node;
@@ -89,7 +88,7 @@ public class LinkedListQueue2 {
         return val;
     }
 
-    public Node getData() {
+    public Node<Integer> getData() {
         return head;
     }
 }

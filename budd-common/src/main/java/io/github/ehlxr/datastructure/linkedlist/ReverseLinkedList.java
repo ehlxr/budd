@@ -24,6 +24,8 @@
 
 package io.github.ehlxr.datastructure.linkedlist;
 
+import io.github.ehlxr.datastructure.Node;
+
 /**
  * 反转链表
  *
@@ -32,12 +34,12 @@ package io.github.ehlxr.datastructure.linkedlist;
  */
 public class ReverseLinkedList {
     public static void main(String[] args) {
-        Node n5 = new Node(5, null);
-        Node n4 = new Node(4, n5);
-        Node n3 = new Node(3, n4);
-        Node n2 = new Node(2, n3);
-        Node n1 = new Node(1, n2);
-        Node head = new Node(0, n1);
+        Node<Integer> n5 = new Node<>(5, null);
+        Node<Integer> n4 = new Node<>(4, n5);
+        Node<Integer> n3 = new Node<>(3, n4);
+        Node<Integer> n2 = new Node<>(2, n3);
+        Node<Integer> n1 = new Node<>(1, n2);
+        Node<Integer> head = new Node<>(0, n1);
 
         head.print();
 
@@ -50,15 +52,15 @@ public class ReverseLinkedList {
 
 
     // 循环方式
-    public static Node reverse(Node head) {
+    public static Node<Integer> reverse(Node<Integer> head) {
         if (head == null || head.getNext() == null) {
             return head;
         }
-        Node pre = null;
+        Node<Integer> pre = null;
 
-        Node cur = head;
+        Node<Integer> cur = head;
         while (cur != null) {
-            Node next = cur.getNext();
+            Node<Integer> next = cur.getNext();
             cur.setNext(pre);
             pre = cur;
 
@@ -69,13 +71,13 @@ public class ReverseLinkedList {
     }
 
     // 递归一
-    public static Node reverse2(Node head) {
+    public static Node<Integer> reverse2(Node<Integer> head) {
         if (head == null || head.getNext() == null) {
             return head;
         }
 
-        Node next = head.getNext();
-        Node node = reverse2(next);
+        Node<Integer> next = head.getNext();
+        Node<Integer> node = reverse2(next);
 
         head.getNext().setNext(head);
         head.setNext(null);
@@ -84,13 +86,13 @@ public class ReverseLinkedList {
     }
 
     // 递归二
-    public static Node reverse3(Node head, Node pre) {
+    public static Node<Integer> reverse3(Node<Integer> head, Node<Integer> pre) {
         if (head == null) {
             return pre;
         }
 
-        Node next = head.getNext();
-        Node node = reverse3(next, head);
+        Node<Integer> next = head.getNext();
+        Node<Integer> node = reverse3(next, head);
 
         head.setNext(pre);
 

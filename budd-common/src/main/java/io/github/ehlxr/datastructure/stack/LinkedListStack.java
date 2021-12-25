@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright © 2021 xrv <xrg@live.com>
+ * Copyright © 2020 xrv <xrg@live.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,50 +22,59 @@
  * THE SOFTWARE.
  */
 
-package io.github.ehlxr.datastructure.linkedlist;
+package io.github.ehlxr.datastructure.stack;
+
+import io.github.ehlxr.datastructure.Node;
 
 /**
- * 链表节点数据结构
- *
  * @author ehlxr
- * @since 2021-12-23 14:41.
+ * @since 2021-12-25 22:28.
  */
-public class Node {
-    private Integer val;
-    private Node next;
+public class LinkedListStack {
+    private Node<Integer> head;
 
-    public Node(Integer val, Node next) {
-        this.val = val;
-        this.next = next;
+    public Node<Integer> getData() {
+        return head;
     }
 
-    public Integer getVal() {
-        return val;
-    }
-
-    public void setVal(Integer val) {
-        this.val = val;
-    }
-
-    public Node getNext() {
-        return next;
-    }
-
-    public void setNext(Node next) {
-        this.next = next;
-    }
-
-    public void print() {
-        Node n = this;
-        while (n != null) {
-            System.out.printf("%s -> ", n);
-            n = n.getNext();
+    public static void main(String[] args) {
+        LinkedListStack stack = new LinkedListStack();
+        for (int i = 0; i < 6; i++) {
+            System.out.println(stack.push(i));
         }
-        System.out.println();
+
+        for (int i = 0; i < 6; i++) {
+            stack.getData().print();
+            System.out.println(stack.pop());
+        }
+
     }
 
-    @Override
-    public String toString() {
-        return "Node{" + val + '}';
+    /**
+     * 入栈
+     */
+    public boolean push(Integer item) {
+        Node<Integer> node = new Node<>(item, null);
+        if (head == null) {
+            head = node;
+            return true;
+        }
+
+        node.setNext(head);
+        head = node;
+        return true;
+    }
+
+    /**
+     * 出栈
+     */
+    public Integer pop() {
+        if (head == null) {
+            return null;
+        }
+
+        Integer val = head.getVal();
+        head = head.getNext();
+        return val;
     }
 }
