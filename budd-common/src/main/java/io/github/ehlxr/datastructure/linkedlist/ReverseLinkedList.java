@@ -32,45 +32,33 @@ package io.github.ehlxr.datastructure.linkedlist;
  */
 public class ReverseLinkedList {
     public static void main(String[] args) {
-        ListNode n5 = new ListNode(5, null);
-        ListNode n4 = new ListNode(4, n5);
-        ListNode n3 = new ListNode(3, n4);
-        ListNode n2 = new ListNode(2, n3);
-        ListNode n1 = new ListNode(1, n2);
-        ListNode head = new ListNode(0, n1);
+        Node n5 = new Node(5, null);
+        Node n4 = new Node(4, n5);
+        Node n3 = new Node(3, n4);
+        Node n2 = new Node(2, n3);
+        Node n1 = new Node(1, n2);
+        Node head = new Node(0, n1);
 
-        print(head);
+        head.print();
 
         System.out.println("-------------");
         // head = reverse(head);
         head = reverse2(head);
         // head = reverse3(head, null);
-        print(head);
-
+        head.print();
     }
 
-    public static void print(ListNode head) {
-        if (head == null) {
-            return;
-        }
-
-        ListNode n = head;
-        while (n != null) {
-            System.out.println(n);
-            n = n.getNext();
-        }
-    }
 
     // 循环方式
-    public static ListNode reverse(ListNode head) {
+    public static Node reverse(Node head) {
         if (head == null || head.getNext() == null) {
             return head;
         }
-        ListNode pre = null;
+        Node pre = null;
 
-        ListNode cur = head;
+        Node cur = head;
         while (cur != null) {
-            ListNode next = cur.getNext();
+            Node next = cur.getNext();
             cur.setNext(pre);
             pre = cur;
 
@@ -81,13 +69,13 @@ public class ReverseLinkedList {
     }
 
     // 递归一
-    public static ListNode reverse2(ListNode head) {
+    public static Node reverse2(Node head) {
         if (head == null || head.getNext() == null) {
             return head;
         }
 
-        ListNode next = head.getNext();
-        ListNode node = reverse2(next);
+        Node next = head.getNext();
+        Node node = reverse2(next);
 
         head.getNext().setNext(head);
         head.setNext(null);
@@ -96,13 +84,13 @@ public class ReverseLinkedList {
     }
 
     // 递归二
-    public static ListNode reverse3(ListNode head, ListNode pre) {
+    public static Node reverse3(Node head, Node pre) {
         if (head == null) {
             return pre;
         }
 
-        ListNode next = head.getNext();
-        ListNode node = reverse3(next, head);
+        Node next = head.getNext();
+        Node node = reverse3(next, head);
 
         head.setNext(pre);
 

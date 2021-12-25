@@ -30,35 +30,42 @@ package io.github.ehlxr.datastructure.linkedlist;
  * @author ehlxr
  * @since 2021-12-23 14:41.
  */
-public class ListNode {
-    private int val;
-    private ListNode next;
+public class Node {
+    private Integer val;
+    private Node next;
 
-    public ListNode(int val, ListNode next) {
+    public Node(Integer val, Node next) {
         this.val = val;
         this.next = next;
     }
 
-    public int getVal() {
+    public Integer getVal() {
         return val;
     }
 
-    public void setVal(int val) {
+    public void setVal(Integer val) {
         this.val = val;
     }
 
-    public ListNode getNext() {
+    public Node getNext() {
         return next;
     }
 
-    public void setNext(ListNode next) {
+    public void setNext(Node next) {
         this.next = next;
+    }
+
+    public void print() {
+        Node n = this;
+        while (n != null) {
+            System.out.printf("%s -> ", n);
+            n = n.getNext();
+        }
+        System.out.println();
     }
 
     @Override
     public String toString() {
-        return "SingleNode{" +
-                "val=" + val +
-                '}';
+        return "Node{" + val + '}';
     }
 }
