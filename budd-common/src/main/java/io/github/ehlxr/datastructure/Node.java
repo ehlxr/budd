@@ -30,33 +30,33 @@ package io.github.ehlxr.datastructure;
  * @author ehlxr
  * @since 2021-12-23 14:41.
  */
-public class Node<K> {
-    private K val;
-    private Node<K> next;
+public class Node<T> {
+    private T val;
+    private Node<T> next;
 
-    public Node(K val, Node<K> next) {
+    public Node(T val, Node<T> next) {
         this.val = val;
         this.next = next;
     }
 
-    public K getVal() {
+    public T getVal() {
         return val;
     }
 
-    public void setVal(K val) {
+    public void setVal(T val) {
         this.val = val;
     }
 
-    public Node<K> getNext() {
+    public Node<T> getNext() {
         return next;
     }
 
-    public void setNext(Node<K> next) {
+    public void setNext(Node<T> next) {
         this.next = next;
     }
 
     public void print() {
-        Node<K> n = this;
+        Node<T> n = this;
         while (n != null) {
             System.out.printf("%s -> ", n.getVal());
             n = n.getNext();

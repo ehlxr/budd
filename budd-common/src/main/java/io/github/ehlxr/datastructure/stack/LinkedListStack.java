@@ -30,15 +30,15 @@ import io.github.ehlxr.datastructure.Node;
  * @author ehlxr
  * @since 2021-12-25 22:28.
  */
-public class LinkedListStack {
-    private Node<Integer> head;
+public class LinkedListStack<T> {
+    private Node<T> head;
 
-    public Node<Integer> getData() {
+    public Node<T> getData() {
         return head;
     }
 
     public static void main(String[] args) {
-        LinkedListStack stack = new LinkedListStack();
+        LinkedListStack<Integer> stack = new LinkedListStack<>();
         for (int i = 0; i < 6; i++) {
             System.out.println(stack.push(i));
         }
@@ -53,8 +53,8 @@ public class LinkedListStack {
     /**
      * 入栈
      */
-    public boolean push(Integer item) {
-        Node<Integer> node = new Node<>(item, null);
+    public boolean push(T item) {
+        Node<T> node = new Node<>(item, null);
         if (head == null) {
             head = node;
             return true;
@@ -68,13 +68,17 @@ public class LinkedListStack {
     /**
      * 出栈
      */
-    public Integer pop() {
+    public T pop() {
         if (head == null) {
             return null;
         }
 
-        Integer val = head.getVal();
+        T val = head.getVal();
         head = head.getNext();
         return val;
+    }
+
+    public void clear() {
+        head = null;
     }
 }

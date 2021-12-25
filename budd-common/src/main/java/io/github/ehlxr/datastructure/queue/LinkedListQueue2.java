@@ -34,12 +34,12 @@ import io.github.ehlxr.datastructure.Node;
  * @author ehlxr
  * @since 2021-12-25 16:48.
  */
-public class LinkedListQueue2 {
-    private Node<Integer> head = null;
-    private Node<Integer> tail = null;
+public class LinkedListQueue2<T> {
+    private Node<T> head = null;
+    private Node<T> tail = null;
 
     public static void main(String[] args) {
-        LinkedListQueue2 queue = new LinkedListQueue2();
+        LinkedListQueue2<Integer> queue = new LinkedListQueue2<>();
         for (int i = 0; i < 6; i++) {
             System.out.println(queue.enqueue(i));
         }
@@ -56,8 +56,8 @@ public class LinkedListQueue2 {
      * 入队（从队尾添加元素）
      * 时间复杂度 O(1)
      */
-    public boolean enqueue(Integer item) {
-        Node<Integer> node = new Node<Integer>(item, null);
+    public boolean enqueue(T item) {
+        Node<T> node = new Node<>(item, null);
 
         if (tail == null) {
             head = node;
@@ -73,12 +73,12 @@ public class LinkedListQueue2 {
     /**
      * 出队（从队首取出元素）
      */
-    public Integer dequeue() {
+    public T dequeue() {
         if (head == null) {
             return null;
         }
 
-        Integer val = head.getVal();
+        T val = head.getVal();
         head = head.getNext();
         // 如果队列为空了，需要把 tail 置空
         if (head == null) {
@@ -88,7 +88,7 @@ public class LinkedListQueue2 {
         return val;
     }
 
-    public Node<Integer> getData() {
+    public Node<T> getData() {
         return head;
     }
 }

@@ -32,8 +32,9 @@ import io.github.ehlxr.datastructure.Node;
  * @author ehlxr
  * @since 2021-12-23 14:40.
  */
-public class ReverseLinkedList {
+public class ReverseLinkedList<T> {
     public static void main(String[] args) {
+        ReverseLinkedList<Integer> reverseLinkedList = new ReverseLinkedList<>();
         Node<Integer> n5 = new Node<>(5, null);
         Node<Integer> n4 = new Node<>(4, n5);
         Node<Integer> n3 = new Node<>(3, n4);
@@ -45,22 +46,22 @@ public class ReverseLinkedList {
 
         System.out.println("-------------");
         // head = reverse(head);
-        head = reverse2(head);
+        head = reverseLinkedList.reverse2(head);
         // head = reverse3(head, null);
         head.print();
     }
 
 
     // 循环方式
-    public static Node<Integer> reverse(Node<Integer> head) {
+    public Node<T> reverse(Node<T> head) {
         if (head == null || head.getNext() == null) {
             return head;
         }
-        Node<Integer> pre = null;
+        Node<T> pre = null;
 
-        Node<Integer> cur = head;
+        Node<T> cur = head;
         while (cur != null) {
-            Node<Integer> next = cur.getNext();
+            Node<T> next = cur.getNext();
             cur.setNext(pre);
             pre = cur;
 
@@ -71,13 +72,13 @@ public class ReverseLinkedList {
     }
 
     // 递归一
-    public static Node<Integer> reverse2(Node<Integer> head) {
+    public Node<T> reverse2(Node<T> head) {
         if (head == null || head.getNext() == null) {
             return head;
         }
 
-        Node<Integer> next = head.getNext();
-        Node<Integer> node = reverse2(next);
+        Node<T> next = head.getNext();
+        Node<T> node = reverse2(next);
 
         head.getNext().setNext(head);
         head.setNext(null);
@@ -86,13 +87,13 @@ public class ReverseLinkedList {
     }
 
     // 递归二
-    public static Node<Integer> reverse3(Node<Integer> head, Node<Integer> pre) {
+    public Node<T> reverse3(Node<T> head, Node<T> pre) {
         if (head == null) {
             return pre;
         }
 
-        Node<Integer> next = head.getNext();
-        Node<Integer> node = reverse3(next, head);
+        Node<T> next = head.getNext();
+        Node<T> node = reverse3(next, head);
 
         head.setNext(pre);
 
