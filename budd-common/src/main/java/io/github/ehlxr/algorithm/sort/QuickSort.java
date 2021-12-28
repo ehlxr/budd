@@ -32,45 +32,57 @@ import java.util.Arrays;
  */
 public class QuickSort {
     public static void main(String[] args) {
-        int[] arrs = new int[]{3, 2, 5, 7, 1, 9};
-        sort(arrs, 0, arrs.length - 1);
+        int[] a = new int[]{3, 9, 5, 7, 1, 2};
+        sort(a, 0, a.length - 1);
 
-        System.out.println(Arrays.toString(args));
+        System.out.println(Arrays.toString(a));
     }
 
-    public static void sort(int[] arrs, int p, int r) {
+    public static void sort(int[] a, int p, int r) {
         if (p >= r) {
             return;
         }
 
-        int k = partition(arrs, p, r);
+        int q = partition(a, p, r);
 
-        sort(arrs, p, k - 1);
-        sort(arrs, k + 1, r);
+        sort(a, p, q - 1);
+        sort(a, q + 1, r);
     }
 
-    public static int partition(int[] arrs, int p, int r) {
+    /**
+     * 获取分区点
+     * <p>
+     * 图示：https://cdn.jsdelivr.net/gh/0vo/oss/images/quick_sort.jpg
+     * <p>
+     * 通过游标 i 把 a[p...r] 分成两部分。
+     * a[p...i-1] 的元素都是小于 pivot 的，我们暂且叫它 “已处理区间”，a[i...r] 是 “未处理区间”。
+     * 我们每次都从未处理的区间 a[i...r] 中取一个元素 a[j]，与 pivot 对比，
+     * 如果小于 pivot，则将其加入到已处理区间的尾部，也就是 a[i] 的位置
+     * <p>
+     * 只需要将 a[i] 与 a[j] 交换，就可以在 O(1) 时间复杂度内将 a[j] 放到下标为 i 的位置。
+     */
+    public static int partition(int[] a, int p, int r) {
         int i = p;
-        int pivot = arrs[r];
+        int pivot = a[r];
         for (int j = p; j < r; j++) {
-            if (arrs[j] < pivot) {
-                if (j != i) {
-                    swap(arrs, i, j);
-                }
-                i++;
+            if (a[j] < pivot) {
+                swap(a, i++, j);
             }
         }
 
-        swap(arrs, i, r);
-        System.out.println("i=" + i);
+        swap(a, i, r);
+        System.out.println("i=" + i + " " + Arrays.toString(a));
 
         return i;
     }
 
-    public static void swap(int[] arrs, int i, int j) {
-        int temp = arrs[i];
-        arrs[i] = arrs[j];
-        arrs[j] = temp;
+    public static void swap(int[] a, int i, int j) {
+        if (i == j) {
+            return;
+        }
+        int temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
     }
 
 
