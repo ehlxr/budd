@@ -33,6 +33,8 @@ public class BinarySearch {
         int[] a = new int[]{1, 3, 5, 6, 7, 8, 9};
         System.out.println(search(a, a.length, 3));
         System.out.println(searchRec(a, a.length, 3));
+        a = new int[]{1, 2, 2, 2, 2, 5, 6, 7, 8, 9};
+        System.out.println(searchFirst(a, a.length, 2));
     }
 
     /**
@@ -91,5 +93,35 @@ public class BinarySearch {
         } else {
             return searchRec(a, low, mid - 1, v);
         }
+    }
+
+    /**
+     * 查找第一个值等于给定值的元素
+     *
+     * @param a 要查找的数组
+     * @param n 数组的长度
+     * @param v 要查找的值
+     * @return 要查找值在数组中的索引
+     */
+    public static int searchFirst(int[] a, int n, int v) {
+        int low = 0;
+        int high = n - 1;
+        while (low <= high) {
+            int mid = low + (high - low) >> 1;
+            if (a[mid] == v) {
+                if (a[mid - 1] != v) {
+                    return mid;
+                } else {
+                    high = mid - 1;
+                }
+            }
+
+            if (a[mid] < v) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return -1;
     }
 }
