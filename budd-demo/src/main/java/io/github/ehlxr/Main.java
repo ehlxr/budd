@@ -36,6 +36,7 @@ public class Main {
                 { 9, 10, 11, 12 }
         };
         System.out.println(ns.length); // 3
-        System.out.println(ns[0][2]);
+        System.out.println(ns[0].length); // 4
+        System.out.println(ns[2][2]); // 11
     }
 }

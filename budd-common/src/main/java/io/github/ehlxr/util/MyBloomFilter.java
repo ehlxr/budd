@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package io.github.ehlxr;
+package io.github.ehlxr.util;
 
 import java.util.BitSet;
 
