@@ -39,7 +39,7 @@ public class MinDist {
     private int minDist = Integer.MAX_VALUE; // 全局变量或者成员变量
 
     /**
-     * 状态转移表法
+     * 动态规划：状态转移表法
      */
     public int minDistDP(int[][] matrix, int n) {
         int[][] states = new int[n][n];
@@ -62,7 +62,7 @@ public class MinDist {
     }
 
     /**
-     * 状态转移方程法
+     * 动态规划：状态转移方程法
      */
     public int minDist(int i, int j) { // 调用minDist(n-1, n-1);
         if (i == 0 && j == 0) {
