@@ -35,16 +35,12 @@ public class BruteForce {
         String s = "abdcfhjudfadf";
         String p = "dcf";
 
-        System.out.println(match(s, p));
+        System.out.println(bf(s, p));
     }
 
-    public static int match(String s, String p) {
+    public static int bf(String s, String p) {
         int sl = s.length();
         int pl = p.length();
-
-        if (sl <= pl && !s.equals(p)) {
-            return -1;
-        }
 
         for (int i = 0; i <= sl - pl; i++) {
             int j = 0;
