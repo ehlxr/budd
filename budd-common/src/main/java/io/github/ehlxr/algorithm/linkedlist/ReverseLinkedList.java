@@ -25,6 +25,8 @@
 package io.github.ehlxr.algorithm.linkedlist;
 
 /**
+ * 反转单链表
+ *
  * @author ehlxr
  * @since 2022-03-14 07:05.
  */
