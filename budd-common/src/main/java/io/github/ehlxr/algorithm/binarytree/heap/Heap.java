@@ -31,26 +31,74 @@ import java.util.Arrays;
  * @since 2022-03-15 07:40.
  */
 public class Heap {
+    private static void createHeap(int[] a) {
+        int n = a.length - 1; // 最后一个叶子节点下标
+        buildHeap(a, n);
+    }
+
+    private static void buildHeap(int[] a, int n) {
+        // (n - 1) / 2 表示最后一个叶子节点父节点，即为最后一个非叶子节点
+        for (int i = (n - 1) / 2; i >= 0; --i) {
+            heapify(a, n, i);
+        }
+    }
+
+    /**
+     * 堆化
+     *
+     * @param a 数组
+     * @param n 最后一个元素下标
+     * @param i 需要调整的父节点下标
+     */
+    private static void heapify(int[] a, int n, int i) {
+        while (true) {
+            int max = i;
+
+            // 从当前节点和左右叶子节点中找出最大的
+            int l = 2 * i + 1;
+            if (l <= n && a[l] > a[max]) {
+                max = l;
+            }
+
+            int r = 2 * i + 2;
+            if (r <= n && a[r] > a[max]) {
+                max = r;
+            }
+
+            // 当前节点最大时退出
+            if (max == i) {
+                break;
+            }
+
+            swap(a, i, max);
+
+            // 最大节点和当前节点交换后，继续以当前节点为父节点堆化
+            i = max;
+        }
+    }
+
+    /**
+     * 堆排序
+     */
+    private static void sort(int[] a) {
+        for (int i = a.length - 1; i > 0; i--) {
+            buildHeap(a, i);
+            // 堆顶元素和最后一个元素交换，除过最后一个元素外其它元素再次构建大顶堆
+            swap(a, 0, i);
+        }
+    }
 
     public static void main(String[] args) {
         int[] arr = new int[]{1, 2, 3, 4, 5, 6};
+        createHeap(arr);
         System.out.println(Arrays.toString(arr));
-        sweap(arr,2,3);
+
+        sort(arr);
         System.out.println(Arrays.toString(arr));
+
     }
 
-    public static int[] heapify(int[] arr) {
-
-        for (int i = arr.length - 1; i > 0; i--) {
-            if (arr[i] > arr[i / 2]) {
-
-            }
-        }
-
-        return null;
-    }
-
-    public static void sweap(int[] arr, int i, int j) {
+    private static void swap(int[] arr, int i, int j) {
         int tmp = arr[i];
         arr[i] = arr[j];
         arr[j] = tmp;
