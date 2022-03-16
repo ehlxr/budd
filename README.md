@@ -9,4 +9,4 @@
 
 ## Thanks to the following organizations for providing open source licenses
 
-[<img src="https://cdn.ehlxr.top/jetbrains.png" width = "200" height = "217" alt="图片名称" align=center />](https://jb.gg/OpenSource)
+[<img src="https://cdn.ehlxr.top/jetbrains.png" width = "200" height = "217" alt="jetbrains" align=center />](https://jb.gg/OpenSource)
