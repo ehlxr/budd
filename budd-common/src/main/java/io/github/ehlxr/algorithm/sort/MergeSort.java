@@ -34,6 +34,7 @@ public class MergeSort {
     public static void main(String[] args) {
         int[] arrs = new int[]{3, 2, 5, 7, 1, 9};
         System.out.println(Arrays.toString(sort(arrs)));
+        System.out.println(Arrays.toString(sort2(arrs)));
     }
 
     public static int[] sort(int[] arrs) {
@@ -68,5 +69,43 @@ public class MergeSort {
         }
 
         return result;
+    }
+
+
+    public static int[] sort2(int[] a) {
+        if (a == null || a.length <= 1) {
+            return a;
+        }
+
+        return merge2(sort2(Arrays.copyOfRange(a, 0, a.length / 2)),
+                sort2(Arrays.copyOfRange(a, a.length / 2, a.length)));
+    }
+
+    public static int[] merge2(int[] a, int[] b) {
+        int[] r = new int[a.length + b.length];
+
+        int i = 0;
+        int j = 0;
+        int m = 0;
+        while (i < a.length || j < b.length) {
+            if (i >= a.length) {
+                r[m++] = b[j++];
+                continue;
+            }
+
+            if (j >= b.length) {
+                r[m++] = a[i++];
+                continue;
+            }
+
+            if (a[i] < b[j]) {
+                r[m++] = a[i++];
+            } else {
+                r[m++] = b[j++];
+            }
+        }
+
+
+        return r;
     }
 }
