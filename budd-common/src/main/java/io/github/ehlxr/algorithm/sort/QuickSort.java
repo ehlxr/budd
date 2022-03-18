@@ -108,7 +108,7 @@ public class QuickSort {
             p = l;
             System.out.println(Arrays.toString(a));
 
-       }
+        }
 
         sort2(a, i, p - 1);
         sort2(a, p + 1, j);
