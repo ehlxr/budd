@@ -33,7 +33,7 @@ import java.util.Arrays;
 public class QuickSort {
     public static void main(String[] args) {
         int[] a = new int[]{3, 9, 5, 7, 1, 2};
-        sort(a, 0, a.length - 1);
+        sort2(a, 0, a.length - 1);
 
         System.out.println(Arrays.toString(a));
     }
@@ -85,5 +85,32 @@ public class QuickSort {
         a[j] = temp;
     }
 
+    public static void sort2(int[] a, int l, int r) {
+        if (a == null || l >= r) {
+            return;
+        }
 
+        int i = l, j = r;
+        int p = l; // 选择最左边的元素为 pivot
+        while (l < r) {
+            // 如果选择 p = l 必须先从右边找到小于 a[p] 的第一个元素
+            while (l < r && a[r] >= a[p]) {
+                r--;
+            }
+            swap(a, r, p);
+            p = r;
+
+            // 从左边找到大于 a[p] 的第一个元素
+            while (l < r && a[l] <= a[p]) {
+                l++;
+            }
+            swap(a, l, p);
+            p = l;
+            System.out.println(Arrays.toString(a));
+
+        }
+
+        sort2(a, i, p - 1);
+        sort2(a, p + 1, j);
+    }
 }
