@@ -39,7 +39,7 @@ public class KnapSack {
 
     public static void main(String[] args) {
         System.out.println(knapsack3(new int[]{2, 2, 4, 6, 3}, new int[]{3, 4, 8, 9, 6}, 5, 9));
-        System.out.println(knapsack(new int[]{2, 2, 4, 6, 3}, new int[]{3, 4, 8, 9, 6}, 5, 9));
+        // System.out.println(knapsack(new int[]{2, 2, 4, 6, 3}, new int[]{3, 4, 8, 9, 6}, 5, 9));
     }
 
     /**
@@ -51,17 +51,17 @@ public class KnapSack {
      * @param w      背包可承载重量
      * @return 最大价值
      */
-    public static int knapsack(int[] weight, int[] value, int n, int w) {
-        int[][] dp = new int[][];
-    }
+    // public static int knapsack(int[] weight, int[] value, int n, int w) {
+    //     int[][] dp = new int[][];
+    // }
 
     /**
      * 动态规划方式
      *
      * @param weight 物品重量
      * @param value  物品的价值
-     * @param n     物品个数
-     * @param w     背包可承载重量
+     * @param n      物品个数
+     * @param w      背包可承载重量
      * @return 最大价值
      */
     public static int knapsack3(int[] weight, int[] value, int n, int w) {
