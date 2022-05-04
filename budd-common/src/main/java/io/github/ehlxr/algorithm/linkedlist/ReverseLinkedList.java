@@ -36,15 +36,51 @@ public class ReverseLinkedList {
         Node node4 = new Node(4, node5);
         Node node3 = new Node(3, node4);
         Node node2 = new Node(2, node3);
-        Node node1 = new Node(1, node2);
-        Node node0 = new Node(0, node1);
-        Node root = new Node(null, node0);
+        Node head = new Node(1, node2);
 
-        Node reverse = reverse(root);
-        // root.print();
+        // Node reverse = reverse(root);
+        // reverse.print();
 
-        reverse.print();
+        // System.out.println(reverseToN(head, node3));
+        // System.out.println(reverseToN(head, 2));
+        System.out.println(reverseFm2N(head, 2, 4));
 
+    }
+
+    public static Node reverseToN(Node root, Node n) {
+        Node pre = null, cur = root, tmp = root;
+        while (cur != n) {
+            tmp = cur.next;
+
+            cur.next = pre;
+            pre = cur;
+            cur = tmp;
+        }
+
+        return pre;
+
+    }
+
+    static Node next = null;
+
+    public static Node reverseToN(Node root, int n) {
+        if (n == 1) {
+            next = root.next;
+            return root;
+        }
+
+        Node h = reverseToN(root.next, n - 1);
+        root.next.next = root;
+        root.next = next;
+        return h;
+    }
+
+    public static Node reverseFm2N(Node root, int m, int n) {
+        if (m == 1) {
+            return reverseToN(root, n);
+        }
+        root.next = reverseFm2N(root.next, m - 1, n - 1);
+        return root;
     }
 
     public static Node reverse(Node root) {
@@ -73,17 +109,11 @@ class Node {
         this.value = value;
     }
 
-    public void print() {
-        System.out.println(this);
-        Node tmp = this.next;
-        while (tmp != null) {
-            System.out.println(tmp);
-            tmp = tmp.next;
-        }
-    }
-
     @Override
     public String toString() {
-        return "Node[value=" + this.value + "]";
+        return "Node{" +
+                "value=" + value +
+                ", next=" + next +
+                '}';
     }
 }
