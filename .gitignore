@@ -13,3 +13,4 @@ target
 /.idea
 /resources/debug.log
 *.iml
+budd-common/.settings
