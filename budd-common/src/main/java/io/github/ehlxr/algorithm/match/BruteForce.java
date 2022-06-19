@@ -39,20 +39,25 @@ public class BruteForce {
     }
 
     public static int bf(String s, String p) {
-        int sl = s.length();
-        int pl = p.length();
+        int m = s.length();
+        int n = p.length();
 
-        for (int i = 0; i <= sl - pl; i++) {
+        for (int i = 0; i <= m - n; i++) {
             int j = 0;
-            for (; j < pl; j++) {
-                if (s.charAt(i) == p.charAt(j)) {
-                    i++;
-                } else {
+            for (; j < n; j++) {
+                // if (s.charAt(i) == p.charAt(j)) {
+                //     i++;
+                // } else {
+                //     break;
+                // }
+                // 如果主串与模式串不匹配，则主串向右移动一个字符,模式串从头开始匹配
+                if (s.charAt(i + j) != p.charAt(j)) {
                     break;
                 }
             }
-            if (j == pl) {
-                return i - pl;
+            if (j == n) {
+                // return i - n;
+                return i;
             }
         }
 
