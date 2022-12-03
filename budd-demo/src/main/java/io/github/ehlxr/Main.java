@@ -24,6 +24,11 @@
 
 package io.github.ehlxr;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 /**
  * @author ehlxr
  * @since 2022-01-17 06:31.
@@ -31,12 +36,15 @@ package io.github.ehlxr;
 public class Main {
     public static void main(String[] args) {
         int[][] ns = {
-                { 1, 2, 3, 4 },
-                { 5, 6, 7, 8 },
-                { 9, 10, 11, 12 }
+                {1, 2, 3, 4},
+                {5, 6, 7, 8},
+                {9, 10, 11, 12}
         };
         System.out.println(ns.length); // 3
         System.out.println(ns[0].length); // 4
         System.out.println(ns[2][2]); // 11
+
+
+        List<String> collect = Stream.of("111", "wwwdddd", "dddddd", "12").filter(x -> x.length() > 3).collect(Collectors.toList());
     }
 }
