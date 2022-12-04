@@ -29,23 +29,6 @@ package io.github.ehlxr.algorithm.linkedlist;
  * @since 2022-04-15 08:41.
  */
 public class Leecode21 {
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
-
     public static void main(String[] args) {
         ListNode list1 = new ListNode(1);
         ListNode list2 = new ListNode(2);

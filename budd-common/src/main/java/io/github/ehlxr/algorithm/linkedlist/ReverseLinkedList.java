@@ -32,23 +32,23 @@ package io.github.ehlxr.algorithm.linkedlist;
  */
 public class ReverseLinkedList {
     public static void main(String[] args) {
-        Node node5 = new Node(5, null);
-        Node node4 = new Node(4, node5);
-        Node node3 = new Node(3, node4);
-        Node node2 = new Node(2, node3);
-        Node head = new Node(1, node2);
+        ListNode ListNode5 = new ListNode(5, null);
+        ListNode ListNode4 = new ListNode(4, ListNode5);
+        ListNode ListNode3 = new ListNode(3, ListNode4);
+        ListNode ListNode2 = new ListNode(2, ListNode3);
+        ListNode head = new ListNode(1, ListNode2);
 
-        // Node reverse = reverse(root);
+        // ListNode reverse = reverse(root);
         // reverse.print();
 
-        // System.out.println(reverseToN(head, node3));
+        // System.out.println(reverseToN(head, ListNode3));
         // System.out.println(reverseToN(head, 2));
         System.out.println(reverseFm2N(head, 2, 4));
 
     }
 
-    public static Node reverseToN(Node root, Node n) {
-        Node pre = null, cur = root, tmp = root;
+    public static ListNode reverseToN(ListNode root, ListNode n) {
+        ListNode pre = null, cur = root, tmp = root;
         while (cur != n) {
             tmp = cur.next;
 
@@ -61,21 +61,21 @@ public class ReverseLinkedList {
 
     }
 
-    static Node next = null;
+    static ListNode next = null;
 
-    public static Node reverseToN(Node root, int n) {
+    public static ListNode reverseToN(ListNode root, int n) {
         if (n == 1) {
             next = root.next;
             return root;
         }
 
-        Node h = reverseToN(root.next, n - 1);
+        ListNode h = reverseToN(root.next, n - 1);
         root.next.next = root;
         root.next = next;
         return h;
     }
 
-    public static Node reverseFm2N(Node root, int m, int n) {
+    public static ListNode reverseFm2N(ListNode root, int m, int n) {
         if (m == 1) {
             return reverseToN(root, n);
         }
@@ -83,12 +83,12 @@ public class ReverseLinkedList {
         return root;
     }
 
-    public static Node reverse(Node root) {
+    public static ListNode reverse(ListNode root) {
 
-        Node pre = null;
-        Node cur = root;
+        ListNode pre = null;
+        ListNode cur = root;
         while (cur != null) {
-            Node tmp = cur.next;
+            ListNode tmp = cur.next;
 
             cur.next = pre;
             pre = cur;
@@ -97,23 +97,5 @@ public class ReverseLinkedList {
         }
 
         return pre;
-    }
-}
-
-class Node {
-    public Integer value;
-    public Node next;
-
-    public Node(Integer value, Node next) {
-        this.next = next;
-        this.value = value;
-    }
-
-    @Override
-    public String toString() {
-        return "Node{" +
-                "value=" + value +
-                ", next=" + next +
-                '}';
     }
 }

@@ -26,54 +26,29 @@ package io.github.ehlxr.algorithm.linkedlist;
 
 /**
  * @author ehlxr
- * @since 2022-05-01 14:18.
+ * @since 2022-12-04 22:25.
  */
-public class FindKthFromEnd {
-    public static void main(String[] args) {
-        ListNode head = new ListNode(1);
-        head.next = new ListNode(2);
-        head.next.next = new ListNode(3);
-        head.next.next.next = new ListNode(4);
-        head.next.next.next.next = new ListNode(5);
-        head.next.next.next.next.next = new ListNode(6);
+public class ListNode {
+    int val;
+    ListNode next;
 
-        System.out.println(head);
-
-        System.out.println(findKthFromEnd(head, 1));
-        System.out.println(findKthFromEnd2(head, 1));
+    ListNode() {
     }
 
-    public static ListNode findKthFromEnd(ListNode head, int k) {
-        int n = 0;
-        ListNode node = head;
-        ListNode p = null;
-        while (node != null) {
-            if (p != null) {
-                p = p.next;
-            }
-
-            n++;
-            if (n == k) {
-                p = head;
-            }
-
-            node = node.next;
-        }
-        return p;
+    ListNode(int val) {
+        this.val = val;
     }
 
-    public static ListNode findKthFromEnd2(ListNode head, int k) {
-        ListNode p = head;
-        ListNode q = head;
-        for (int i = 0; i < k; i++) {
-            q = q.next;
-        }
-        while (q != null) {
-            p = p.next;
-            q = q.next;
-        }
-        return p;
+    ListNode(int val, ListNode next) {
+        this.val = val;
+        this.next = next;
     }
 
-
+    @Override
+    public String toString() {
+        return "ListNode{" +
+                "val=" + val +
+                ", next=" + next +
+                '}';
+    }
 }
