@@ -6,6 +6,7 @@
         <module>budd-common</module>
         <module>budd-demo</module>
         <module>budd-server</module>
+        <module>budd-utils</module>
     </modules>
 
     <groupId>io.github.ehlxr</groupId>
