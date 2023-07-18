@@ -38,6 +38,11 @@
             <groupId>io.github.ehlxr</groupId>
             <artifactId>budd-demo</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
